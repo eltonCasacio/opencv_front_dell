@@ -1,58 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import { Box, createTheme } from '@mui/material';
 import './App.css';
+import { ThemeProvider } from '@mui/system';
+import { Header } from './components/Header';
+import { Layout } from './components/Layout';
+import { CustomSlider } from './components/Slider';
+import { useEffect, useState } from 'react';
+import { Axios } from './services/api';
+
+const theme = createTheme({})
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+  const [value, setValue] = useState<number>(0);
+
+  useEffect(() => {
+    Axios.post('l', { color: "vermelho", value: value })
+  }, [value])
+
+  return <ThemeProvider theme={theme}>
+    <Box
+      component={'main'}
+      sx={{
+        height: '100vh',
+        backgroundColor: '#000000',
+      }}
+    >
+      <Header />
+      <Layout>
+        <h1>Olá terraqueos - {value && `value: ${value}`}</h1>
+        <img src="http://localhost:8000/videolayer01"></img>
+        <img src="http://localhost:8000/videolayer02"></img>
+        <img src="http://localhost:8000/videolayer03"></img>
+
+        <CustomSlider callback={setValue} />
+      </Layout>
+    </Box>
+  </ThemeProvider>
+
 }
 
 export default App;
