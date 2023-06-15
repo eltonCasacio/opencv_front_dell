@@ -1,38 +1,78 @@
-import { Box, createTheme } from '@mui/material';
+import { Box, Grid, createTheme } from '@mui/material';
 import './App.css';
 import { ThemeProvider } from '@mui/system';
 import { Header } from './components/Header';
-import { Layout } from './components/Layout';
-import { CustomSlider } from './components/Slider';
-import { useEffect, useState } from 'react';
-import { Axios } from './services/api';
+import { Images } from './components/ImageList';
+import { SimpleAccordion } from './components/CardSliders';
 
 const theme = createTheme({})
 
 function App() {
-  const [value, setValue] = useState<number>(0);
-
-  useEffect(() => {
-    Axios.post('l', { color: "vermelho", value: value })
-  }, [value])
-
   return <ThemeProvider theme={theme}>
-    <Box
-      component={'main'}
-      sx={{
-        height: '100vh',
-        backgroundColor: '#000000',
-      }}
-    >
+    <Box component={'main'} sx={{ backgroundColor: '#1b1b1b' }}>
       <Header />
-      <Layout>
-        <h1>Olá terraqueos - {value && `value: ${value}`}</h1>
-        <img src="http://localhost:8000/videolayer01"></img>
-        <img src="http://localhost:8000/videolayer02"></img>
-        <img src="http://localhost:8000/videolayer03"></img>
+      <Images />
+      <Box overflow={'auto'}>
+        <Grid container spacing={1} alignItems="center">
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+        </Grid>
 
-        <CustomSlider callback={setValue} />
-      </Layout>
+        <Grid container spacing={1} alignItems="center">
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={1} alignItems="center">
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={1} alignItems="center">
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+          <Grid item xs={3}>
+            <SimpleAccordion title='L - H' />
+          </Grid>
+        </Grid>
+      </Box>
     </Box>
   </ThemeProvider>
 

@@ -6,7 +6,7 @@ interface CustomSliderParams {
     min?: number;
     max?: number;
     size?: 'small' | 'medium';
-    callback(value: number): void;
+    callback(value: number[]): void;
 }
 export function CustomSlider({
     min = 0,
@@ -14,10 +14,10 @@ export function CustomSlider({
     size = 'medium',
     callback
 }: CustomSliderParams) {
-    const [value, setValue] = useState<number>(0);
+    const [value, setValue] = useState<number[]>([20, 37]);
 
     const handleChange = (event: Event, newValue: number | number[]) => {
-        setValue(newValue as number);
+        setValue(newValue as number[]);
     };
 
     useEffect(() => callback(value), [value])
