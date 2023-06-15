@@ -1,78 +1,35 @@
-import { Box, Grid, createTheme } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import './App.css';
 import { ThemeProvider } from '@mui/system';
 import { Header } from './components/Header';
-import { Images } from './components/ImageList';
-import { SimpleAccordion } from './components/CardSliders';
-
-const theme = createTheme({})
+import { appTheme } from './config/theme';
+import { ListFilter, CreateFilter, DetailFilter } from './features/filters'
+import { Home } from './features/monit'
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
-  return <ThemeProvider theme={theme}>
-    <Box component={'main'} sx={{ backgroundColor: '#1b1b1b' }}>
+  return <ThemeProvider theme={appTheme}>
+    <Box
+      component={'main'}
+      sx={{
+        height: '100vh',
+        backgroundColor: (theme) => theme.palette.grey[900]
+      }}
+    >
       <Header />
-      <Images />
-      <Box overflow={'auto'}>
-        <Grid container spacing={1} alignItems="center">
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-        </Grid>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/apply-filters' element={<CreateFilter />} />
+        <Route path='/filters' element={<ListFilter />} />
+        <Route path='/filter' element={<DetailFilter />} />
 
-        <Grid container spacing={1} alignItems="center">
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={1} alignItems="center">
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={1} alignItems="center">
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-          <Grid item xs={3}>
-            <SimpleAccordion title='L - H' />
-          </Grid>
-        </Grid>
-      </Box>
+        <Route path='*' element={
+          <Box sx={{ color: 'white' }}>
+            <Typography variant='h1'>404</Typography>
+            <Typography variant='h2'>Page not found</Typography>
+          </Box>
+        } />
+      </Routes>
     </Box>
   </ThemeProvider>
 
