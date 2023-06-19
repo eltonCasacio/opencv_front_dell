@@ -7,8 +7,8 @@ import InfoIcon from '@mui/icons-material/Info';
 export function Images() {
     return (
         <ImageList cols={4}>
-            {itemData.map((item) => (
-                <ImageListItem key={item.img}>
+            {itemData.map((item, index) => (
+                <ImageListItem key={item.img + index}>
                     <img
                         src={`${item.img}?w=248&fit=crop&auto=format`}
                         srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}

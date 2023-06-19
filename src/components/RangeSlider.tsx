@@ -3,18 +3,18 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useEffect, useState } from 'react';
 
-interface CustomSliderParams {
+interface RangeSliderParams {
     min?: number;
     max?: number;
     size?: 'small' | 'medium';
     callback(value: number[]): void;
 }
-export function CustomSlider({
+export function RangeSlider({
     min = 0,
     max = 255,
     size = 'small',
     callback
-}: CustomSliderParams) {
+}: RangeSliderParams) {
     const [value, setValue] = useState<number[]>([0, 37]);
 
     const handleChange = (event: Event, newValue: number | number[]) => {
