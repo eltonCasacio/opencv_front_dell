@@ -11,7 +11,6 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Insights';
-import { CustomSelect } from './Select';
 import { blue } from '@mui/material/colors';
 import { useNavigate } from "react-router-dom";
 
@@ -60,9 +59,6 @@ export function Header() {
                                 {page.title}
                             </Button>
                         ))}
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            <CustomSelect callback={(value) => console.log(value)} />
-                        </Box>
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">

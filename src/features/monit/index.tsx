@@ -28,12 +28,12 @@ export const Home = () => {
 
 
             <Box>
-                <Typography>alguma coisa aqui</Typography>
-                <Typography>alguma coisa aqui</Typography>
-                <Typography>alguma coisa aqui</Typography>
-                <Typography>alguma coisa aqui</Typography>
-                <Typography>alguma coisa aqui</Typography>
-                <Typography>alguma coisa aqui</Typography>
+                <Typography>log...</Typography>
+                <Typography>log...</Typography>
+                <Typography>log...</Typography>
+                <Typography>log...</Typography>
+                <Typography>log...</Typography>
+                <Typography>log...</Typography>
             </Box>
         </Box >
     )

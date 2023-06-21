@@ -6,13 +6,18 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 interface CustomSelectParams {
     callback(value: string): void
+    filters: string[]
 }
-export function CustomSelect({ callback }: CustomSelectParams) {
+export function CustomSelect({ callback, filters }: CustomSelectParams) {
     const [selectedItem, setSelectedItem] = React.useState('');
 
     const handleChange = (event: SelectChangeEvent) => {
         setSelectedItem(event.target.value);
     };
+
+    const renderFilters = () => {
+        return filters.map((item) => (<MenuItem key={item} value={item}>{item}</MenuItem>))
+    }
 
     React.useEffect(() => callback(selectedItem), [selectedItem])
 
@@ -24,14 +29,13 @@ export function CustomSelect({ callback }: CustomSelectParams) {
                 id="demo-select-small"
                 value={selectedItem}
                 label="Age"
+                onDrag={() => console.log("teste")}
                 onChange={handleChange}
             >
                 <MenuItem value="">
                     <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {renderFilters()}
             </Select>
         </FormControl>
     );

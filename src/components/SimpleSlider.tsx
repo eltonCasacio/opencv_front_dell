@@ -5,17 +5,21 @@ import { useEffect, useState } from 'react';
 
 interface SimpleSliderParams {
     size?: 'small' | 'medium';
+    initValue: number
     callback(value: number): void;
 }
 export function SimpleSlider({
     size = 'small',
+    initValue,
     callback
 }: SimpleSliderParams) {
-    const [value, setValue] = useState<number>(0);
+    const [value, setValue] = useState<number>(initValue);
 
     const handleChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number);
     };
+
+    useEffect(() => {setValue(initValue)}, [initValue])
 
     useEffect(() => callback(value), [value])
     return (

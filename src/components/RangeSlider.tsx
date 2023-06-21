@@ -1,32 +1,36 @@
 import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import React from 'react';
 import { useEffect, useState } from 'react';
 
 interface RangeSliderParams {
     min?: number;
     max?: number;
+    range: number[]
     size?: 'small' | 'medium';
     callback(value: number[]): void;
 }
 export function RangeSlider({
     min = 0,
     max = 255,
+    range,
     size = 'small',
     callback
 }: RangeSliderParams) {
-    const [value, setValue] = useState<number[]>([0, 37]);
+    const [value, setValue] = useState<number[]>([min, max]);
 
     const handleChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number[]);
     };
+
+    React.useEffect(() => {setValue(range)}, [range])
 
     useEffect(() => callback(value), [value])
     return (
         <Box>
             <StyledSlider
                 size={size}
-                defaultValue={0}
                 valueLabelDisplay="auto"
                 min={min}
                 max={max}

@@ -4,13 +4,14 @@ import { Box } from '@mui/material';
 
 interface CardSimpleSiderParams {
     title: string
+    initValue: number
     callback(value: number): void
 }
-export function CardSimpleSider({ title, callback }: CardSimpleSiderParams) {
+export function CardSimpleSider({ title, initValue, callback }: CardSimpleSiderParams) {
     return (
         <Box color={'#f1f1f1'}>
             <Typography>{title}</Typography>
-            <SimpleSlider callback={callback} />
+            <SimpleSlider initValue={initValue} callback={callback} />
         </Box>
     );
 }
