@@ -1,16 +1,20 @@
 import styled from '@emotion/styled';
+import { Grid, TextField, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import { title } from 'process';
 import { useEffect, useState } from 'react';
 
 interface SimpleSliderParams {
     size?: 'small' | 'medium';
     initValue: number
+    title: string
     callback(value: number): void;
 }
 export function SimpleSlider({
     size = 'small',
     initValue,
+    title,
     callback
 }: SimpleSliderParams) {
     const [value, setValue] = useState<number>(initValue);
@@ -19,18 +23,40 @@ export function SimpleSlider({
         setValue(newValue as number);
     };
 
-    useEffect(() => {setValue(initValue)}, [initValue])
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        let aux = parseInt(e.target.value) <= 0 ? 0 : parseInt(e.target.value)
+        setValue(aux)
+    }
 
+    useEffect(() => { setValue(initValue) }, [initValue])
     useEffect(() => callback(value), [value])
+
     return (
         <Box>
-            <StyledSlider
-                size={size}
-                defaultValue={0}
-                valueLabelDisplay="auto"
-                value={value}
-                onChange={handleChange}
-            />
+            <Grid container textAlign={'center'} sx={{ alignItems: 'center' }}>
+                <Grid item xs={4}>
+                    <TextField
+                        id="standard-basic"
+                        variant="standard"
+                        size="small"
+                        type='number'
+                        value={value}
+                        onChange={e => handleInputChange(e)}
+                    />
+                </Grid>
+                <Grid item xs={7}>
+                    <Typography fontSize={12}>{title}</Typography>
+                </Grid>
+            </Grid>
+            <Box>
+                <StyledSlider
+                    size={size}
+                    defaultValue={0}
+                    valueLabelDisplay="auto"
+                    value={value}
+                    onChange={handleChange}
+                />
+            </Box>
         </Box>
     );
 }

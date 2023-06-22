@@ -1,6 +1,6 @@
 import { Route, Routes as Myroutes } from 'react-router-dom';
 import { Home } from './features/monit'
-import { ListFilter, CreateFilter, DetailFilter } from './features/filters'
+import { ListFilter, CreateFilter } from './features/filters'
 import { Box, Typography } from '@mui/material';
 export const Routes = () => {
   return (
@@ -8,7 +8,6 @@ export const Routes = () => {
       <Route path='/' element={<Home />} />
       <Route path='/apply-filters' element={<CreateFilter />} />
       <Route path='/filters' element={<ListFilter />} />
-      <Route path='/filter' element={<DetailFilter />} />
 
       <Route path='*' element={
         <Box sx={{ color: 'white' }}>

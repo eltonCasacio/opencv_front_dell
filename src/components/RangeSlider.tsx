@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Grid, TextField, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import React from 'react';
@@ -9,6 +10,7 @@ interface RangeSliderParams {
     max?: number;
     range: number[]
     size?: 'small' | 'medium';
+    title: string
     callback(value: number[]): void;
 }
 export function RangeSlider({
@@ -16,6 +18,7 @@ export function RangeSlider({
     max = 255,
     range,
     size = 'small',
+    title,
     callback
 }: RangeSliderParams) {
     const [value, setValue] = useState<number[]>([min, max]);
@@ -24,11 +27,47 @@ export function RangeSlider({
         setValue(newValue as number[]);
     };
 
-    React.useEffect(() => {setValue(range)}, [range])
+    const handleInputMinChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const aux = [value[0], value[1]]
+        aux[0] = parseInt(e.target.value) <= 0 ? 0 : parseInt(e.target.value)
+        setValue(aux)
+    }
+
+    const handleInputMaxChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const aux = [value[0], value[1]]
+        aux[1] = parseInt(e.target.value) >= max ? max : parseInt(e.target.value)
+        setValue(aux)
+    }
+
+    React.useEffect(() => { setValue(range) }, [range])
 
     useEffect(() => callback(value), [value])
     return (
         <Box>
+            <Grid container textAlign={'center'} sx={{ alignItems: 'center' }}>
+                <Grid item xs={3}>
+                    <TextField
+                        id="standard-basic"
+                        variant="standard"
+                        size="small"
+                        type='number'
+                        value={value[0]}
+                        onChange={e => handleInputMinChange(e)}
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography fontSize={12}>{title}</Typography>
+                </Grid>
+                <Grid item xs={3}>
+                    <TextField
+                        id="standard-basic"
+                        variant="standard"
+                        size="small"
+                        type='number'
+                        value={value[1]}
+                        onChange={e => handleInputMaxChange(e)} />
+                </Grid>
+            </Grid>
             <StyledSlider
                 size={size}
                 valueLabelDisplay="auto"
@@ -38,7 +77,7 @@ export function RangeSlider({
                 onChange={handleChange}
             />
         </Box>
-    );
+    )
 }
 
 const StyledSlider = styled(Slider)({

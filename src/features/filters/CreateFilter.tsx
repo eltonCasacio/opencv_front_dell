@@ -168,7 +168,7 @@ export const CreateFilter = () => {
             </Box>
             <Images />
             <Grid container >
-                <Grid container item spacing={2} alignItems="center">
+                <Grid container item spacing={4} alignItems="center">
                     <Grid item xs={3}>
                         <CardRangeSider
                             title='Low/Hight - Vermelho'
@@ -209,7 +209,7 @@ export const CreateFilter = () => {
                         <CardSimpleSider initValue={selectedFilter.erode} title='Iteration Erode' callback={sendIterationErode} />
                     </Grid>
                 </Grid>
-                <Grid container item spacing={2} alignItems="center">
+                <Grid container item spacing={4} alignItems="center">
                     <Grid item xs={3}>
                         <CardRangeSider
                             title='Tam MinMaxLV'
@@ -250,7 +250,7 @@ export const CreateFilter = () => {
                         <CardSimpleSider initValue={selectedFilter.dilate} title='Iteration Dilate' callback={sendIterationDilate} />
                     </Grid>
                 </Grid>
-                <Grid container item spacing={2} alignItems="center">
+                <Grid container item spacing={4} alignItems="center">
                     <Grid item xs={3}>
                         <CardSimpleSider initValue={selectedFilter.lineVertical} title='trackbar_LineVertical' callback={handleTrackbarLineVertical} />
                     </Grid>

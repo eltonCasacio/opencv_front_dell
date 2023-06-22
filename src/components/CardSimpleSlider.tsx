@@ -1,4 +1,3 @@
-import Typography from '@mui/material/Typography';
 import { SimpleSlider } from './SimpleSlider';
 import { Box } from '@mui/material';
 
@@ -10,8 +9,7 @@ interface CardSimpleSiderParams {
 export function CardSimpleSider({ title, initValue, callback }: CardSimpleSiderParams) {
     return (
         <Box color={'#f1f1f1'}>
-            <Typography>{title}</Typography>
-            <SimpleSlider initValue={initValue} callback={callback} />
+            <SimpleSlider title={title} initValue={initValue} callback={callback} />
         </Box>
     );
 }

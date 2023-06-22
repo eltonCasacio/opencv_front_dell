@@ -12,10 +12,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Insights';
 import { blue } from '@mui/material/colors';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const pages = [{ title: 'Home', path: '/' }, { title: 'Filter', path: 'apply-filters' }];
-const settings = ['Filters', 'Dashboard', 'Logout'];
+const settings = [{ title: 'Filtros', path: '/filters' }];
 
 export function Header() {
     const navigate = useNavigate();
@@ -61,7 +61,7 @@ export function Header() {
                         ))}
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
+                        <Tooltip title="abrir menu">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 {/* <Avatar alt="Renan" src="/static/images/avatar/2.jpg" /> */}
                                 <Avatar sx={{ bgcolor: blue[500] }}>S</Avatar>
@@ -83,10 +83,14 @@ export function Header() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
+                            {settings.map(({ title, path }) => (
+                                <Button
+                                    onClick={() => navigate(path)}
+                                    key={title}
+                                    sx={{ color: 'white', fontSize: 12, mx: 4 }}
+                                >
+                                    {title}
+                                </Button>
                             ))}
                         </Menu>
                     </Box>
