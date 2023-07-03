@@ -7,7 +7,12 @@ import { Routes } from './routes';
 
 function App() {
   return <ThemeProvider theme={appTheme}>
-    <Box component={'main'} sx={{ height: '100vh', backgroundColor: (theme) => theme.palette.grey[900] }}>
+    <Box
+      component={'main'}
+      sx={{
+        height: '100vh',
+        backgroundColor: (theme) => theme.palette.grey[900]
+      }}>
       <Header />
       <Routes />
     </Box>

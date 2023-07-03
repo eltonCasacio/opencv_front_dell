@@ -1,62 +1,72 @@
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Box } from '@mui/material';
+import { Box, Button, Container, IconButton } from "@mui/material"
+import { useAppSelector } from "../../app/hooks"
+import { selectFilters } from "./filterSlice"
+import { Link } from "react-router-dom"
+import { DataGrid, GridColDef, GridRenderCellParams, GridRowsProp, GridToolbar } from '@mui/x-data-grid';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-function createData(
-    name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number,
-) {
-    return { name, calories, fat, carbs, protein };
-}
+export const FilterList = () => {
+    const filters = useAppSelector(selectFilters)
+    const columns: GridColDef[] = [
+        {
+            field: 'id',
+            headerName: 'ID',
+            flex: 0.2
+        },
+        {
+            field: 'name',
+            headerName: 'NOME',
+            flex: 1
+        },
+        {
+            field: 'actions',
+            headerName: 'AÇÕES',
+            flex: 0.3,
+            renderCell: renderActionsCell
+        },
+    ];
+    const gridRows = filters.map(filter => {
+        return { id: filter.id, name: filter.name }
+    })
+    const rows: GridRowsProp = gridRows
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-export function ListFilter() {
+    function renderActionsCell(params: GridRenderCellParams) {
+        return (
+            <IconButton
+                color="secondary"
+                onClick={() => console.log('renderActionsCell delete')}
+                aria-label="delete"
+            >
+                <DeleteIcon />
+            </IconButton>
+        )
+    }
     return (
-        <Box mx={4} my={2}>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Dessert (100g serving)</TableCell>
-                            <TableCell align="right">Calories</TableCell>
-                            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => (
-                            <TableRow
-                                key={row.name}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.calories}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="right">{row.carbs}</TableCell>
-                                <TableCell align="right">{row.protein}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+        <Box maxWidth='xl' sx={{ my: 4, mx: 4, flexGrow: 1 }}>
+            <Box display={'flex'} justifyContent={'flex-end'}>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    component={Link}
+                    to='/apply-filters'
+                    style={{ marginBottom: '1rem' }}
+                >
+                    Create Filter
+                </Button>
+            </Box>
+            <DataGrid
+                rows={rows}
+                columns={columns}
+                pageSizeOptions={[4, 5, 10, 15, 100]}
+                disableRowSelectionOnClick
+                slots={{ toolbar: GridToolbar }}
+                slotProps={{
+                    toolbar: {
+                        showQuickFilter: true,
+                        quickFilterProps: { debounceMs: 500 },
+                    },
+                }}
+            />
         </Box>
-    );
+    )
 }

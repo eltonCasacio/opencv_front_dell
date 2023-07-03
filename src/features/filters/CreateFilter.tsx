@@ -55,9 +55,6 @@ export const CreateFilter = () => {
         sendValues('loeheight', 'azul', values)
     }
 
-
-
-
     const sendTamMinMaxlvlhParams = (attr: string, values: number[]) => {
         if (values[0] >= 0 && values[1] >= 0) {
             console.log(attr, values[0], values[1])
@@ -76,7 +73,6 @@ export const CreateFilter = () => {
     const tamMinMaxLH = (values: number[]) => {
         sendTamMinMaxlvlhParams('lh', values)
     }
-
 
     const sendSimpleValue = (url: string, value: number) => {
         if (value >= 0) {
