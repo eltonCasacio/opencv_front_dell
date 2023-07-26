@@ -3,8 +3,8 @@ import React from "react";
 import { CardRangeSider } from "../../components/CardRangeSider";
 import { CardSimpleSider } from "../../components/CardSimpleSlider";
 import { Images } from "../../components/ImageList";
-import { Axios } from "../../services/api";
 import { CustomSelect } from '../../components/CustomSelect';
+import { changeFilter, getCurrentFilter, getFilters, saveFilter, sendLowHeightValues, sendSimpleValue, sendTamMinMaxlvlh, sendTamminmax } from "../../services/filter_params";
 
 const FilterProps = {
     dilate: 0,
@@ -33,90 +33,24 @@ export const CreateFilter = () => {
     const [selectedFilter, setSelectedFilter] = React.useState(FilterProps)
     const [filters, setFilters] = React.useState([])
 
-    const sendValues = (url: string, color: string, values: number[]) => {
-        if (values[0] >= 0 && values[1] >= 0) {
-            Axios.post(url, { color: color, low: values[0], hight: values[1] })
-        }
-    }
-
-    const lvermelho = (values: number[]) => {
-        sendValues('loeheight', 'vermelho', values)
-    }
-
-    const lvd = (values: number[]) => {
-        sendValues('loeheight', 'verde', values)
-    }
-
-    const la = (values: number[]) => {
-        sendValues('loeheight', 'azul', values)
-    }
-
-    const sendTamMinMaxlvlhParams = (attr: string, values: number[]) => {
-        if (values[0] >= 0 && values[1] >= 0) {
-            console.log(attr, values[0], values[1])
-            Axios.post('tamminmaxlvlh', { attr: attr, min: values[0], max: values[1] })
-        }
-    }
-
-    const tamMinMaxLV = (values: number[]) => {
-        sendTamMinMaxlvlhParams('lv', values)
-    }
-
-    const tamMinMaxLH = (values: number[]) => {
-        sendTamMinMaxlvlhParams('lh', values)
-    }
-
-    const sendSimpleValue = (url: string, value: number) => {
-        if (value >= 0) {
-            Axios.post(url, { value: value })
-        }
-    }
-
-    const sendTamminmax = (values: number[]) => {
-        if (values[0] >= 0 && values[1] >= 0) {
-            Axios.post('tamminmax', { min: values[0], max: values[1] })
-        }
-    }
-
-    const sendIterationErode = (value: number) => {
-        sendSimpleValue('iterations_erode', value)
-    }
-
-    const sendIterationDilate = (value: number) => {
-        sendSimpleValue('iterations_dilate', value)
-    }
-
-    const handleTrackbarLineVertical = (value: number) => {
-        sendSimpleValue('trackbar_LineVertical', value)
-    }
-
-    const handleTrackbarLineHorizontal = (value: number) => {
-        sendSimpleValue('trackbar_LineHorizontal', value)
-    }
-
-    const handleTrackbarLineRange = (value: number) => {
-        sendSimpleValue('trackbar_LineRange', value)
-    }
-
-    const handleSaveFilter = () => {
-        Axios.post('save-filter', { fileName: ref.current?.value }).then(_ => {
-            if (ref.current?.value != null) {
-                ref.current.value = ""
-            }
-            loadData()
-        })
-    }
-
-    const handleChangeFilter = (fileName: string) => {
-        Axios.post('filter', { fileName: fileName }).then(res => setSelectedFilter(res.data))
-    }
-
     function loadData() {
-        Axios.get('filters').then(res => setFilters(res.data)).catch(error => console.error(error))
-        Axios.get('current_filter').then(res => setSelectedFilter(res.data)).catch(error => console.error(error))
+        getFilters().then(res => console.log("FILTROS:: ", res))
+        getCurrentFilter().then(res => console.log("FILTRO ATUAL:: ", res))
     }
 
-    React.useEffect(() => loadData(), [])
+    React.useEffect(() => {
+        const interval = setInterval(async () => {
+            try {
+                loadData()
+            } catch (error) {
+                console.error("Erro ao carregar dados do filtro:: ", error)
+            }
+        }, 1000);
+
+        return function cleanup() {
+            clearInterval(interval)
+        };
+    }, [])
 
     return (
         <Box
@@ -128,7 +62,7 @@ export const CreateFilter = () => {
         >
             <Box display={'flex'} justifyContent='space-between' alignItems={'center'} mt={1}>
                 <Box>
-                    <CustomSelect filters={filters} callback={(value) => handleChangeFilter(value)} />
+                    <CustomSelect filters={filters} callback={(value) => changeFilter(value)} />
                 </Box>
                 <Box>
                     <TextField
@@ -137,7 +71,7 @@ export const CreateFilter = () => {
                         label="Nome Filtro"
                         size="small"
                     />
-                    <Button variant="contained" color="info" onClick={handleSaveFilter}>
+                    <Button variant="contained" color="info" onClick={() => saveFilter(ref.current?.value || '')}>
                         SALVAR
                     </Button>
                 </Box>
@@ -148,7 +82,11 @@ export const CreateFilter = () => {
                     <Grid item xs={3}>
                         <CardRangeSider
                             title='Low/Hight - Vermelho'
-                            callback={lvermelho}
+                            callback={(value) => sendLowHeightValues({
+                                color: 'VERMELHO',
+                                min: value[0],
+                                max: value[1]
+                            })}
                             range={[
                                 selectedFilter.lvermelho,
                                 selectedFilter.hvermelho
@@ -160,7 +98,11 @@ export const CreateFilter = () => {
                     <Grid item xs={3}>
                         <CardRangeSider
                             title='Low/Hight - Verde'
-                            callback={lvd}
+                            callback={(value) => sendLowHeightValues({
+                                color: 'VERDE',
+                                min: value[0],
+                                max: value[1]
+                            })}
                             range={[
                                 selectedFilter.lverde,
                                 selectedFilter.hverde
@@ -172,7 +114,11 @@ export const CreateFilter = () => {
                     <Grid item xs={3}>
                         <CardRangeSider
                             title='Low/Hight - Azul'
-                            callback={la}
+                            callback={(value) => sendLowHeightValues({
+                                color: 'AZUL',
+                                min: value[0],
+                                max: value[1]
+                            })}
                             range={[
                                 selectedFilter.lazul,
                                 selectedFilter.hazul
@@ -182,14 +128,18 @@ export const CreateFilter = () => {
                         />
                     </Grid>
                     <Grid item xs={3}>
-                        <CardSimpleSider initValue={selectedFilter.erode} title='Iteration Erode' callback={sendIterationErode} />
+                        <CardSimpleSider
+                            initValue={selectedFilter.erode}
+                            title='Iteration Erode'
+                            callback={(value) => sendSimpleValue(value, 'iterations_erode')}
+                        />
                     </Grid>
                 </Grid>
                 <Grid container item spacing={4} alignItems="center">
                     <Grid item xs={3}>
                         <CardRangeSider
                             title='Tam MinMaxLV'
-                            callback={tamMinMaxLV}
+                            callback={(value) => sendTamMinMaxlvlh({ attr: 'LV', value })}
                             range={[
                                 selectedFilter.tamMinLv,
                                 selectedFilter.tamMaxLv
@@ -201,7 +151,7 @@ export const CreateFilter = () => {
                     <Grid item xs={3}>
                         <CardRangeSider
                             title='Tam MinMaxLH'
-                            callback={tamMinMaxLH}
+                            callback={(value) => sendTamMinMaxlvlh({ attr: 'LH', value })}
                             range={[
                                 selectedFilter.tamMinLh,
                                 selectedFilter.tamMaxLh
@@ -223,18 +173,33 @@ export const CreateFilter = () => {
                         />
                     </Grid>
                     <Grid item xs={3}>
-                        <CardSimpleSider initValue={selectedFilter.dilate} title='Iteration Dilate' callback={sendIterationDilate} />
+                        <CardSimpleSider
+                            initValue={selectedFilter.dilate}
+                            title='Iteration Dilate'
+                            callback={(value) => sendSimpleValue(value, 'iterations_dilate')}
+                        />
                     </Grid>
                 </Grid>
                 <Grid container item spacing={4} alignItems="center">
                     <Grid item xs={3}>
-                        <CardSimpleSider initValue={selectedFilter.lineVertical} title='trackbar_LineVertical' callback={handleTrackbarLineVertical} />
+                        <CardSimpleSider
+                            initValue={selectedFilter.lineVertical}
+                            title='trackbar_LineVertical'
+                            callback={(value) => sendSimpleValue(value, 'trackbar_LineVertical')} />
                     </Grid>
                     <Grid item xs={3}>
-                        <CardSimpleSider initValue={selectedFilter.lineHorizontal} title='trackbar_LineHorizontal' callback={handleTrackbarLineHorizontal} />
+                        <CardSimpleSider
+                            initValue={selectedFilter.lineHorizontal}
+                            title='trackbar_LineHorizontal'
+                            callback={(value) => sendSimpleValue(value, 'trackbar_LineHorizontal')}
+                        />
                     </Grid>
                     <Grid item xs={3}>
-                        <CardSimpleSider initValue={selectedFilter.lineRange} title='trackbar_LineRange' callback={handleTrackbarLineRange} />
+                        <CardSimpleSider
+                            initValue={selectedFilter.lineRange}
+                            title='trackbar_LineRange'
+                            callback={(value) => sendSimpleValue(value, 'trackbar_LineRange')}
+                        />
                     </Grid>
                 </Grid>
             </Grid>

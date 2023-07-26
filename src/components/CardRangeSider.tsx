@@ -6,7 +6,7 @@ interface CardRangeSiderParams {
     min: number
     max: number
     range: number[]
-    callback(values: number[]): void
+    callback(value: number[]): void
 }
 export function CardRangeSider({ title, min, max, range, callback }: CardRangeSiderParams) {
     return (

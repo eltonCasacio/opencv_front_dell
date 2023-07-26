@@ -1,45 +1,42 @@
 import { Axios } from "./api"
 
 type COLOR = 'VERMELHO' | 'VERDE' | 'AZUL'
+interface MINMAX { min: number, max: number }
 
-interface SendValuesParams {
-    url: string
+interface sendLowHeightValuesParams extends MINMAX {
     color: COLOR
-    values: number[]
 }
-async function sendValues(params: SendValuesParams): Promise<any> {
-    const low = params.values[0]
-    const hight = params.values[1]
-    if (params.values[0] >= 0 && params.values[1] >= 0) {
-        return Axios.post(params.url, { color: params.color, low, hight })
+async function sendLowHeightValues(params: sendLowHeightValuesParams): Promise<any> {
+    const low = params.min
+    const hight = params.max
+    if (params.min >= 0 && params.max >= 0) {
+        return Axios.post('loeheight', { color: params.color, low, hight })
     }
 }
 
 interface SendTamMinMaxlvlhParams {
-    attr: 'lv' | 'lh'
-    values: number[]
+    attr: 'LV' | 'LH'
+    value: number[]
 }
 async function sendTamMinMaxlvlh(params: SendTamMinMaxlvlhParams): Promise<any> {
-    const min = params.values[0]
-    const max = params.values[1]
-    if (params.values[0] >= 0 && params.values[1] >= 0) {
+    const min = params.value[0]
+    const max = params.value[1]
+    if (params.value[0] >= 0 && params.value[1] >= 0) {
         return Axios.post('tamminmaxlvlh', { attr: params.attr, min, max })
     }
 }
 
-async function sendSimpleValue(url: string, value: number): Promise<any> {
-    if (value >= 0) {
-        return Axios.post(url, { value: value })
+async function sendTamminmax(values: number[]): Promise<any> {
+    const min = values[0]
+    const max = values[1]
+    if (min >= 0 && max >= 0) {
+        return Axios.post('tamminmax', { min, max })
     }
 }
 
-interface SendTamminmaxParams {
-    min: number
-    max: number
-}
-async function sendTamminmax({ min, max }: SendTamminmaxParams): Promise<any> {
-    if (min >= 0 && max >= 0) {
-        return Axios.post('tamminmax', { min, max })
+async function sendSimpleValue(value: number, url: string): Promise<any> {
+    if (value >= 0) {
+        return Axios.post(url, { value: value })
     }
 }
 
@@ -51,7 +48,7 @@ async function changeFilter(fileName: string): Promise<any> {
     return Axios.post('filter', { fileName: fileName })
 }
 
-function getFilters(): Promise<any> {
+async function getFilters(): Promise<any> {
     return Axios.get('filters')
 }
 
@@ -59,4 +56,4 @@ async function getCurrentFilter(): Promise<any> {
     return Axios.get('current_filter')
 }
 
-export { getCurrentFilter, getFilters, changeFilter, saveFilter }
+export { getCurrentFilter, getFilters, changeFilter, sendSimpleValue, sendTamminmax, saveFilter, sendTamMinMaxlvlh, sendLowHeightValues }
