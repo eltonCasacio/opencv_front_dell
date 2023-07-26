@@ -29,17 +29,13 @@ const FilterProps = {
 }
 
 export const CreateFilter = () => {
-    var ref = React.useRef<HTMLInputElement>(null);
+    let ref = React.useRef<HTMLInputElement>(null);
     const [selectedFilter, setSelectedFilter] = React.useState(FilterProps)
     const [filters, setFilters] = React.useState([])
 
     const sendValues = (url: string, color: string, values: number[]) => {
         if (values[0] >= 0 && values[1] >= 0) {
-            try {
-                Axios.post(url, { color: color, low: values[0], hight: values[1] })
-            } catch (error) {
-                console.error(error)
-            }
+            Axios.post(url, { color: color, low: values[0], hight: values[1] })
         }
     }
 
@@ -58,11 +54,7 @@ export const CreateFilter = () => {
     const sendTamMinMaxlvlhParams = (attr: string, values: number[]) => {
         if (values[0] >= 0 && values[1] >= 0) {
             console.log(attr, values[0], values[1])
-            try {
-                Axios.post('tamminmaxlvlh', { attr: attr, min: values[0], max: values[1] })
-            } catch (error) {
-                console.error(error)
-            }
+            Axios.post('tamminmaxlvlh', { attr: attr, min: values[0], max: values[1] })
         }
     }
 
@@ -76,21 +68,13 @@ export const CreateFilter = () => {
 
     const sendSimpleValue = (url: string, value: number) => {
         if (value >= 0) {
-            try {
-                Axios.post(url, { value: value })
-            } catch (error) {
-                console.error(error)
-            }
+            Axios.post(url, { value: value })
         }
     }
 
     const sendTamminmax = (values: number[]) => {
         if (values[0] >= 0 && values[1] >= 0) {
-            try {
-                Axios.post('tamminmax', { min: values[0], max: values[1] })
-            } catch (error) {
-                console.error(error)
-            }
+            Axios.post('tamminmax', { min: values[0], max: values[1] })
         }
     }
 
@@ -115,28 +99,24 @@ export const CreateFilter = () => {
     }
 
     const handleSaveFilter = () => {
-        try {
-            Axios.post('save-filter', { fileName: ref.current?.value }).then(_ => {
-                if (ref.current?.value != null) ref.current.value = ""
-                getFilters()
-            })
-        } catch (error) { console.error(error) }
+        Axios.post('save-filter', { fileName: ref.current?.value }).then(_ => {
+            if (ref.current?.value != null) {
+                ref.current.value = ""
+            }
+            loadData()
+        })
     }
 
     const handleChangeFilter = (fileName: string) => {
-        try {
-            Axios.post('filter', { fileName: fileName })
-                .then(res => setSelectedFilter(res.data))
-        } catch (error) { console.error(error) }
+        Axios.post('filter', { fileName: fileName }).then(res => setSelectedFilter(res.data))
     }
 
-    const getFilters = () => {
-        try {
-            Axios.get('filters').then(res => setFilters(res.data))
-        } catch (error) { console.error(error) }
+    function loadData() {
+        Axios.get('filters').then(res => setFilters(res.data)).catch(error => console.error(error))
+        Axios.get('current_filter').then(res => setSelectedFilter(res.data)).catch(error => console.error(error))
     }
 
-    React.useEffect(() => getFilters(), [])
+    React.useEffect(() => loadData(), [])
 
     return (
         <Box

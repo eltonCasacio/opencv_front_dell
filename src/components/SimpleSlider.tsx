@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { Grid, TextField, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { title } from 'process';
 import { useEffect, useState } from 'react';
 
 interface SimpleSliderParams {
@@ -29,7 +28,7 @@ export function SimpleSlider({
     }
 
     useEffect(() => { setValue(initValue) }, [initValue])
-    useEffect(() => callback(value), [value])
+    useEffect(() => callback(value), [callback, value])
 
     return (
         <Box>

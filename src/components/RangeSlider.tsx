@@ -2,8 +2,7 @@ import styled from '@emotion/styled';
 import { Grid, TextField, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface RangeSliderParams {
     min?: number;
@@ -41,7 +40,7 @@ export function RangeSlider({
 
     React.useEffect(() => { setValue(range) }, [range])
 
-    useEffect(() => callback(value), [value])
+    useEffect(() => callback(value), [callback, value])
     return (
         <Box>
             <Grid container textAlign={'center'} sx={{ alignItems: 'center' }}>

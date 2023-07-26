@@ -9,10 +9,9 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Insights';
 import { blue } from '@mui/material/colors';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const pages = [{ title: 'Home', path: '/' }, { title: 'Filter', path: 'apply-filters' }];
 const settings = [{ title: 'Filtros', path: '/filters' }];

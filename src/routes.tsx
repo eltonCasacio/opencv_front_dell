@@ -1,14 +1,12 @@
 import { Route, Routes as Myroutes } from 'react-router-dom';
-import { Home } from './features/monit'
-import { FilterList, CreateFilter } from './features/filters'
+import { Home } from './pages/pallet_monitor'
+import { CreateFilter } from './pages/filters/filter_params'
 import { Box, Typography } from '@mui/material';
 export const Routes = () => {
   return (
     <Myroutes>
       <Route path='/' element={<Home />} />
       <Route path='/apply-filters' element={<CreateFilter />} />
-      <Route path='/filters' element={<FilterList />} />
-
       <Route path='*' element={
         <Box sx={{ color: 'white' }}>
           <Typography variant='h1'>404</Typography>
