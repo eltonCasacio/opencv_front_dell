@@ -13,7 +13,10 @@ import AdbIcon from '@mui/icons-material/Insights';
 import { blue } from '@mui/material/colors';
 import { useNavigate } from "react-router-dom";
 
-const pages = [{ title: 'Home', path: '/' }, { title: 'Filter', path: 'apply-filters' }];
+const pages = [
+    { title: 'Pallet', path: '/' },
+    { title: 'Box Filters', path: 'box-filters' },
+];
 const settings = [{ title: 'Filtros', path: '/filters' }];
 
 export function Header() {

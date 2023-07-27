@@ -26,7 +26,7 @@ export const FilterProps = {
     tamMinLv: 0,
 }
 
-export const CreateFiltersGroup = () => {
+export const BoxFilters = () => {
     const [filters, setFilters] = React.useState([])
     const [selectedFilter, setSelectedFilter] = React.useState(FilterProps)
 
