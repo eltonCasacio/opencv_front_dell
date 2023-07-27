@@ -6,7 +6,7 @@ interface MINMAX { min: number, max: number }
 interface sendLowHeightValuesParams extends MINMAX {
     color: COLOR
 }
-function sendLowHeightValues(params: sendLowHeightValuesParams){
+function sendLowHeightValues(params: sendLowHeightValuesParams) {
     const low = params.min
     const hight = params.max
     if (params.min >= 0 && params.max >= 0) {
@@ -48,18 +48,18 @@ function changeFilter(fileName: string) {
     // const res = await Axios.post('filter', { fileName: fileName })
 }
 async function getFilters() {
-    const {data} = await Axios.get('filters')
-    return data
+    // const {data} = await Axios.get('filters')
+    // return data
 }
 
 async function getCurrentFilter() {
-    try {
-        const {data} = await Axios.get('current_filter')
-        return data
-    } catch (error) {
-        throw new Error("request error on getCurrentFilter")
-    }
-   
+    // try {
+    //     const {data} = await Axios.get('current_filter')
+    //     return data
+    // } catch (error) {
+    //     throw new Error("request error on getCurrentFilter")
+    // }
+
 }
 
 export { getCurrentFilter, getFilters, changeFilter, sendSimpleValue, sendTamminmax, saveFilter, sendTamMinMaxlvlh, sendLowHeightValues }

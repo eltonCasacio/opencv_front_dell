@@ -19,10 +19,10 @@ export function CustomSelect({ callback, filters }: CustomSelectParams) {
         return filters.map((item) => (<MenuItem key={item} value={item}>{item}</MenuItem>))
     }
 
-    React.useEffect(() => callback(selectedItem), [selectedItem])
+    React.useEffect(() => callback(selectedItem), [callback, selectedItem])
 
     return (
-        <FormControl sx={{ m: 2, minWidth: 120 }} variant='outlined' size="small">
+        <FormControl sx={{ minWidth: 120 }} variant='outlined' size="small">
             <InputLabel id="demo-select-small-label">Filtro</InputLabel>
             <Select
                 labelId="demo-select-small-label"

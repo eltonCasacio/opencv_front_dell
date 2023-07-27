@@ -11,6 +11,7 @@ function App() {
       component={'main'}
       sx={{
         height: '100vh',
+        overflow: '-webkit-paged-y',
         backgroundColor: (theme) => theme.palette.grey[900]
       }}>
       <Header />
