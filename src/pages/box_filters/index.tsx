@@ -1,36 +1,53 @@
 import Grid from '@mui/material/Unstable_Grid2';
 import { changeFilter, saveFilter } from '../../services/filter_params';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Content from './components/Content';
 import { Sidebar } from './components/Sidebar';
 
 export const FilterProps = {
     name: "",
-    dilate: 0,
-    erode: 0,
-    hazul: 0,
-    hverde: 0,
-    hvermelho: 0,
-    id: 0,
-    lazul: 0,
-    lineHorizontal: 0,
-    lineRange: 0,
-    lineVertical: 0,
-    lverde: 0,
-    lvermelho: 0,
-    tamMax: 0,
-    tamMaxLh: 0,
-    tamMaxLv: 0,
-    tamMin: 0,
-    tamMinLh: 0,
-    tamMinLv: 0,
+    dilate: 1,
+    erode: 2,
+    hazul: 3,
+    hverde: 4,
+    hvermelho: 5,
+    id: 6,
+    lazul: 7,
+    lineHorizontal: 8,
+    lineRange: 9,
+    lineVertical: 10,
+    lverde: 11,
+    lvermelho: 12,
+    tamMax: 13,
+    tamMaxLh: 14,
+    tamMaxLv: 15,
+    tamMin: 16,
+    tamMinLh: 17,
+    tamMinLv: 18,
 }
 
 export const BoxFilters = () => {
-    const [filters, setFilters] = React.useState([])
+    const [filters, setFilters] = React.useState(FakeFilters)
     const [selectedFilter, setSelectedFilter] = React.useState(FilterProps)
 
     let ref = React.useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        const interval = setInterval(async () => {
+            try {
+                setFilters(FakeFilters)
+                setSelectedFilter(FilterProps)
+                console.log("FILTROS ATUALIZADOS::", FilterProps)
+            } catch (error) {
+                console.error("Erro ao carregar dados do filtro:: ", error)
+            }
+        }, 3000);
+
+        return function cleanup() {
+            clearInterval(interval)
+        };
+    }, [])
+
 
     return (
         <Grid container spacing={1} sx={{ height: '91vh', paddingX: 1 }}>
@@ -49,3 +66,11 @@ export const BoxFilters = () => {
         </Grid>
     )
 }
+
+const FakeFilters = [
+    "Fake Filtro 1",
+    "Fake Filtro 2",
+    "Fake Filtro 3",
+    "Fake Filtro 4",
+    "Fake Filtro 5",
+]
