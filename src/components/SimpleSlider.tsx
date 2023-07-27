@@ -27,8 +27,8 @@ export function SimpleSlider({
         setValue(aux)
     }
 
-    useEffect(() => { setValue(initValue) }, [initValue])
-    useEffect(() => callback(value), [callback, value])
+    useEffect(() => setValue(initValue), [initValue])
+    useEffect(() => callback(value), [value])
 
     return (
         <Box>
@@ -57,7 +57,7 @@ export function SimpleSlider({
                 />
             </Box>
         </Box>
-    );
+    )
 }
 
 const StyledSlider = styled(Slider)({

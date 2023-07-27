@@ -38,9 +38,9 @@ export function RangeSlider({
         setValue(aux)
     }
 
-    React.useEffect(() => { setValue(range) }, [range])
+    useEffect(() => setValue(range), [range])
 
-    useEffect(() => callback(value), [callback, value])
+    useEffect(() => callback(value), [value])
     return (
         <Box>
             <Grid container textAlign={'center'} sx={{ alignItems: 'center' }}>

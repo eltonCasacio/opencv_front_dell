@@ -34,8 +34,8 @@ export const CreateFilter = () => {
     const [filters, setFilters] = React.useState([])
 
     function loadData() {
-        getFilters().then(res => console.log("FILTROS:: ", res))
-        getCurrentFilter().then(res => console.log("FILTRO ATUAL:: ", res))
+        getFilters()
+        getCurrentFilter()
     }
 
     React.useEffect(() => {

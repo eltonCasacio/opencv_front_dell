@@ -19,7 +19,7 @@ export function CustomSelect({ callback, filters }: CustomSelectParams) {
         return filters.map((item) => (<MenuItem key={item} value={item}>{item}</MenuItem>))
     }
 
-    React.useEffect(() => callback(selectedItem), [callback, selectedItem])
+    React.useEffect(() => callback(selectedItem), [selectedItem])
 
     return (
         <FormControl sx={{ m: 2, minWidth: 120 }} variant='outlined' size="small">
