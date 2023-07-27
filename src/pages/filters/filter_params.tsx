@@ -6,7 +6,7 @@ import { Images } from "../../components/ImageList";
 import { CustomSelect } from '../../components/CustomSelect';
 import { changeFilter, getCurrentFilter, getFilters, saveFilter, sendLowHeightValues, sendSimpleValue, sendTamMinMaxlvlh, sendTamminmax } from "../../services/filter_params";
 
-const FilterProps = {
+export const FilterProps = {
     dilate: 0,
     erode: 0,
     hazul: 0,
@@ -130,7 +130,7 @@ export const CreateFilter = () => {
                     <Grid item xs={3}>
                         <CardSimpleSider
                             initValue={selectedFilter.erode}
-                            title='Iteration Erode'
+
                             callback={(value) => sendSimpleValue(value, 'iterations_erode')}
                         />
                     </Grid>
@@ -175,7 +175,6 @@ export const CreateFilter = () => {
                     <Grid item xs={3}>
                         <CardSimpleSider
                             initValue={selectedFilter.dilate}
-                            title='Iteration Dilate'
                             callback={(value) => sendSimpleValue(value, 'iterations_dilate')}
                         />
                     </Grid>
@@ -184,20 +183,17 @@ export const CreateFilter = () => {
                     <Grid item xs={3}>
                         <CardSimpleSider
                             initValue={selectedFilter.lineVertical}
-                            title='trackbar_LineVertical'
                             callback={(value) => sendSimpleValue(value, 'trackbar_LineVertical')} />
                     </Grid>
                     <Grid item xs={3}>
                         <CardSimpleSider
                             initValue={selectedFilter.lineHorizontal}
-                            title='trackbar_LineHorizontal'
                             callback={(value) => sendSimpleValue(value, 'trackbar_LineHorizontal')}
                         />
                     </Grid>
                     <Grid item xs={3}>
                         <CardSimpleSider
                             initValue={selectedFilter.lineRange}
-                            title='trackbar_LineRange'
                             callback={(value) => sendSimpleValue(value, 'trackbar_LineRange')}
                         />
                     </Grid>

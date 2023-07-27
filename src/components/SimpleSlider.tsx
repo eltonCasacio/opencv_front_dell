@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Grid, TextField, Typography } from '@mui/material';
+import { TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useEffect, useState } from 'react';
@@ -7,13 +7,11 @@ import { useEffect, useState } from 'react';
 interface SimpleSliderParams {
     size?: 'small' | 'medium';
     initValue: number
-    title: string
     callback(value: number): void;
 }
 export function SimpleSlider({
     size = 'small',
     initValue,
-    title,
     callback
 }: SimpleSliderParams) {
     const [value, setValue] = useState<number>(initValue);
@@ -31,29 +29,25 @@ export function SimpleSlider({
     useEffect(() => callback(value), [value])
 
     return (
-        <Box>
-            <Grid container textAlign={'center'} sx={{ alignItems: 'center' }}>
-                <Grid item xs={4}>
-                    <TextField
-                        id="standard-basic"
-                        variant="standard"
-                        size="small"
-                        type='number'
-                        value={value}
-                        onChange={e => handleInputChange(e)}
-                    />
-                </Grid>
-                <Grid item xs={7}>
-                    <Typography fontSize={12}>{title}</Typography>
-                </Grid>
-            </Grid>
-            <Box>
+        <Box display='flex' alignItems={'end'} height={45}>
+            <Box flex={1} mr={3}>
                 <StyledSlider
                     size={size}
                     defaultValue={0}
                     valueLabelDisplay="auto"
                     value={value}
                     onChange={handleChange}
+                />
+            </Box>
+
+            <Box flex={0.3} alignSelf={'flex-start'}>
+                <TextField
+                    id="standard-basic"
+                    variant="standard"
+                    size="small"
+                    type='number'
+                    value={value}
+                    onChange={e => handleInputChange(e)}
                 />
             </Box>
         </Box>
