@@ -1,8 +1,8 @@
 import Grid from '@mui/material/Unstable_Grid2';
-import { changeFilter, saveFilter } from '../../services/filter_params';
 import React, { useEffect } from 'react';
 import Content from './components/Content';
 import { Sidebar } from './components/Sidebar';
+import { trackbarParametersFilterIterationsErode } from '../../services/filter_params';
 
 export const FilterProps = {
     name: "",
@@ -32,27 +32,30 @@ export const BoxFilters = () => {
 
     let ref = React.useRef<HTMLInputElement>(null);
 
-    useEffect(() => {
-        const interval = setInterval(async () => {
-            try {
-                setFilters(FakeFilters)
-                setSelectedFilter(FilterProps)
-                console.log("FILTROS ATUALIZADOS::", FilterProps)
-            } catch (error) {
-                console.error("Erro ao carregar dados do filtro:: ", error)
-            }
-        }, 3000);
+    function changeFilter() { }
+    function saveFilter(value: string) { }
 
-        return function cleanup() {
-            clearInterval(interval)
-        };
-    }, [])
+    // useEffect(() => {
+    //     const interval = setInterval(async () => {
+    //         try {
+    //             setFilters(FakeFilters)
+    //             setSelectedFilter(FilterProps)
+    //             console.log("FILTROS ATUALIZADOS::", FilterProps)
+    //         } catch (error) {
+    //             console.error("Erro ao carregar dados do filtro:: ", error)
+    //         }
+    //     }, 3000);
+
+    //     return function cleanup() {
+    //         clearInterval(interval)
+    //     };
+    // }, [])
 
 
     return (
         <Grid container spacing={1} sx={{ height: '91vh', paddingX: 1 }}>
             <Grid md={3}>
-                <Sidebar selectedFilter={selectedFilter} />
+                <Sidebar selectedFilter={selectedFilter} handleParametersErode={trackbarParametersFilterIterationsErode} />
             </Grid>
 
             <Grid md={9}>

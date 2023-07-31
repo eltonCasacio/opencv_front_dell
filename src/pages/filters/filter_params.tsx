@@ -4,7 +4,12 @@ import { CardRangeSider } from "../../components/CardRangeSider";
 import { CardSimpleSider } from "../../components/CardSimpleSlider";
 import { Images } from "../../components/ImageList";
 import { CustomSelect } from '../../components/CustomSelect';
-import { changeFilter, getCurrentFilter, getFilters, saveFilter, sendLowHeightValues, sendSimpleValue, sendTamMinMaxlvlh, sendTamminmax } from "../../services/filter_params";
+import {
+    selectFilterColorRGB,
+    trackbarParametersFilterIterationsErode,
+    trackbar_parametersFilter_iterations_dilate
+
+} from "../../services/filter_params";
 
 export const FilterProps = {
     dilate: 0,
@@ -33,15 +38,18 @@ export const CreateFilter = () => {
     const [selectedFilter, setSelectedFilter] = React.useState(FilterProps)
     const [filters, setFilters] = React.useState([])
 
-    function loadData() {
-        getFilters()
-        getCurrentFilter()
+    function changeFilter(value: string) {
+
+    }
+
+    function saveFilter(value: string) {
+
     }
 
     React.useEffect(() => {
-        const interval = setInterval(async () => {
+        const interval = setInterval(() => {
             try {
-                loadData()
+                console.log("SE INTERVAL:::")
             } catch (error) {
                 console.error("Erro ao carregar dados do filtro:: ", error)
             }
@@ -62,7 +70,7 @@ export const CreateFilter = () => {
         >
             <Box display={'flex'} justifyContent='space-between' alignItems={'center'} mt={1}>
                 <Box>
-                    <CustomSelect filters={filters} callback={(value) => changeFilter(value)} />
+                    <CustomSelect filters={filters} callback={changeFilter} />
                 </Box>
                 <Box>
                     <TextField
@@ -79,10 +87,10 @@ export const CreateFilter = () => {
             <Images />
             <Grid container >
                 <Grid container item spacing={4} alignItems="center">
-                    <Grid item xs={3}>
+                    <Grid item md={4}>
                         <CardRangeSider
                             title='Low/Hight - Vermelho'
-                            callback={(value) => sendLowHeightValues({
+                            callback={(value) => selectFilterColorRGB({
                                 color: 'VERMELHO',
                                 min: value[0],
                                 max: value[1]
@@ -94,11 +102,9 @@ export const CreateFilter = () => {
                             min={0}
                             max={255}
                         />
-                    </Grid>
-                    <Grid item xs={3}>
                         <CardRangeSider
                             title='Low/Hight - Verde'
-                            callback={(value) => sendLowHeightValues({
+                            callback={(value) => selectFilterColorRGB({
                                 color: 'VERDE',
                                 min: value[0],
                                 max: value[1]
@@ -110,11 +116,9 @@ export const CreateFilter = () => {
                             min={0}
                             max={255}
                         />
-                    </Grid>
-                    <Grid item xs={3}>
                         <CardRangeSider
                             title='Low/Hight - Azul'
-                            callback={(value) => sendLowHeightValues({
+                            callback={(value) => selectFilterColorRGB({
                                 color: 'AZUL',
                                 min: value[0],
                                 max: value[1]
@@ -126,75 +130,17 @@ export const CreateFilter = () => {
                             min={0}
                             max={255}
                         />
-                    </Grid>
-                    <Grid item xs={3}>
                         <CardSimpleSider
                             initValue={selectedFilter.erode}
-
-                            callback={(value) => sendSimpleValue(value, 'iterations_erode')}
+                            callback={trackbarParametersFilterIterationsErode}
                         />
                     </Grid>
                 </Grid>
                 <Grid container item spacing={4} alignItems="center">
-                    <Grid item xs={3}>
-                        <CardRangeSider
-                            title='Tam MinMaxLV'
-                            callback={(value) => sendTamMinMaxlvlh({ attr: 'LV', value })}
-                            range={[
-                                selectedFilter.tamMinLv,
-                                selectedFilter.tamMaxLv
-                            ]}
-                            min={0}
-                            max={255}
-                        />
-                    </Grid>
-                    <Grid item xs={3}>
-                        <CardRangeSider
-                            title='Tam MinMaxLH'
-                            callback={(value) => sendTamMinMaxlvlh({ attr: 'LH', value })}
-                            range={[
-                                selectedFilter.tamMinLh,
-                                selectedFilter.tamMaxLh
-                            ]}
-                            min={0}
-                            max={255}
-                        />
-                    </Grid>
-                    <Grid item xs={3}>
-                        <CardRangeSider
-                            title='Tam Min Max'
-                            callback={sendTamminmax}
-                            range={[
-                                selectedFilter.tamMin,
-                                selectedFilter.tamMax
-                            ]}
-                            min={0}
-                            max={255}
-                        />
-                    </Grid>
                     <Grid item xs={3}>
                         <CardSimpleSider
                             initValue={selectedFilter.dilate}
-                            callback={(value) => sendSimpleValue(value, 'iterations_dilate')}
-                        />
-                    </Grid>
-                </Grid>
-                <Grid container item spacing={4} alignItems="center">
-                    <Grid item xs={3}>
-                        <CardSimpleSider
-                            initValue={selectedFilter.lineVertical}
-                            callback={(value) => sendSimpleValue(value, 'trackbar_LineVertical')} />
-                    </Grid>
-                    <Grid item xs={3}>
-                        <CardSimpleSider
-                            initValue={selectedFilter.lineHorizontal}
-                            callback={(value) => sendSimpleValue(value, 'trackbar_LineHorizontal')}
-                        />
-                    </Grid>
-                    <Grid item xs={3}>
-                        <CardSimpleSider
-                            initValue={selectedFilter.lineRange}
-                            callback={(value) => sendSimpleValue(value, 'trackbar_LineRange')}
+                            callback={trackbar_parametersFilter_iterations_dilate}
                         />
                     </Grid>
                 </Grid>

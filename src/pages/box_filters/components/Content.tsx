@@ -1,6 +1,5 @@
 import { Box, Button, TextField } from '@mui/material'
 import { CustomSelect } from '../../../components/CustomSelect'
-import { Images } from '../../../components/ImageList'
 
 export type ContetParams = {
     filters: string[]
@@ -31,9 +30,6 @@ const Content = (params: ContetParams) => {
                     </Button>
                 </Box>
             </Box>
-            {/* <Box sx={{ flex: 1 }}>
-                <Images />
-            </Box> */}
         </Box>
     )
 }

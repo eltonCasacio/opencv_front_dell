@@ -5,11 +5,10 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box, Divider, Link } from '@mui/material';
 import { CardSimpleSider } from '../../../components/CardSimpleSlider';
-import { sendSimpleValue } from '../../../services/filter_params';
 import { FilterProps } from '..';
-
-export type SidebarParams = {
+export interface SidebarParams {
     selectedFilter: typeof FilterProps
+    handleParametersErode(value: number): void
 }
 export const Sidebar = (params: SidebarParams) => {
     return (
@@ -42,7 +41,7 @@ export const Sidebar = (params: SidebarParams) => {
                 <AccordionDetails>
                     <CardSimpleSider
                         initValue={params.selectedFilter.erode}
-                        callback={(value) => sendSimpleValue(value, 'iterations_erode')}
+                        callback={params.handleParametersErode}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
                     <Typography>

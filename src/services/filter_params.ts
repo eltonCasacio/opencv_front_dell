@@ -1,65 +1,164 @@
 import { Axios } from "./api"
 
 type COLOR = 'VERMELHO' | 'VERDE' | 'AZUL'
-interface MINMAX { min: number, max: number }
-
-interface sendLowHeightValuesParams extends MINMAX {
+interface SelectFilterColorRGBParams {
     color: COLOR
+    min: number
+    max: number
 }
-function sendLowHeightValues(params: sendLowHeightValuesParams) {
-    const low = params.min
-    const hight = params.max
-    if (params.min >= 0 && params.max >= 0) {
-        // const res = await Axios.post('parametersFilter_selectFilterColor', { color: params.color, low, hight })
-
+export function selectFilterColorRGB(params: SelectFilterColorRGBParams) {
+    switch (params.color) {
+        case 'VERMELHO':
+            selectFilterColorRedMin(params.min)
+            selectFilterColorRedMax(params.max)
+            break
+        case 'VERDE':
+            selectFilterColorGreenMin(params.min)
+            selectFilterColorGreenMax(params.max)
+            break
+        case 'AZUL':
+            selectFilterColorBlueMin(params.min)
+            selectFilterColorBlueMax(params.max)
+            break
     }
 }
 
-interface SendTamMinMaxlvlhParams {
-    attr: 'LV' | 'LH'
-    value: number[]
-}
-function sendTamMinMaxlvlh(params: SendTamMinMaxlvlhParams) {
-    const min = params.value[0]
-    const max = params.value[1]
-    if (params.value[0] >= 0 && params.value[1] >= 0) {
-        // const res = await Axios.post('parametersFilter_SpliceLineJumpingWhiteColor_JumpSize', { attr: params.attr, min, max })
-
-    }
-}
-function sendTamminmax(values: number[]) {
-    const min = values[0]
-    const max = values[1]
-    if (min >= 0 && max >= 0) {
-        // const res = await Axios.post('parametersFilter_FoundObjectSizeFilter', { min, max })
-
-    }
-}
-function sendSimpleValue(value: number, url: string) {
-    if (value >= 0) {
-        // const res = await Axios.post(url, { value: value })
-
-    }
-}
-function saveFilter(fileName: string) {
-    // const res = await Axios.post('save-filter', { fileName: fileName })
-}
-function changeFilter(fileName: string) {
-    // const res = await Axios.post('filter', { fileName: fileName })
-}
-async function getFilters() {
-    // const {data} = await Axios.get('filters')
-    // return data
+function selectFilterColorRedMin(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_selectFilterColor_Red_Min: value,
+        number_parametersFilter_selectFilterColor_Red_Min: value
+    })
 }
 
-async function getCurrentFilter() {
-    // try {
-    //     const {data} = await Axios.get('current_filter')
-    //     return data
-    // } catch (error) {
-    //     throw new Error("request error on getCurrentFilter")
-    // }
-
+function selectFilterColorRedMax(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_selectFilterColor_Red_Max: value,
+        number_parametersFilter_selectFilterColor_Red_Max: value
+    })
 }
 
-export { getCurrentFilter, getFilters, changeFilter, sendSimpleValue, sendTamminmax, saveFilter, sendTamMinMaxlvlh, sendLowHeightValues }
+function selectFilterColorGreenMin(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_selectFilterColor_Green_Min: value,
+        number_parametersFilter_selectFilterColor_Green_Min: value
+    })
+}
+
+function selectFilterColorGreenMax(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_selectFilterColor_Green_Max: value,
+        number_parametersFilter_selectFilterColor_Green_Max: value
+    })
+}
+
+function selectFilterColorBlueMin(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_selectFilterColor_Blue_Min: value,
+        number_parametersFilter_selectFilterColor_Blue_Min: value
+    })
+}
+
+function selectFilterColorBlueMax(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_selectFilterColor_Blue_Max: value,
+        number_parametersFilter_selectFilterColor_Blue_Max: value
+    })
+}
+
+export function trackbarParametersFilterIterationsErode(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_iterations_erode: value,
+        number_parametersFilter_iterations_erode: value
+    })
+}
+
+export function trackbar_parametersFilter_iterations_dilate(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_iterations_dilate: value,
+        number_parametersFilter_iterations_dilate: value
+    })
+}
+
+export function trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Min(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Min: value,
+        number_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Min: value
+    })
+}
+
+export function trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Max(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Max: value,
+        number_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Max: value
+    })
+}
+
+export function trackbar_parametersFilter_SpliceLineJumpingWhiteColorHorizontally_JumpSize_Min(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_SpliceLineJumpingWhiteColorHorizontally_JumpSize_Min: value,
+        number_parametersFilter_SpliceLineJumpingWhiteColorHorizontally_JumpSize_Min: value
+    })
+}
+
+export function trackbar_parametersFilter_SpliceLineJumpingWhiteColorHorizontally_JumpSize_Max(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_SpliceLineJumpingWhiteColorHorizontally_JumpSize_Max: value,
+        number_parametersFilter_SpliceLineJumpingWhiteColorHorizontally_JumpSize_Max: value
+    })
+}
+
+export function trackbar_parametersFilter_FoundObjectSizeFilter_Min(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_FoundObjectSizeFilter_Min: value,
+        number_parametersFilter_FoundObjectSizeFilter_Min: value
+    })
+}
+
+export function trackbar_parametersFilter_FoundObjectSizeFilter_Max(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_FoundObjectSizeFilter_Max: value,
+        number_parametersFilter_FoundObjectSizeFilter_Max: value
+    })
+}
+
+export function trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Min(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Min: value,
+        number_parametersFilter_VerticalLineSizeFilterOfFoundObject_Min: value
+    })
+}
+
+export function trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Max(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Max: value,
+        number_parametersFilter_VerticalLineSizeFilterOfFoundObject_Max: value
+    })
+}
+
+export function trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Min(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Min: value,
+        number_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Min: value
+    })
+}
+
+export function trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Max(value: number) {
+    Axios.post('/', {
+        trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Max: value,
+        number_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Max: value
+    })
+}
+
+export function trackbar_ResolutionPixMm_X(value: number) {
+    Axios.post('/', {
+        trackbar_ResolutionPixMm_X: value,
+        number_ResolutionPixMm_X: value
+    })
+}
+
+export function trackbar_ResolutionPixMm_Y(value: number) {
+    Axios.post('/', {
+        trackbar_ResolutionPixMm_Y: value,
+        number_ResolutionPixMm_Y: value
+    })
+}
