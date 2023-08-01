@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 const pages = [
     { title: 'Pallet', path: '/' },
     { title: 'Box Filters', path: 'box-filters' },
+    { title: 'Areas', path: 'areas' },
 ];
 const settings = [{ title: 'Filtros', path: '/filters' }];
 
