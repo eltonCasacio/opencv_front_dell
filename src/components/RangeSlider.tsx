@@ -10,6 +10,7 @@ interface RangeSliderParams {
     range: number[]
     size?: 'small' | 'medium';
     title: string
+    orientation?: 'vertical' | 'horizontal'
     callback(value: number[]): void;
 }
 export function RangeSlider({
@@ -18,6 +19,7 @@ export function RangeSlider({
     range,
     size = 'small',
     title,
+    orientation = 'horizontal',
     callback
 }: RangeSliderParams) {
     const [value, setValue] = useState<number[]>([min, max]);
@@ -44,7 +46,7 @@ export function RangeSlider({
     return (
         <Box>
             <Grid container textAlign={'center'} sx={{ alignItems: 'center' }}>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                     <TextField
                         id="standard-basic"
                         variant="standard"
@@ -68,6 +70,7 @@ export function RangeSlider({
                 </Grid>
             </Grid>
             <StyledSlider
+                orientation={orientation}
                 size={size}
                 valueLabelDisplay="auto"
                 min={min}
@@ -81,13 +84,13 @@ export function RangeSlider({
 
 const StyledSlider = styled(Slider)({
     color: '#0b94efd6',
-    height: 3,
+    height: 2,
     '& .MuiSlider-track': {
         border: 'none',
     },
     '& .MuiSlider-thumb': {
         height: 15,
-        width: 20,
+        width: 15,
         backgroundColor: '#bcbcbcc3',
         border: '2px solid currentColor',
         '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
@@ -99,7 +102,7 @@ const StyledSlider = styled(Slider)({
     },
     '& .MuiSlider-valueLabel': {
         lineHeight: 1.2,
-        fontSize: 12,
+        fontSize: 10,
         background: 'unset',
         padding: 0,
         width: 32,
@@ -115,5 +118,5 @@ const StyledSlider = styled(Slider)({
         '& > *': {
             transform: 'rotate(45deg)',
         },
-    },
+    }
 });

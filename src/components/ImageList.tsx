@@ -4,10 +4,16 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 
-export function Images() {
+interface ImagesParams {
+    images: Array<{
+        img: string,
+        title: string,
+    }>,
+}
+export function Images(params:ImagesParams) {
     return (
         <ImageList cols={4}>
-            {itemData.map((item, index) => (
+            {params.images.map((item, index) => (
                 <ImageListItem key={item.img + index}>
                     <img
                         src={`${item.img}?w=248&fit=crop&auto=format`}

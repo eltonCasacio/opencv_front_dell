@@ -1,6 +1,6 @@
 import { Axios } from "./api"
 
-interface CreateAreasParams {
+export interface CreateAreasParams {
     name: string
     area01_X1: number
     area01_Y1: number

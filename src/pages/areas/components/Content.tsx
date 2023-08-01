@@ -1,6 +1,6 @@
 import { Box, Button, TextField } from '@mui/material'
-import { CustomSelect } from '../../../components/CustomSelect'
 import { Images } from '../../../components/ImageList'
+import { CustomSelect } from '../../../components/CustomSelect'
 
 export type ContetParams = {
     filters: string[]
@@ -14,18 +14,6 @@ const itemData = [
     {
         img: 'http://localhost:8000/videolayer01',
         title: 'Filtro 1',
-    },
-    {
-        img: 'http://localhost:8000/videolayer02',
-        title: 'Filtro 2',
-    },
-    {
-        img: 'http://localhost:8000/videolayer03',
-        title: 'Original',
-    },
-    {
-        img: 'http://localhost:8000/videolayer03',
-        title: 'Original',
     }
 ];
 
@@ -37,7 +25,7 @@ const Content = (params: ContetParams) => {
             height: '100%',
             mt: 1,
         }}>
-            <Box display={'flex'} justifyContent='space-between' alignItems={'center'}>
+             <Box display={'flex'} justifyContent='space-between' alignItems={'center'}>
                 <CustomSelect filters={params.filters} callback={(value) => params.handleChangeFilter(value)} />
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <TextField
@@ -51,7 +39,7 @@ const Content = (params: ContetParams) => {
                     </Button>
                 </Box>
             </Box>
-            <Images images={itemData} />
+            <Images images={itemData}/>
         </Box>
     )
 }

@@ -84,7 +84,7 @@ export const CreateFilter = () => {
                     </Button>
                 </Box>
             </Box>
-            <Images />
+            {/* <Images /> */}
             <Grid container >
                 <Grid container item spacing={4} alignItems="center">
                     <Grid item md={4}>
