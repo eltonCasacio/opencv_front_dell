@@ -59,7 +59,7 @@ const Content = (params: ContetParams) => {
                 </Box>
             </Box>
             <Box>
-                <Images width={imageSize[0]} height={imageSize[1]} cols={4} images={itemData} />
+                <Images width={1000} cols={4} images={itemData} />
             </Box>
         </Box>
     )

@@ -2,7 +2,6 @@ import { Box, Button, TextField } from '@mui/material'
 import { Images } from '../../../components/ImageList'
 import { CustomSelect } from '../../../components/CustomSelect'
 import { useEffect, useState } from 'react'
-import { Axios } from '../../../services/api'
 import { getAreaImageSize } from '../../../services/areas'
 
 export type ContetParams = {
@@ -46,7 +45,8 @@ const Content = (params: ContetParams) => {
                     </Button>
                 </Box>
             </Box>
-            <Images width={imageSize[0]} height={imageSize[1]}  cols={2} images={itemData}/>            
+            <Images cols={1} images={itemData}/>
+            
         </Box>
     )
 }

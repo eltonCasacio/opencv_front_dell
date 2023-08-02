@@ -6,20 +6,25 @@ import InfoIcon from '@mui/icons-material/Info';
 
 interface ImagesParams {
     cols: number
-    width: number
-    height: number
+    width?: number
+    height?: number
     images: Array<{
         img: string,
         title: string,
     }>,
 }
-export function Images(params:ImagesParams) {
+export function Images({
+    cols,
+    height = 700,
+    width = 500,
+    images
+}:ImagesParams) {
     return (
         <ImageList 
-            sx={{ width: "100%", height: "100%" }}
-            cols={params.cols} 
+            sx={{  maxWidth:`${width}px`, maxheight:`${height}px` }}
+            cols={cols} 
         >
-            {params.images.map((item, index) => (
+            {images.map((item, index) => (
                 <ImageListItem key={item.img + index}>
                     <img
                         src={`${item.img}?w=448&fit=crop&auto=format`}
