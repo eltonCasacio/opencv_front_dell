@@ -3,7 +3,7 @@ import { Box, IconButton, ImageList, ImageListItem, ImageListItemBar, Typography
 export const Home = () => {
     return (
         <Box display={'flex'} flexDirection={'column'} color={'#f5f5f1'}>
-            <ImageList cols={2} sx={{height:400}}>
+            <ImageList cols={2} sx={{height:300}}>
                 {itemData.map((item) => (
                     <ImageListItem key={item.img}>
                         <img

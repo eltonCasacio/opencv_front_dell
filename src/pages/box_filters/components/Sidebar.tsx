@@ -26,7 +26,6 @@ export const Sidebar = (params: SidebarParams) => {
                 },
                 "&::-webkit-scrollbar-thumb": {
                     backgroundColor: "#8d8d8d",
-                    borderRadius: 1
                 }
             }
         }>

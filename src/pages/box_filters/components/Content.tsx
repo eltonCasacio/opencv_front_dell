@@ -34,7 +34,6 @@ const Content = (params: ContetParams) => {
         <Box sx={{
             display: 'flex',
             flexDirection: 'column',
-            height: '100%',
             mt: 1,
         }}>
             <Box display={'flex'} justifyContent='space-between' alignItems={'center'}>
@@ -51,7 +50,9 @@ const Content = (params: ContetParams) => {
                     </Button>
                 </Box>
             </Box>
-            <Images images={itemData} />
+            <Box>
+                <Images cols={4} images={itemData} />
+            </Box>
         </Box>
     )
 }

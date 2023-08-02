@@ -2,7 +2,6 @@ import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Slider from '@mui/material/Slider';
 import { Grid, TextField, Typography } from '@mui/material';
-import { title } from 'process';
 import { useEffect, useState } from 'react';
 
 interface RangeSliderParams {
@@ -12,7 +11,6 @@ interface RangeSliderParams {
   size?: 'small' | 'medium';
   title: string
   orientation?: 'vertical' | 'horizontal'
-  initValue: number[]
   callback(value: number[]): void;
 }
 export function VerticalRangeSlider({
@@ -22,25 +20,24 @@ export function VerticalRangeSlider({
   range = [0, 255],
   size = 'small',
   orientation='horizontal',
-  initValue,
   callback
 }:RangeSliderParams) {
-  const [value, setValue] = useState<number[]>([initValue[0], initValue[1]]);
+  const [value, setValue] = useState<number[]>([min, max]);
   
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
   };
 
   const handleInputMinChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const aux = [value[0], value[1]]
-      aux[0] = parseInt(e.target.value) <= 0 ? 0 : parseInt(e.target.value)
-      setValue(aux)
+    const aux = [value[0], value[1]]
+    aux[0] = parseInt(e.target.value) <= 0 ? 0 : parseInt(e.target.value)
+    setValue(aux)
   }
 
   const handleInputMaxChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const aux = [value[0], value[1]]
-      aux[1] = parseInt(e.target.value) >= max ? max : parseInt(e.target.value)
-      setValue(aux)
+    const aux = [value[0], value[1]]
+    aux[1] = parseInt(e.target.value) >= max ? max : parseInt(e.target.value)
+    setValue(aux)
   }
 
   useEffect(() => setValue(range), [range])

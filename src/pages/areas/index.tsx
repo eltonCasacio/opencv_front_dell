@@ -31,18 +31,18 @@ export const Areas = () => {
     function changeFilter() { }
     function saveFilter(value: string) { }
     return (
-        <Grid container spacing={1} sx={{ height: '91vh'}}>
-            <Grid md={3}>
+        <Grid container>
+            <Grid sm={3}>
                 <MenuArea  areaProps={selectedFilter}/>
             </Grid>
 
             <Grid md={9}>
-            <Content
-                filters={filters}
-                textRef={ref}
-                handleChangeFilter={changeFilter}
-                handleSaveFilter={saveFilter}
-                />
+                <Content
+                    filters={filters}
+                    textRef={ref}
+                    handleChangeFilter={changeFilter}
+                    handleSaveFilter={saveFilter}
+                    />
             </Grid>
         </Grid>
     )

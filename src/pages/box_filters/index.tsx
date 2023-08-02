@@ -38,7 +38,7 @@ export const BoxFilters = () => {
 
 
     return (
-        <Grid container spacing={1} sx={{ height: '91vh', paddingX: 1 }}>
+        <Grid container spacing={1}>
             <Grid md={3}>
                 <Sidebar selectedFilter={selectedFilter} />
             </Grid>

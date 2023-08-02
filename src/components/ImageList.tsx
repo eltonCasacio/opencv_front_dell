@@ -5,6 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 
 interface ImagesParams {
+    cols: number
     images: Array<{
         img: string,
         title: string,
@@ -12,7 +13,7 @@ interface ImagesParams {
 }
 export function Images(params:ImagesParams) {
     return (
-        <ImageList cols={4}>
+        <ImageList cols={params.cols}>
             {params.images.map((item, index) => (
                 <ImageListItem key={item.img + index}>
                     <img

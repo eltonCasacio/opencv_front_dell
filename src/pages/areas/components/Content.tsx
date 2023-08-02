@@ -9,7 +9,6 @@ export type ContetParams = {
     handleSaveFilter: (fileName: string) => void
 }
 
-
 const itemData = [
     {
         img: 'http://localhost:8000/videolayer01',
@@ -23,7 +22,6 @@ const Content = (params: ContetParams) => {
             display: 'flex',
             flexDirection: 'column',
             height: '100%',
-            mt: 1,
         }}>
              <Box display={'flex'} justifyContent='space-between' alignItems={'center'}>
                 <CustomSelect filters={params.filters} callback={(value) => params.handleChangeFilter(value)} />
@@ -39,7 +37,7 @@ const Content = (params: ContetParams) => {
                     </Button>
                 </Box>
             </Box>
-            <Images images={itemData}/>
+            <Images cols={1} images={itemData}/>
         </Box>
     )
 }

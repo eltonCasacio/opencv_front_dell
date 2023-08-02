@@ -11,7 +11,6 @@ interface RangeSliderParams {
   size?: 'small' | 'medium';
   title: string
   orientation?: 'vertical' | 'horizontal'
-  initValue: number[]
   callback(value: number[]): void
 }
 export function HorizontalRangeSlider({
@@ -20,10 +19,9 @@ export function HorizontalRangeSlider({
   max = 0,
   range = [0, 255],
   size = 'small',
-  initValue,
   callback
 }:RangeSliderParams) {
-  const [value, setValue] = useState<number[]>([initValue[0], initValue[1]]);
+  const [value, setValue] = useState<number[]>([min, max]);
   
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
