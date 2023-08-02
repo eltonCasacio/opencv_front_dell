@@ -140,8 +140,7 @@ export const Sidebar = (params: SidebarParams) => {
                         Documentação
                     </Link>
                 </AccordionDetails>
-            </Accordion>
-            
+            </Accordion> 
         </Box>
     )
 }

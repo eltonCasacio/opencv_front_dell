@@ -20,13 +20,16 @@ export function SimpleSlider({
         setValue(newValue as number);
     };
 
+    const handleOnMouseUp = () => {
+        callback(value)
+    };
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         let aux = parseInt(e.target.value) <= 0 ? 0 : parseInt(e.target.value)
         setValue(aux)
     }
 
     useEffect(() => setValue(initValue), [initValue])
-    useEffect(() => callback(value), [value])
 
     return (
         <Box display='flex' alignItems={'end'} height={45}>
@@ -37,6 +40,7 @@ export function SimpleSlider({
                     valueLabelDisplay="auto"
                     value={value}
                     onChange={handleChange}
+                    onMouseUp={handleOnMouseUp}
                 />
             </Box>
 

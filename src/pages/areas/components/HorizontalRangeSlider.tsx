@@ -28,6 +28,10 @@ export function HorizontalRangeSlider({
     setValue(newValue as number[]);
   };
 
+  const handleOnMouseUp = () => {
+    callback(value)
+  };
+
   const handleInputMinChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const aux = [value[0], value[1]]
       aux[0] = parseInt(e.target.value) <= 0 ? 0 : parseInt(e.target.value)
@@ -42,8 +46,6 @@ export function HorizontalRangeSlider({
 
   useEffect(() => setValue(range), [range])
 
-  useEffect(() => callback(value), [value])
-  
   return (
     <Stack spacing={1}>
       <Grid container textAlign={'center'} sx={{ alignItems: 'center' }}>
@@ -79,6 +81,7 @@ export function HorizontalRangeSlider({
         max={max}
         value={value}
         onChange={handleChange}
+        onMouseUp={handleOnMouseUp}
       />
     </Stack>
   );

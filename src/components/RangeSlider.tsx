@@ -28,6 +28,10 @@ export function RangeSlider({
         setValue(newValue as number[]);
     };
 
+    const handleOnMouseUp = () => {
+        callback(value)
+      };
+
     const handleInputMinChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const aux = [value[0], value[1]]
         aux[0] = parseInt(e.target.value) <= 0 ? 0 : parseInt(e.target.value)
@@ -42,7 +46,6 @@ export function RangeSlider({
 
     useEffect(() => setValue(range), [range])
 
-    useEffect(() => callback(value), [value])
     return (
         <Box>
             <Grid container textAlign={'center'} sx={{ alignItems: 'center' }}>
@@ -77,6 +80,7 @@ export function RangeSlider({
                 max={max}
                 value={value}
                 onChange={handleChange}
+                onMouseUp={handleOnMouseUp}
             />
         </Box>
     )
