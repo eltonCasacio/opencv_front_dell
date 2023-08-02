@@ -20,6 +20,9 @@ import {
 
 interface MenuAreaProps {
     areaProps: typeof AreaProps
+    min: number
+    max: number
+    range: number[]
 }
 export const MenuArea = (params:MenuAreaProps) => {
     return (
@@ -49,18 +52,18 @@ export const MenuArea = (params:MenuAreaProps) => {
                 <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
                     <HorizontalRangeSlider 
                         title={'Horizontal'} 
-                        min={0} 
-                        max={1000} 
-                        range={[0,1000]}
+                        min={params.min} 
+                        max={params.max} 
+                        range={params.range}
                         callback={(minmax) => setArea01_X1_x2(minmax)}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
                     <VerticalRangeSlider 
                         title={'Vertical'} 
-                        min={0} 
-                        max={1000} 
-                        range={[0,1000]} 
+                        min={params.min} 
+                        max={params.max} 
+                        range={[params.range[1], params.range[0]]}
                         orientation='vertical'
                         callback={(minmax) => setArea01_Y1_Y2(minmax)}
                     />

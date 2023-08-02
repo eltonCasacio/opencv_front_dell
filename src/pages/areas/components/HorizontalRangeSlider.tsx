@@ -3,6 +3,7 @@ import Stack from '@mui/material/Stack';
 import Slider from '@mui/material/Slider';
 import { Grid, TextField, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { debounce } from '@mui/material/utils'
 
 interface RangeSliderParams {
   min?: number;

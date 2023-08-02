@@ -1,6 +1,9 @@
 import { Box, Button, TextField } from '@mui/material'
 import { Images } from '../../../components/ImageList'
 import { CustomSelect } from '../../../components/CustomSelect'
+import { useEffect, useState } from 'react'
+import { Axios } from '../../../services/api'
+import { getAreaImageSize } from '../../../services/areas'
 
 export type ContetParams = {
     filters: string[]
@@ -11,12 +14,18 @@ export type ContetParams = {
 
 const itemData = [
     {
-        img: 'http://localhost:8000/videolayer01',
+        img: 'http://localhost:8000/videolayer03',
         title: 'Filtro 1',
     }
 ];
 
 const Content = (params: ContetParams) => {
+    const [imageSize, setImageSize] = useState([0,0])
+   
+    useEffect(() => {
+        getAreaImageSize().then(res => setImageSize(imageSize))
+    },[])
+
     return (
         <Box sx={{
             display: 'flex',
@@ -37,7 +46,7 @@ const Content = (params: ContetParams) => {
                     </Button>
                 </Box>
             </Box>
-            <Images cols={2} images={itemData}/>
+            <Images width={imageSize[0]} height={imageSize[1]}  cols={2} images={itemData}/>            
         </Box>
     )
 }

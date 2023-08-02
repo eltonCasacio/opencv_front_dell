@@ -27,8 +27,8 @@ export function setArea01_X1_x2(value:number[]) {
 }
 
 export function setArea01_Y1_Y2(value:number[]) {
-    Areas.area01_Y1 = value[0]
-    Areas.area01_Y2 = value[1]
+    Areas.area01_Y1 = value[1]
+    Areas.area01_Y2 = value[0]
     setAreasAPI()
 }
 
@@ -70,4 +70,9 @@ export function setArea04_Y1_Y2(value:number[]) {
 
 async function setAreasAPI() {
     await Axios.post('set_areas', Areas)
+}
+
+export async function getAreaImageSize() {
+    const {data} = await Axios.get('get_size_max_img_width_height')
+    return [data.width, data.height]
 }

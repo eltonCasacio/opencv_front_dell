@@ -6,6 +6,8 @@ import InfoIcon from '@mui/icons-material/Info';
 
 interface ImagesParams {
     cols: number
+    width: number
+    height: number
     images: Array<{
         img: string,
         title: string,
@@ -13,12 +15,15 @@ interface ImagesParams {
 }
 export function Images(params:ImagesParams) {
     return (
-        <ImageList cols={params.cols}>
+        <ImageList 
+            sx={{ width: "100%", height: "100%" }}
+            cols={params.cols} 
+        >
             {params.images.map((item, index) => (
                 <ImageListItem key={item.img + index}>
                     <img
-                        src={`${item.img}?w=248&fit=crop&auto=format`}
-                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                        src={`${item.img}?w=448&fit=crop&auto=format`}
+                        srcSet={`${item.img}?w=448&fit=crop&auto=format&dpr=2 2x`}
                         alt={item.title}
                         loading="lazy"
                     />
@@ -38,22 +43,3 @@ export function Images(params:ImagesParams) {
         </ImageList>
     );
 }
-
-const itemData = [
-    {
-        img: 'http://localhost:8000/videolayer01',
-        title: 'Filtro 1',
-    },
-    {
-        img: 'http://localhost:8000/videolayer02',
-        title: 'Filtro 2',
-    },
-    {
-        img: 'http://localhost:8000/videolayer03',
-        title: 'Original',
-    },
-    {
-        img: 'http://localhost:8000/videolayer03',
-        title: 'Original',
-    }
-];
