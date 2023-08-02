@@ -37,7 +37,7 @@ const Content = (params: ContetParams) => {
                     </Button>
                 </Box>
             </Box>
-            <Images cols={1} images={itemData}/>
+            <Images cols={2} images={itemData}/>
         </Box>
     )
 }
