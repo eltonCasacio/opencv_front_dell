@@ -7,30 +7,14 @@ import { Box, Divider } from '@mui/material';
 import {VerticalRangeSlider} from './VerticalRangeSlider';
 import { HorizontalRangeSlider } from './HorizontalRangeSlider';
 import {AreaProps} from '../index'
-import { 
-    setArea01_X1_x2, 
-    setArea01_Y1_Y2, 
-    setArea02_X1_X2, 
-    setArea02_Y1_Y2, 
-    setArea03_X1_X2, 
-    setArea03_Y1_Y2, 
-    setArea04_X1_X2, 
-    setArea04_Y1_Y2,
-    setAreaTeste,
-    Teste
-} from '../../../services/areas';
 
 interface MenuAreaProps {
     areaProps: typeof AreaProps
     min: number[]
     max: number[]
+    handleSetCurrentArea:(value:typeof AreaProps) => void
 }
 export const MenuArea = (params:MenuAreaProps) => {
-    let AreaTeste:Teste
-
-    const changeAreas = () => {
-        
-    }
     return (
         <Box sx={
             {
@@ -61,7 +45,11 @@ export const MenuArea = (params:MenuAreaProps) => {
                         min={params.min[0]} 
                         max={params.max[0]} 
                         range={[params.areaProps.area01_X1, params.areaProps.area01_X2]}
-                        callback={(minmax) => setArea01_X1_x2(minmax)}
+                        callback={(minmax) => params.handleSetCurrentArea({
+                            ...params.areaProps,
+                            area01_X1: minmax[0],
+                            area01_X2: minmax[1]
+                        })}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
@@ -71,7 +59,11 @@ export const MenuArea = (params:MenuAreaProps) => {
                         max={params.max[1]} 
                         range={[params.areaProps.area01_Y1, params.areaProps.area01_Y2]}
                         orientation='vertical'
-                        callback={(minmax) => setArea01_Y1_Y2(minmax)}
+                        callback={(minmax) => params.handleSetCurrentArea({
+                            ...params.areaProps,
+                            area01_Y1: minmax[0],
+                            area01_Y2: minmax[1]
+                        })}
                     />
                 </AccordionDetails>
             </Accordion>
@@ -86,7 +78,11 @@ export const MenuArea = (params:MenuAreaProps) => {
                         min={0} 
                         max={1000} 
                         range={[0,1000]}
-                        callback={(minmax) => setArea02_X1_X2(minmax)}
+                        callback={(minmax) => params.handleSetCurrentArea({
+                            ...params.areaProps,
+                            area02_X1: minmax[0],
+                            area02_X2: minmax[1]
+                        })}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
@@ -96,7 +92,11 @@ export const MenuArea = (params:MenuAreaProps) => {
                         max={1000} 
                         range={[0,1000]} 
                         orientation='vertical'
-                        callback={(minmax) => setArea02_Y1_Y2(minmax)}
+                        callback={(minmax) => params.handleSetCurrentArea({
+                            ...params.areaProps,
+                            area02_Y1: minmax[0],
+                            area02_Y2: minmax[1]
+                        })}
                     />
                 </AccordionDetails>
             </Accordion>
@@ -111,7 +111,11 @@ export const MenuArea = (params:MenuAreaProps) => {
                         min={0} 
                         max={1000} 
                         range={[0,1000]} 
-                        callback={(minmax) => setArea03_X1_X2(minmax)}
+                        callback={(minmax) => params.handleSetCurrentArea({
+                            ...params.areaProps,
+                            area03_X1: minmax[0],
+                            area03_X2: minmax[1]
+                        })}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
@@ -121,7 +125,11 @@ export const MenuArea = (params:MenuAreaProps) => {
                         max={1000} 
                         range={[0,1000]} 
                         orientation='vertical'
-                        callback={(minmax) => setArea03_Y1_Y2(minmax)}
+                        callback={(minmax) => params.handleSetCurrentArea({
+                            ...params.areaProps,
+                            area03_Y1: minmax[0],
+                            area03_Y2: minmax[1]
+                        })}
                     />
                 </AccordionDetails>
             </Accordion>
@@ -136,7 +144,11 @@ export const MenuArea = (params:MenuAreaProps) => {
                         min={0} 
                         max={1000} 
                         range={[0,1000]} 
-                        callback={(minmax) => setArea04_X1_X2(minmax)}
+                        callback={(minmax) => params.handleSetCurrentArea({
+                            ...params.areaProps,
+                            area04_X1: minmax[0],
+                            area04_X2: minmax[1]
+                        })}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
@@ -146,7 +158,11 @@ export const MenuArea = (params:MenuAreaProps) => {
                         max={1000} 
                         range={[0,1000]} 
                         orientation='vertical'
-                        callback={(minmax) => setArea04_Y1_Y2(minmax)}
+                        callback={(minmax) => params.handleSetCurrentArea({
+                            ...params.areaProps,
+                            area04_Y1: minmax[0],
+                            area04_Y2: minmax[1]
+                        })}
                     />
                 </AccordionDetails>
             </Accordion>

@@ -3,6 +3,7 @@ import { MenuArea } from "./components/MenuArea"
 import Content from "./components/Content"
 import { useEffect, useRef, useState } from "react"
 import { getAreas } from "../../services/areas"
+import { updateAreaAPI } from '../../services/areas';
 
 export const AreaProps = {
     name: "",
@@ -40,6 +41,11 @@ export const Areas = () => {
         })
     },[])
     
+    useEffect(() => {
+        console.log(currentArea)
+        updateAreaAPI(currentArea)
+    },[currentArea])
+
     return (
         <Grid container>
             <Grid sm={3}>
@@ -47,6 +53,7 @@ export const Areas = () => {
                     min={[0 ,0]}
                     max={[imageSize[0], imageSize[1]]} 
                     areaProps={currentArea}
+                    handleSetCurrentArea={setCurrentArea}
                 />
             </Grid>
 
