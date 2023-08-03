@@ -1,35 +1,27 @@
-import { Box, IconButton, ImageList, ImageListItem, ImageListItemBar, Typography } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 
 export const Home = () => {
     return (
-        <Box display={'flex'} flexDirection={'column'} color={'#f5f5f1'}>
-            <ImageList cols={2} sx={{height:300}}>
+        <Box 
+            display={'flex'}
+            flexDirection={'row'} 
+            height={'90vh'} 
+            color={'#f5f5f1'} 
+        >
+            <Box display={'flex'} flexDirection={'column'}>
                 {itemData.map((item) => (
-                    <ImageListItem key={item.img}>
-                        <img
-                            src={`${item.img}?w=248&fit=crop&auto=format`}
-                            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                            alt={item.title}
-                            loading="lazy"
-                        />
-                        <ImageListItemBar
-                            title={item.title}
-                            actionIcon={
-                                <IconButton
-                                    sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                                    aria-label={`info about ${item.title}`}
-                                >
-                                </IconButton>
-                            }
-                        />
-                    </ImageListItem>
+                    <img
+                    height={'50%'}
+                        src={`${item.img}?w=248&fit=crop&auto=format`}
+                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                        alt={item.title}
+                        loading="lazy"
+                    />
                 ))}
-            </ImageList>
-
-
-            <Box>
-                <Typography>log...</Typography>
-                <Typography>log...</Typography>
+            </Box>
+            <Box sx={{wordBreak:'break-word', padding:1}}>
+                <Typography fontSize={12}>loglogloglogloglogloglogloglogloglogloglogloglogloglogloglologlogogogogogogogogogloglogloglogloglogloglogloglogloglogloglogloglogloggloglogloglog...</Typography>
+                <Typography>loglogloglogloglogloglogloglogloglogloglogloglogloglogloglologlogogogogogogogogogloglogloglogloglogloglogloglogloglogloglogloglogloggloglogloglog...</Typography>
                 <Typography>log...</Typography>
                 <Typography>log...</Typography>
                 <Typography>log...</Typography>
