@@ -1,12 +1,15 @@
 import Grid from '@mui/material/Unstable_Grid2';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Content from './components/Content';
 import { Sidebar } from './components/Sidebar';
+import { getFilters, saveFilters, deleteFilters, changeCurrentFilters } from '../../services/box_filters';
+import { Button } from '@mui/material';
 
 export interface Filters {
     id: number
     name: string
 }
+
 export const FilterProps = {
     name: "",
     dilate: 0,
@@ -18,12 +21,24 @@ export const FilterProps = {
 export const BoxFilters = () => {
     const [filters, setFilters] = React.useState<Filters[]>([])
     const [selectedFilter, setSelectedFilter] = React.useState(FilterProps)
-
     let ref = React.useRef<HTMLInputElement>(null);
 
-    function changeFilter() { }
-    function saveFilter(value: string) { }
+    function changeFilter(id: number) {
+        changeCurrentFilters(id)
+    }
 
+    function saveFilter(value: string) { 
+        saveFilters(value)
+    }
+
+    function handleDelete() { 
+        deleteFilters()
+    }
+
+    useEffect(() => {
+        getFilters().then(res => setFilters(res))
+    }, [])
+   
     // useEffect(() => {
     //     const interval = setInterval(async () => {
     //         try {
@@ -51,9 +66,15 @@ export const BoxFilters = () => {
                 <Content
                     filters={filters}
                     textRef={ref}
-                    handleChangeFilter={changeFilter}
+                    handleChangeFilter={(id) => changeFilter(Number(id))}
                     handleSaveFilter={saveFilter}
                 />
+            </Grid>
+
+            <Grid md={12} textAlign={"end"}>
+                <Button variant="contained" size="small" color="error" onClick={handleDelete}>
+                    Excluir
+                </Button>
             </Grid>
         </Grid>
     )

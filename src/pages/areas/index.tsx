@@ -8,6 +8,7 @@ export interface AreasOption {
     id: number
     name: string
 }
+
 export const AreaProps = {
     name: "",
     area01_X1: 0,

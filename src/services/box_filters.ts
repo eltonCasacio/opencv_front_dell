@@ -52,7 +52,6 @@ export function trackbarParametersFilterIterationsErode(value: number) {
     Axios.post('parametersFilter_Iterations_erode', {value})
 }
 
-
 export function trackbar_parametersFilter_iterations_dilate(value: number) {
     Axios.post('trackbar_parametersFilter_iterations_dilate', {value})
 }
@@ -103,4 +102,21 @@ export function trackbar_ResolutionPixMm_X(value: number) {
 
 export function trackbar_ResolutionPixMm_Y(value: number) {
     Axios.post('trackbar_ResolutionPixMm_Y', {value})
+}
+
+export async function getFilters() {
+    const {data} = await Axios.get('get_filters')
+    return data
+}
+
+export function saveFilters(name: string) {
+    Axios.post('save_filters', {name})
+}
+
+export function deleteFilters() {
+    Axios.post('delete_filters')
+}
+
+export function changeCurrentFilters(id: number) {
+    Axios.post('change_current_filters', {id})
 }

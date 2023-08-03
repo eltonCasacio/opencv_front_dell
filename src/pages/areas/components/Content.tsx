@@ -5,7 +5,7 @@ import { Option } from '../../../components/CustomSelect'
 export type ContetParams = {
     areas: Option[]
     textRef: React.RefObject<HTMLInputElement>
-    handleChangeFilter: (value: string) => void
+    handleChangeFilter: (id: string) => void
     handleSaveFilter: (fileName: string) => void
 }
 

@@ -5,7 +5,7 @@ import { Images } from '../../../components/ImageList'
 export type ContetParams = {
     filters: Array<{id:number,name:string}>
     textRef: React.RefObject<HTMLInputElement>
-    handleChangeFilter: (fileName: string) => void
+    handleChangeFilter: (id: string) => void
     handleSaveFilter: (fileName: string) => void
 }
 

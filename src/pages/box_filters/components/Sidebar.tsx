@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box, Divider, Link } from '@mui/material';
 import { FilterProps } from '..';
-import { selectFilterColorRGB, trackbarParametersFilterIterationsErode, trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Min, trackbar_parametersFilter_iterations_dilate } from '../../../services/filter_params';
+import { selectFilterColorRGB, trackbarParametersFilterIterationsErode, trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Min, trackbar_parametersFilter_iterations_dilate } from '../../../services/box_filters';
 import { CardRangeSider } from '../../../components/CardRangeSider';
 import { CardSimpleSider } from '../../../components/CardSimpleSlider';
 
