@@ -36,7 +36,11 @@ const Content = (params: ContetParams) => {
             mt: 1,
         }}>
             <Box display={'flex'} justifyContent='space-between' alignItems={'center'}>
-                <CustomSelect title='Filtros' options={params.filters} callback={(value) => params.handleChangeFilter(value)} />
+                <CustomSelect 
+                    title='Filtros' 
+                    options={params.filters} 
+                    callback={(value) => params.handleChangeFilter(value)} 
+                />
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <TextField
                         inputRef={params.textRef}

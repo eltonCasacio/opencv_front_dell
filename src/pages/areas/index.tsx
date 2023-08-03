@@ -58,8 +58,8 @@ export const Areas = () => {
     useEffect(() => {updateAreaAPI(currentAreaParams)},[currentAreaParams])
 
     return (
-        <Grid container>
-            <Grid sm={3}>
+        <Grid container height={'90vh'}>
+            <Grid sm={3} p={1}>
                 <MenuArea 
                     min={[0 ,0]}
                     max={[imageSize[0], imageSize[1]]} 
@@ -68,7 +68,7 @@ export const Areas = () => {
                 />
             </Grid>
 
-            <Grid sm={9}>
+            <Grid sm={9} height={'85vh'}>
                 <Content
                     areas={areas}
                     textRef={ref}

@@ -21,7 +21,6 @@ export const MenuArea = (params:MenuAreaProps) => {
                 bgcolor: 'transparent',
                 maxHeight: '84vh',
                 overflow: 'auto',
-                mr:1,
                 
                 "&::-webkit-scrollbar": {
                     width: "2px"

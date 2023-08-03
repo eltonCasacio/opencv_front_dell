@@ -5,39 +5,42 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box, Divider, Link } from '@mui/material';
 import { FilterProps } from '..';
-import { selectFilterColorRGB, trackbarParametersFilterIterationsErode, trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Min, trackbar_parametersFilter_iterations_dilate } from '../../../services/box_filters';
+import { 
+    selectFilterColorRGB, 
+    trackbarParametersFilterIterationsErode, 
+    trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Min, 
+    trackbar_parametersFilter_iterations_dilate
+} from '../../../services/box_filters';
 import { CardRangeSider } from '../../../components/CardRangeSider';
 import { CardSimpleSider } from '../../../components/CardSimpleSlider';
 
 export interface SidebarParams {selectedFilter: typeof FilterProps}
 export const Sidebar = (params: SidebarParams) => {
     return (
-        <Box sx={
-            {
-                bgcolor: '#585858',
-                maxHeight: '91vh',
-                overflow: 'auto',
+        <Box sx={{
+            bgcolor: 'transparent',
+            maxHeight: '84vh',
+            overflow: 'auto',
 
-                "&::-webkit-scrollbar": {
-                    width: "2px"
-                },
-                "&::-webkit-scrollbar-track": {
-                    backgroundColor: "transparent"
-                },
-                "&::-webkit-scrollbar-thumb": {
-                    backgroundColor: "#8d8d8d",
-                }
+            "&::-webkit-scrollbar": {
+                width: "2px"
+            },
+            "&::-webkit-scrollbar-track": {
+                backgroundColor: "transparent"
+            },
+            "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "#8d8d8d",
             }
-        }>
-            <Accordion>
+        }}>
+            <Accordion sx={{bgcolor:"gray", mb:1}}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                 >
-                    <Typography>Filtro RGB</Typography>
+                <Typography>Filtro RGB</Typography>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
                     <CardRangeSider
                         title='vermelho'
                         callback={(value) => selectFilterColorRGB({
@@ -48,7 +51,7 @@ export const Sidebar = (params: SidebarParams) => {
                         range={[0,255]}
                         min={0}
                         max={255}
-                        />
+                    />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
                     <CardRangeSider
@@ -61,7 +64,8 @@ export const Sidebar = (params: SidebarParams) => {
                         range={[0,255]}
                         min={0}
                         max={255}
-                        />
+                    />
+
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
                     <CardRangeSider
@@ -74,12 +78,13 @@ export const Sidebar = (params: SidebarParams) => {
                         range={[0,255]}
                         min={0}
                         max={255}
-                        />
+                    />
+
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
                 </AccordionDetails>
             </Accordion>
 
-            <Accordion>
+            <Accordion sx={{bgcolor:"gray", mb:1}}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
@@ -87,12 +92,12 @@ export const Sidebar = (params: SidebarParams) => {
                 >
                     <Typography>Jumping White Color Vertically</Typography>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
                     Min
                     <CardSimpleSider
                         initValue={params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Min}
                         callback={trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Min}
-                    />
+                        />
                     <Typography>Splice Line Jumping White Color Vertically - JumpSize</Typography>
                     <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
                         Documentação
@@ -100,7 +105,7 @@ export const Sidebar = (params: SidebarParams) => {
                 </AccordionDetails>
             </Accordion>
 
-            <Accordion>
+            <Accordion sx={{bgcolor:"gray", mb:1}}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -108,7 +113,7 @@ export const Sidebar = (params: SidebarParams) => {
                 >
                     <Typography>Erode</Typography>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
                     <CardSimpleSider
                         initValue={params.selectedFilter.erode}
                         callback={trackbarParametersFilterIterationsErode}
@@ -121,7 +126,7 @@ export const Sidebar = (params: SidebarParams) => {
                 </AccordionDetails>
             </Accordion>
             
-            <Accordion>
+            <Accordion sx={{bgcolor:"gray", mb:1}}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -129,7 +134,7 @@ export const Sidebar = (params: SidebarParams) => {
                 >
                     <Typography>Dilated</Typography>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
                     <CardSimpleSider
                         initValue={params.selectedFilter.dilate}
                         callback={trackbar_parametersFilter_iterations_dilate}

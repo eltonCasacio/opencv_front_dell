@@ -57,12 +57,12 @@ export const BoxFilters = () => {
 
 
     return (
-        <Grid container spacing={1}>
-            <Grid md={3}>
+        <Grid container flex={1} height={'90vh'}>
+            <Grid md={3} p={1}>
                 <Sidebar selectedFilter={selectedFilter} />
             </Grid>
 
-            <Grid md={9}>
+            <Grid md={9} height={'85vh'}>
                 <Content
                     filters={filters}
                     textRef={ref}
