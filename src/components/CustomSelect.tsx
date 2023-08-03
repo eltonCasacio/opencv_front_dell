@@ -1,29 +1,34 @@
-import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useEffect, useState } from 'react';
 
+export type Option = {
+    id:number
+    name:string
+}
 interface CustomSelectParams {
     callback(value: string): void
-    filters: string[]
+    options: Option[]
+    title: string
 }
-export function CustomSelect({ callback, filters }: CustomSelectParams) {
-    const [selectedItem, setSelectedItem] = React.useState('');
+export function CustomSelect({ callback, options, title }: CustomSelectParams) {
+    const [selectedItem, setSelectedItem] = useState('');
 
     const handleChange = (event: SelectChangeEvent) => {
         setSelectedItem(event.target.value);
     };
 
     const renderFilters = () => {
-        return filters.map((item) => (<MenuItem key={item} value={item}>{item}</MenuItem>))
+        return options.map((item) => (<MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>))
     }
 
-    React.useEffect(() => callback(selectedItem), [callback, selectedItem])
+    useEffect(() => callback(selectedItem), [callback, selectedItem])
 
     return (
         <FormControl sx={{ minWidth: 120 }} variant='outlined' size="small">
-            <InputLabel id="demo-select-small-label">Filtro</InputLabel>
+            <InputLabel id="demo-select-small-label">{title}</InputLabel>
             <Select
                 labelId="demo-select-small-label"
                 id="demo-select-small"

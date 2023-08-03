@@ -1,20 +1,13 @@
 import { Box, Button, TextField } from '@mui/material'
-import { Images } from '../../../components/ImageList'
 import { CustomSelect } from '../../../components/CustomSelect'
+import { Option } from '../../../components/CustomSelect'
 
 export type ContetParams = {
-    filters: string[]
+    areas: Option[]
     textRef: React.RefObject<HTMLInputElement>
-    handleChangeFilter: (fileName: string) => void
+    handleChangeFilter: (value: string) => void
     handleSaveFilter: (fileName: string) => void
 }
-
-const itemData = [
-    {
-        img: 'http://localhost:8000/videolayer03',
-        title: 'Filtro 1',
-    }
-];
 
 const Content = (params: ContetParams) => {
     return (
@@ -24,7 +17,11 @@ const Content = (params: ContetParams) => {
             height: '100%',
         }}>
              <Box display={'flex'} justifyContent='space-between' alignItems={'center'}>
-                <CustomSelect filters={params.filters} callback={(value) => params.handleChangeFilter(value)} />
+                <CustomSelect 
+                    title='Areas' 
+                    options={params.areas} 
+                    callback={(value) => params.handleChangeFilter(value)} 
+                />
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <TextField
                         inputRef={params.textRef}
@@ -37,8 +34,15 @@ const Content = (params: ContetParams) => {
                     </Button>
                 </Box>
             </Box>
-            <Images cols={1} images={itemData}/>
-            
+            <Box>
+                <img
+                    width={'65%'}
+                    src={'http://localhost:8000/videolayer03'}
+                    srcSet={'http://localhost:8000/videolayer03'}
+                    alt={"area demarcada"}
+                    loading="lazy"
+                />
+            </Box>
         </Box>
     )
 }

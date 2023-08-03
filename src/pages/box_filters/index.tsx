@@ -3,6 +3,10 @@ import React from 'react';
 import Content from './components/Content';
 import { Sidebar } from './components/Sidebar';
 
+export interface Filters {
+    id: number
+    name: string
+}
 export const FilterProps = {
     name: "",
     dilate: 0,
@@ -12,7 +16,7 @@ export const FilterProps = {
 }
 
 export const BoxFilters = () => {
-    const [filters, setFilters] = React.useState(FakeFilters)
+    const [filters, setFilters] = React.useState<Filters[]>([])
     const [selectedFilter, setSelectedFilter] = React.useState(FilterProps)
 
     let ref = React.useRef<HTMLInputElement>(null);
@@ -54,11 +58,3 @@ export const BoxFilters = () => {
         </Grid>
     )
 }
-
-const FakeFilters = [
-    "Fake Filtro 1",
-    "Fake Filtro 2",
-    "Fake Filtro 3",
-    "Fake Filtro 4",
-    "Fake Filtro 5",
-]

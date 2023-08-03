@@ -2,9 +2,12 @@ import { Grid } from "@mui/material"
 import { MenuArea } from "./components/MenuArea"
 import Content from "./components/Content"
 import { useEffect, useRef, useState } from "react"
-import { getAreas } from "../../services/areas"
-import { updateAreaAPI } from '../../services/areas';
+import { updateAreaAPI, getCurrentAreasParams, getAreas, changeCurrentAreas } from '../../services/areas';
 
+export interface AreasOption {
+    id: number
+    name: string
+}
 export const AreaProps = {
     name: "",
     area01_X1: 0,
@@ -24,27 +27,28 @@ export const AreaProps = {
     area04_X2: 0,
     area04_Y2: 0,
 }
+
 export const Areas = () => {
-    const [filters, setFilters] = useState(FakeFilters)
-    const [currentArea, setCurrentArea] = useState(AreaProps)
+    const [areas, setAreas] = useState<AreasOption[]>([])
+    const [currentAreaParams, setCurrentAreasParams] = useState(AreaProps)
     const [imageSize, setImageSize] = useState([0,0])
     let ref = useRef<HTMLInputElement>(null);
 
-    function changeFilter() { }
+    function changeFilter(id: number) {
+        changeCurrentAreas(id)
+    }
+
     function saveFilter(value: string) { }
 
     useEffect(() => {
-        getAreas().then(res => {
-            console.log(res)
+        getCurrentAreasParams().then(res => {
             setImageSize([res.width, res.height])
-            setCurrentArea(res)
+            setCurrentAreasParams(res)
+            getAreas().then(res => {setAreas(res)})
         })
     },[])
     
-    useEffect(() => {
-        console.log(currentArea)
-        updateAreaAPI(currentArea)
-    },[currentArea])
+    useEffect(() => {updateAreaAPI(currentAreaParams)},[currentAreaParams])
 
     return (
         <Grid container>
@@ -52,26 +56,19 @@ export const Areas = () => {
                 <MenuArea 
                     min={[0 ,0]}
                     max={[imageSize[0], imageSize[1]]} 
-                    areaProps={currentArea}
-                    handleSetCurrentArea={setCurrentArea}
+                    areaProps={currentAreaParams}
+                    handleSetCurrentArea={setCurrentAreasParams}
                 />
             </Grid>
 
             <Grid md={9}>
                 <Content
-                    filters={filters}
+                    areas={areas}
                     textRef={ref}
-                    handleChangeFilter={changeFilter}
+                    handleChangeFilter={(id) => changeFilter(Number(id))}
                     handleSaveFilter={saveFilter}
                     />
             </Grid>
         </Grid>
     )
 }
-const FakeFilters = [
-    "Fake Filtro 1",
-    "Fake Filtro 2",
-    "Fake Filtro 3",
-    "Fake Filtro 4",
-    "Fake Filtro 5",
-]

@@ -3,7 +3,7 @@ import { CustomSelect } from '../../../components/CustomSelect'
 import { Images } from '../../../components/ImageList'
 
 export type ContetParams = {
-    filters: string[]
+    filters: Array<{id:number,name:string}>
     textRef: React.RefObject<HTMLInputElement>
     handleChangeFilter: (fileName: string) => void
     handleSaveFilter: (fileName: string) => void
@@ -36,7 +36,7 @@ const Content = (params: ContetParams) => {
             mt: 1,
         }}>
             <Box display={'flex'} justifyContent='space-between' alignItems={'center'}>
-                <CustomSelect filters={params.filters} callback={(value) => params.handleChangeFilter(value)} />
+                <CustomSelect title='Filtros' options={params.filters} callback={(value) => params.handleChangeFilter(value)} />
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <TextField
                         inputRef={params.textRef}

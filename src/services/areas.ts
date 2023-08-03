@@ -22,12 +22,21 @@ export interface Areas {
 
 export function updateAreaAPI(value:Areas) {
     Axios.post('set_areas', value)
-    getAreas().then(res => {
+    getCurrentAreasParams().then(res => {
         console.log(res)
     })
+}
+
+export async function getCurrentAreasParams() {
+    const {data} = await Axios.get('get_current_areas_params')
+    return data
 }
 
 export async function getAreas() {
     const {data} = await Axios.get('get_areas')
     return data
+}
+
+export function changeCurrentAreas(id: number) {
+    Axios.post('change_current_areas', {id})
 }

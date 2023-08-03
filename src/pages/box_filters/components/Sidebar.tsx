@@ -32,48 +32,6 @@ export const Sidebar = (params: SidebarParams) => {
             <Accordion>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
-                    <Typography>Erode</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <CardSimpleSider
-                        initValue={params.selectedFilter.erode}
-                        callback={trackbarParametersFilterIterationsErode}
-                    />
-                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
-                    <Typography>A ideia básica de erosão é apenas como a erosão do solo, ela desgasta os limites do objeto em primeiro plano. Normalmente é executado em imagens binárias.</Typography>
-                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
-                        Documentação
-                    </Link>
-                </AccordionDetails>
-            </Accordion>
-            
-            <Accordion>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
-                    <Typography>Dilated</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <CardSimpleSider
-                        initValue={params.selectedFilter.dilate}
-                        callback={trackbar_parametersFilter_iterations_dilate}
-                    />
-                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
-                    <Typography>Dilatar pixels.</Typography>
-                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
-                        Documentação
-                    </Link>
-                </AccordionDetails>
-            </Accordion>
-
-            <Accordion>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                 >
@@ -140,7 +98,49 @@ export const Sidebar = (params: SidebarParams) => {
                         Documentação
                     </Link>
                 </AccordionDetails>
-            </Accordion> 
+            </Accordion>
+
+            <Accordion>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                >
+                    <Typography>Erode</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <CardSimpleSider
+                        initValue={params.selectedFilter.erode}
+                        callback={trackbarParametersFilterIterationsErode}
+                    />
+                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
+                    <Typography>A ideia básica de erosão é apenas como a erosão do solo, ela desgasta os limites do objeto em primeiro plano. Normalmente é executado em imagens binárias.</Typography>
+                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
+                        Documentação
+                    </Link>
+                </AccordionDetails>
+            </Accordion>
+            
+            <Accordion>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                >
+                    <Typography>Dilated</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <CardSimpleSider
+                        initValue={params.selectedFilter.dilate}
+                        callback={trackbar_parametersFilter_iterations_dilate}
+                    />
+                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
+                    <Typography>Dilatar pixels.</Typography>
+                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
+                        Documentação
+                    </Link>
+                </AccordionDetails>
+            </Accordion>
         </Box>
     )
 }
