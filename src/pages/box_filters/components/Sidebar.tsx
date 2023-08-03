@@ -19,7 +19,7 @@ export const Sidebar = (params: SidebarParams) => {
     return (
         <Box sx={{
             bgcolor: 'transparent',
-            maxHeight: '84vh',
+            maxHeight: '82vh',
             overflow: 'auto',
 
             "&::-webkit-scrollbar": {

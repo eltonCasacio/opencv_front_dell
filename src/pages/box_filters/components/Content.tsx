@@ -39,15 +39,13 @@ const Content = (params: ContetParams) => {
                 <CustomSelect 
                     title='Filtros' 
                     options={params.filters} 
-                    callback={(value) => params.handleChangeFilter(value)} 
-                />
+                    callback={(value) => params.handleChangeFilter(value)} />
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <TextField
                         inputRef={params.textRef}
                         id="outlined-read-only-input"
                         label="Nome Filtro"
-                        size="small"
-                    />
+                        size="small"/>
                     <Button variant="contained" color="info" onClick={() => params.handleSaveFilter(params.textRef.current?.value || '')}>
                         SALVAR
                     </Button>

@@ -19,7 +19,7 @@ export const MenuArea = (params:MenuAreaProps) => {
         <Box sx={
             {
                 bgcolor: 'transparent',
-                maxHeight: '84vh',
+                maxHeight: '82vh',
                 overflow: 'auto',
                 
                 "&::-webkit-scrollbar": {
