@@ -2,7 +2,7 @@ import { Grid } from "@mui/material"
 import { MenuArea } from "./components/MenuArea"
 import Content from "./components/Content"
 import { useEffect, useRef, useState } from "react"
-import { getAreaImageSize } from "../../services/areas"
+import { getAreas } from "../../services/areas"
 
 export const AreaProps = {
     name: "",
@@ -25,7 +25,7 @@ export const AreaProps = {
 }
 export const Areas = () => {
     const [filters, setFilters] = useState(FakeFilters)
-    const [selectedFilter, setSelectedFilter] = useState(AreaProps)
+    const [currentArea, setCurrentArea] = useState(AreaProps)
     const [imageSize, setImageSize] = useState([0,0])
     let ref = useRef<HTMLInputElement>(null);
 
@@ -33,17 +33,20 @@ export const Areas = () => {
     function saveFilter(value: string) { }
 
     useEffect(() => {
-        getAreaImageSize().then(res => setImageSize(res))
+        getAreas().then(res => {
+            console.log(res)
+            setImageSize([res.width, res.height])
+            setCurrentArea(res)
+        })
     },[])
     
     return (
         <Grid container>
             <Grid sm={3}>
                 <MenuArea 
-                    min={0}
-                    max={imageSize[1]} 
-                    range={[0, imageSize[1]]}
-                    areaProps={selectedFilter}
+                    min={[0 ,0]}
+                    max={[imageSize[0], imageSize[1]]} 
+                    areaProps={currentArea}
                 />
             </Grid>
 

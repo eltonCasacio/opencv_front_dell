@@ -1,8 +1,6 @@
 import { Box, Button, TextField } from '@mui/material'
 import { Images } from '../../../components/ImageList'
 import { CustomSelect } from '../../../components/CustomSelect'
-import { useEffect, useState } from 'react'
-import { getAreaImageSize } from '../../../services/areas'
 
 export type ContetParams = {
     filters: string[]
@@ -19,12 +17,6 @@ const itemData = [
 ];
 
 const Content = (params: ContetParams) => {
-    const [imageSize, setImageSize] = useState([0,0])
-   
-    useEffect(() => {
-        getAreaImageSize().then(res => setImageSize(imageSize))
-    },[])
-
     return (
         <Box sx={{
             display: 'flex',

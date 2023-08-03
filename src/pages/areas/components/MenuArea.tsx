@@ -15,16 +15,22 @@ import {
     setArea03_X1_X2, 
     setArea03_Y1_Y2, 
     setArea04_X1_X2, 
-    setArea04_Y1_Y2 
+    setArea04_Y1_Y2,
+    setAreaTeste,
+    Teste
 } from '../../../services/areas';
 
 interface MenuAreaProps {
     areaProps: typeof AreaProps
-    min: number
-    max: number
-    range: number[]
+    min: number[]
+    max: number[]
 }
 export const MenuArea = (params:MenuAreaProps) => {
+    let AreaTeste:Teste
+
+    const changeAreas = () => {
+        
+    }
     return (
         <Box sx={
             {
@@ -52,18 +58,18 @@ export const MenuArea = (params:MenuAreaProps) => {
                 <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
                     <HorizontalRangeSlider 
                         title={'Horizontal'} 
-                        min={params.min} 
-                        max={params.max} 
-                        range={params.range}
+                        min={params.min[0]} 
+                        max={params.max[0]} 
+                        range={[params.areaProps.area01_X1, params.areaProps.area01_X2]}
                         callback={(minmax) => setArea01_X1_x2(minmax)}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
                     <VerticalRangeSlider 
                         title={'Vertical'} 
-                        min={params.min} 
-                        max={params.max} 
-                        range={[params.range[1], params.range[0]]}
+                        min={params.min[1]} 
+                        max={params.max[1]} 
+                        range={[params.areaProps.area01_Y1, params.areaProps.area01_Y2]}
                         orientation='vertical'
                         callback={(minmax) => setArea01_Y1_Y2(minmax)}
                     />

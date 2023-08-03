@@ -20,6 +20,29 @@ const Areas = {
     area04_Y2: 0,
 }
 
+export interface Teste {
+    name: string,
+    area01_X1: number
+    area01_Y1: number
+    area01_X2: number
+    area01_Y2: number
+    area02_X1: number
+    area02_Y1: number
+    area02_X2: number
+    area02_Y2: number
+    area03_X1: number
+    area03_Y1: number
+    area03_X2: number
+    area03_Y2: number
+    area04_X1: number
+    area04_Y1: number
+    area04_X2: number
+    area04_Y2: number
+}
+export function setAreaTeste(value:Teste) {
+    setAreasAPI()
+}
+
 export function setArea01_X1_x2(value:number[]) {
     Areas.area01_X1 = value[0]
     Areas.area01_X2 = value[1]
@@ -70,9 +93,12 @@ export function setArea04_Y1_Y2(value:number[]) {
 
 async function setAreasAPI() {
     await Axios.post('set_areas', Areas)
+    getAreas().then(res => {
+        console.log(res)
+    })
 }
 
-export async function getAreaImageSize() {
-    const {data} = await Axios.get('get_size_max_img_width_height')
-    return [data.width, data.height]
+export async function getAreas() {
+    const {data} = await Axios.get('get_areas')
+    return data
 }
