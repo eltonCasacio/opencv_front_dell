@@ -19,7 +19,7 @@ export const MenuArea = (params:MenuAreaProps) => {
         <Box sx={
             {
                 bgcolor: 'transparent',
-                maxHeight: '88vh',
+                maxHeight: '84vh',
                 overflow: 'auto',
                 mr:1,
                 

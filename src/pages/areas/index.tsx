@@ -1,8 +1,8 @@
-import { Grid } from "@mui/material"
+import { Button, Grid } from "@mui/material"
 import { MenuArea } from "./components/MenuArea"
 import Content from "./components/Content"
 import { useEffect, useRef, useState } from "react"
-import { updateAreaAPI, getCurrentAreasParams, getAreas, changeCurrentAreas } from '../../services/areas';
+import { updateAreaAPI, getCurrentAreasParams, getAreas, changeCurrentAreas, saveAreas, deleteAreas } from '../../services/areas';
 
 export interface AreasOption {
     id: number
@@ -38,7 +38,13 @@ export const Areas = () => {
         changeCurrentAreas(id)
     }
 
-    function saveFilter(value: string) { }
+    function saveFilter(name: string) {
+        saveAreas(name)
+    }
+
+    function handleDelete() {
+        deleteAreas()
+    }
 
     useEffect(() => {
         getCurrentAreasParams().then(res => {
@@ -61,13 +67,19 @@ export const Areas = () => {
                 />
             </Grid>
 
-            <Grid md={9}>
+            <Grid sm={9}>
                 <Content
                     areas={areas}
                     textRef={ref}
                     handleChangeFilter={(id) => changeFilter(Number(id))}
                     handleSaveFilter={saveFilter}
                     />
+            </Grid>
+
+            <Grid md={12} textAlign={"end"}>
+                <Button variant="contained" size="small" color="error" onClick={handleDelete}>
+                    Excluir
+                </Button>
             </Grid>
         </Grid>
     )

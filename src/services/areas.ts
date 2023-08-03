@@ -44,3 +44,8 @@ export function changeCurrentAreas(id: number) {
 export function saveAreas(name: string) {
     Axios.post('save_areas', {name})
 }
+
+export function deleteAreas() {
+    Axios.post('delete_areas')
+}
+
