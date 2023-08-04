@@ -76,8 +76,6 @@ export const BoxFilters = () => {
                     </Button>
                 </Box>
             </Grid>
-
-           
         </Grid>
     )
 }

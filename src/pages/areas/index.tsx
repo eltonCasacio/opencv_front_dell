@@ -55,8 +55,6 @@ export const Areas = () => {
         })
     },[])
     
-    useEffect(() => {updateAreaAPI(currentAreaParams)},[currentAreaParams])
-
     return (
         <Box maxHeight={'90vh'} overflow={'auto'} p={1}>
             <Grid container>
