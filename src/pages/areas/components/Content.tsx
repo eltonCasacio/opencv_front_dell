@@ -14,7 +14,6 @@ const Content = (params: ContetParams) => {
         <Box sx={{
             display: 'flex',
             flexDirection: 'column',
-            mt: 1,
         }}>
              <Box display={'flex'} justifyContent='space-between' alignItems={'center'}>
                 <CustomSelect 
@@ -34,9 +33,9 @@ const Content = (params: ContetParams) => {
                     </Button>
                 </Box>
             </Box>
-            <Box mt={2}>
+            <Box mt={1}>
                 <img
-                    width={'65%'}
+                    width={'62%'}
                     src={'http://localhost:8000/videolayer03'}
                     srcSet={'http://localhost:8000/videolayer03'}
                     alt={"area demarcada"}

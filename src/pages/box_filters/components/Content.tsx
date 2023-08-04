@@ -32,8 +32,8 @@ const Content = (params: ContetParams) => {
     return (
         <Box sx={{
             display: 'flex',
+            height:'82vh',
             flexDirection: 'column',
-            mt: 1,
         }}>
             <Box display={'flex'} justifyContent='space-between' alignItems={'center'}>
                 <CustomSelect 

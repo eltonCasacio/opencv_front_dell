@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material"
+import { Box, Button, Grid } from "@mui/material"
 import { MenuArea } from "./components/MenuArea"
 import Content from "./components/Content"
 import { useEffect, useRef, useState } from "react"
@@ -58,30 +58,39 @@ export const Areas = () => {
     useEffect(() => {updateAreaAPI(currentAreaParams)},[currentAreaParams])
 
     return (
-        <Grid container height={'90vh'}>
-            <Grid sm={3} p={1}>
-                <MenuArea 
-                    min={[0 ,0]}
-                    max={[imageSize[0], imageSize[1]]} 
-                    areaProps={currentAreaParams}
-                    handleSetCurrentArea={setCurrentAreasParams}
-                />
-            </Grid>
-
-            <Grid sm={9} height={'85vh'}>
-                <Content
-                    areas={areas}
-                    textRef={ref}
-                    handleChangeFilter={(id) => changeFilter(Number(id))}
-                    handleSaveFilter={saveFilter}
+        <Box maxHeight={'90vh'} overflow={'auto'} p={1}>
+            <Grid container>
+                <Grid sm={3} pr={1}>
+                    <MenuArea 
+                        min={[0 ,0]}
+                        max={[imageSize[0], imageSize[1]]} 
+                        areaProps={currentAreaParams}
+                        handleSetCurrentArea={setCurrentAreasParams}
                     />
-            </Grid>
+                </Grid>
 
-            <Grid md={12} textAlign={"end"}>
-                <Button variant="contained" size="small" color="error" onClick={handleDelete}>
-                    Excluir
-                </Button>
+                <Grid sm={9} >
+                    <Content
+                        areas={areas}
+                        textRef={ref}
+                        handleChangeFilter={(id) => changeFilter(Number(id))}
+                        handleSaveFilter={saveFilter}
+                    />
+
+                    <Box textAlign={'end'}>
+                        <Button 
+                            variant="contained" 
+                            size="small" 
+                            color="error" 
+                            onClick={handleDelete}
+                        >
+                            Excluir
+                        </Button>
+                    </Box>
+
+                    
+                </Grid>
             </Grid>
-        </Grid>
+        </Box>
     )
 }

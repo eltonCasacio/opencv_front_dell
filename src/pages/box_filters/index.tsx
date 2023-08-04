@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Content from './components/Content';
 import { Sidebar } from './components/Sidebar';
 import { getFilters, saveFilters, deleteFilters, changeCurrentFilters } from '../../services/box_filters';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 export interface Filters {
     id: number
@@ -58,24 +58,26 @@ export const BoxFilters = () => {
 
     return (
         <Grid container flex={1} height={'90vh'}>
-            <Grid md={3} p={1}>
+            <Grid md={3} p={1} pr={0}>
                 <Sidebar selectedFilter={selectedFilter} />
             </Grid>
 
-            <Grid md={9} height={'85vh'}>
+            <Grid md={9} p={1}>
                 <Content
                     filters={filters}
                     textRef={ref}
                     handleChangeFilter={(id) => changeFilter(Number(id))}
                     handleSaveFilter={saveFilter}
                 />
+
+                <Box textAlign={"end"}>
+                    <Button variant="contained" size="small" color="error" onClick={handleDelete}>
+                        Excluir
+                    </Button>
+                </Box>
             </Grid>
 
-            <Grid md={12} textAlign={"end"}>
-                <Button variant="contained" size="small" color="error" onClick={handleDelete}>
-                    Excluir
-                </Button>
-            </Grid>
+           
         </Grid>
     )
 }
