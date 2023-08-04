@@ -39,7 +39,7 @@ export const Areas = () => {
         changeCurrentAreas(id)
     }
 
-    function saveFilter(name: string) {
+    function handleSave(name: string) {
         saveAreas(name)
     }
 
@@ -51,10 +51,12 @@ export const Areas = () => {
         getCurrentAreasParams().then(res => {
             setImageSize([res.width, res.height])
             setCurrentAreasParams(res)
-            getAreas().then(res => {setAreas(res)})
+            getAreas().then(res => setAreas(res))
         })
     },[])
     
+    useEffect(() => {updateAreaAPI(currentAreaParams)},[currentAreaParams])
+
     return (
         <Box maxHeight={'90vh'} overflow={'auto'} p={1}>
             <Grid container>
@@ -72,7 +74,7 @@ export const Areas = () => {
                         areas={areas}
                         textRef={ref}
                         handleChangeFilter={(id) => changeFilter(Number(id))}
-                        handleSaveFilter={saveFilter}
+                        handleSave={handleSave}
                     />
 
                     <Box textAlign={'end'}>
@@ -85,8 +87,6 @@ export const Areas = () => {
                             Excluir
                         </Button>
                     </Box>
-
-                    
                 </Grid>
             </Grid>
         </Box>

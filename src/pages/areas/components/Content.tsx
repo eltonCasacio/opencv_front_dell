@@ -6,7 +6,7 @@ export type ContetParams = {
     areas: Option[]
     textRef: React.RefObject<HTMLInputElement>
     handleChangeFilter: (id: string) => void
-    handleSaveFilter: (fileName: string) => void
+    handleSave: (fileName: string) => void
 }
 
 const Content = (params: ContetParams) => {
@@ -28,7 +28,7 @@ const Content = (params: ContetParams) => {
                         label="Nome Filtro"
                         size="small"
                     />
-                    <Button variant="contained" color="info" onClick={() => params.handleSaveFilter(params.textRef.current?.value || '')}>
+                    <Button variant="contained" color="info" onClick={() => params.handleSave(params.textRef.current?.value || '')}>
                         SALVAR
                     </Button>
                 </Box>
