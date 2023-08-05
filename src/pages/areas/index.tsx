@@ -35,18 +35,24 @@ export const Areas = () => {
     const [imageSize, setImageSize] = useState([0,0])
     let ref = useRef<HTMLInputElement>(null);
 
+    function updateAres() {
+        getAreas().then(res => setAreas(res))
+    }
+
     function changeFilter(id: number) {
         changeCurrentAreas(id)
     }
 
     function handleSave(name: string) {
-        saveAreas(name)
+        saveAreas(name).then(_ => {
+            updateAres()
+            if(ref.current)
+                ref.current.value = ""
+        })
     }
 
     function handleDelete() {
-        deleteAreas().then(_ => {
-            getAreas().then(res => setAreas(res))
-        })
+        deleteAreas().then(_ => updateAres())
     }
 
     useEffect(() => {
@@ -54,7 +60,7 @@ export const Areas = () => {
             setImageSize([res.width, res.height])
             setCurrentAreasParams(res)
             updateAreaAPI(res)
-            getAreas().then(res => setAreas(res))
+            updateAres()
         })
     },[])
     

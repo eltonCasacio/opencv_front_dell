@@ -38,8 +38,8 @@ export function changeCurrentAreas(id: number) {
     Axios.post('change_current_areas', {id})
 }
 
-export function saveAreas(name: string) {
-    Axios.post('save_areas', {name})
+export async function saveAreas(name: string) {
+    await Axios.post('save_areas', {name})
 }
 
 export async function deleteAreas() {
