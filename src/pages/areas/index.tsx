@@ -44,18 +44,20 @@ export const Areas = () => {
     }
 
     function handleDelete() {
-        deleteAreas()
+        deleteAreas().then(_ => {
+            getAreas().then(res => setAreas(res))
+        })
     }
 
     useEffect(() => {
         getCurrentAreasParams().then(res => {
             setImageSize([res.width, res.height])
             setCurrentAreasParams(res)
+            updateAreaAPI(res)
             getAreas().then(res => setAreas(res))
         })
     },[])
     
-    useEffect(() => {updateAreaAPI(currentAreaParams)},[currentAreaParams])
 
     return (
         <Box maxHeight={'90vh'} overflow={'auto'} p={1}>
@@ -92,3 +94,5 @@ export const Areas = () => {
         </Box>
     )
 }
+
+export { updateAreaAPI };

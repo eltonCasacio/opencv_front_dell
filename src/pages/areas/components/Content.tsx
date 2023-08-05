@@ -11,10 +11,7 @@ export type ContetParams = {
 
 const Content = (params: ContetParams) => {
     return (
-        <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-        }}>
+        <Box sx={{display: 'flex',flexDirection: 'column'}}>
              <Box display={'flex'} justifyContent='space-between' alignItems={'center'}>
                 <CustomSelect 
                     title='Areas' 

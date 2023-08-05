@@ -22,9 +22,6 @@ export interface Areas {
 
 export function updateAreaAPI(value:Areas) {
     Axios.post('set_areas', value)
-    getCurrentAreasParams().then(res => {
-        console.log(res)
-    })
 }
 
 export async function getCurrentAreasParams() {
@@ -45,7 +42,7 @@ export function saveAreas(name: string) {
     Axios.post('save_areas', {name})
 }
 
-export function deleteAreas() {
-    Axios.post('delete_areas')
+export async function deleteAreas() {
+    await Axios.post('delete_areas')
 }
 

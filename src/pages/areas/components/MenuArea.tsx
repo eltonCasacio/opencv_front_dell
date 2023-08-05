@@ -7,6 +7,7 @@ import { Box, Divider } from '@mui/material';
 import {VerticalRangeSlider} from './VerticalRangeSlider';
 import { HorizontalRangeSlider } from './HorizontalRangeSlider';
 import {AreaProps} from '../index'
+import { updateAreaAPI } from '../../areas';
 
 interface MenuAreaProps {
     areaProps: typeof AreaProps
@@ -15,6 +16,10 @@ interface MenuAreaProps {
     handleSetCurrentArea:(value:typeof AreaProps) => void
 }
 export const MenuArea = (params:MenuAreaProps) => {
+
+    function handleUpdateAreasParams(value:typeof AreaProps) {
+        updateAreaAPI(value)
+    }
     return (
         <Box sx={
             {
@@ -44,7 +49,7 @@ export const MenuArea = (params:MenuAreaProps) => {
                         min={params.min[0]} 
                         max={params.max[0]} 
                         range={[params.areaProps.area01_X1, params.areaProps.area01_X2]}
-                        callback={(minmax) => params.handleSetCurrentArea({
+                        callback={(minmax) => handleUpdateAreasParams({
                             ...params.areaProps,
                             area01_X1: minmax[0],
                             area01_X2: minmax[1]
@@ -58,7 +63,7 @@ export const MenuArea = (params:MenuAreaProps) => {
                         max={params.max[1]} 
                         range={[params.areaProps.area01_Y1, params.areaProps.area01_Y2]}
                         orientation='vertical'
-                        callback={(minmax) => params.handleSetCurrentArea({
+                        callback={(minmax) => handleUpdateAreasParams({
                             ...params.areaProps,
                             area01_Y1: minmax[0],
                             area01_Y2: minmax[1]
@@ -77,7 +82,7 @@ export const MenuArea = (params:MenuAreaProps) => {
                         min={0} 
                         max={1000} 
                         range={[0,1000]}
-                        callback={(minmax) => params.handleSetCurrentArea({
+                        callback={(minmax) => handleUpdateAreasParams({
                             ...params.areaProps,
                             area02_X1: minmax[0],
                             area02_X2: minmax[1]
@@ -91,7 +96,7 @@ export const MenuArea = (params:MenuAreaProps) => {
                         max={1000} 
                         range={[0,1000]} 
                         orientation='vertical'
-                        callback={(minmax) => params.handleSetCurrentArea({
+                        callback={(minmax) => handleUpdateAreasParams({
                             ...params.areaProps,
                             area02_Y1: minmax[0],
                             area02_Y2: minmax[1]
@@ -110,7 +115,7 @@ export const MenuArea = (params:MenuAreaProps) => {
                         min={0} 
                         max={1000} 
                         range={[0,1000]} 
-                        callback={(minmax) => params.handleSetCurrentArea({
+                        callback={(minmax) => handleUpdateAreasParams({
                             ...params.areaProps,
                             area03_X1: minmax[0],
                             area03_X2: minmax[1]
@@ -124,7 +129,7 @@ export const MenuArea = (params:MenuAreaProps) => {
                         max={1000} 
                         range={[0,1000]} 
                         orientation='vertical'
-                        callback={(minmax) => params.handleSetCurrentArea({
+                        callback={(minmax) => handleUpdateAreasParams({
                             ...params.areaProps,
                             area03_Y1: minmax[0],
                             area03_Y2: minmax[1]
@@ -143,7 +148,7 @@ export const MenuArea = (params:MenuAreaProps) => {
                         min={0} 
                         max={1000} 
                         range={[0,1000]} 
-                        callback={(minmax) => params.handleSetCurrentArea({
+                        callback={(minmax) => handleUpdateAreasParams({
                             ...params.areaProps,
                             area04_X1: minmax[0],
                             area04_X2: minmax[1]
@@ -157,7 +162,7 @@ export const MenuArea = (params:MenuAreaProps) => {
                         max={1000} 
                         range={[0,1000]} 
                         orientation='vertical'
-                        callback={(minmax) => params.handleSetCurrentArea({
+                        callback={(minmax) => handleUpdateAreasParams({
                             ...params.areaProps,
                             area04_Y1: minmax[0],
                             area04_Y2: minmax[1]
