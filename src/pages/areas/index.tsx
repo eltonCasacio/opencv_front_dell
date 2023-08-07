@@ -36,14 +36,15 @@ export const Areas = () => {
     let ref = useRef<HTMLInputElement>(null);
 
     function updateAres() {
-        getCurrentAreasParams().then(res => {
-            setCurrentAreasParams(res)
-            getAreas().then(res => setAreas(res))
-        })
+        getAreas().then(res => setAreas(res))
     }
 
     function changeFilter(id: number) {
-        changeCurrentAreas(id)
+        changeCurrentAreas(id).then(() => {
+            getCurrentAreasParams().then(res => {
+                setCurrentAreasParams({...res})
+            })
+        })
     }
 
     function handleSave(name: string) {

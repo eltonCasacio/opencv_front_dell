@@ -24,7 +24,7 @@ export function CustomSelect({ callback, options, title }: CustomSelectParams) {
         return options.map((item) => (<MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>))
     }
 
-    useEffect(() => callback(selectedItem), [callback, selectedItem])
+    useEffect(() => callback(selectedItem), [selectedItem])
 
     return (
         <FormControl sx={{ minWidth: 120 }} variant='outlined' size="small">
