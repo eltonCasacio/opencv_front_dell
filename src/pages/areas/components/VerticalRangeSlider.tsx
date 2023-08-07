@@ -36,12 +36,14 @@ export function VerticalRangeSlider({
     const aux = [value[0], value[1]]
     aux[0] = parseInt(e.target.value) <= 0 ? 0 : parseInt(e.target.value)
     setValue(aux)
+    callback(value)
   }
 
   const handleInputMaxChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const aux = [value[0], value[1]]
     aux[1] = parseInt(e.target.value) >= max ? max : parseInt(e.target.value)
     setValue(aux)
+    callback(value)
   }
 
   useEffect(() => setValue(range), [range])

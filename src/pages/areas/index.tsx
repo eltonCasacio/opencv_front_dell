@@ -2,7 +2,7 @@ import { Box, Button, Grid } from "@mui/material"
 import { MenuArea } from "./components/MenuArea"
 import Content from "./components/Content"
 import { useEffect, useRef, useState } from "react"
-import { updateAreaAPI, getCurrentAreasParams, getAreas, changeCurrentAreas, saveAreas, deleteAreas } from '../../services/areas';
+import { getCurrentAreasParams, getAreas, changeCurrentAreas, saveAreas, deleteAreas } from '../../services/areas';
 
 export interface AreasOption {
     id: number
@@ -36,7 +36,10 @@ export const Areas = () => {
     let ref = useRef<HTMLInputElement>(null);
 
     function updateAres() {
-        getAreas().then(res => setAreas(res))
+        getCurrentAreasParams().then(res => {
+            setCurrentAreasParams(res)
+            getAreas().then(res => setAreas(res))
+        })
     }
 
     function changeFilter(id: number) {
@@ -59,12 +62,11 @@ export const Areas = () => {
         getCurrentAreasParams().then(res => {
             setImageSize([res.width, res.height])
             setCurrentAreasParams(res)
-            updateAreaAPI(res)
             updateAres()
         })
     },[])
     
-
+   
     return (
         <Box maxHeight={'90vh'} overflow={'auto'} p={1}>
             <Grid container>
@@ -73,7 +75,6 @@ export const Areas = () => {
                         min={[0 ,0]}
                         max={[imageSize[0], imageSize[1]]} 
                         areaProps={currentAreaParams}
-                        handleSetCurrentArea={setCurrentAreasParams}
                     />
                 </Grid>
 
@@ -100,5 +101,3 @@ export const Areas = () => {
         </Box>
     )
 }
-
-export { updateAreaAPI };

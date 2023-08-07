@@ -20,29 +20,43 @@ export interface Areas {
     area04_Y2: number
 }
 
-export function updateAreaAPI(value:Areas) {
-    Axios.post('set_areas', value)
+export type Area = 'area01_X' | 'area01_Y' | 'area02_X' | 'area02_Y' | 'area03_X' | 'area03_Y' | 'area04_X' | 'area04_Y'
+
+export async function updateAreaAPI(area_eixo: Area, value:number[]) {
+    try {
+        await Axios.post('set_areas', { area_eixo, value})
+    } catch (error) {}
 }
 
 export async function getCurrentAreasParams() {
-    const {data} = await Axios.get('get_current_areas_params')
-    return data
+    try {
+        const {data} = await Axios.get('get_current_areas_params')
+        return data
+    } catch (error) {}
 }
 
 export async function getAreas() {
-    const {data} = await Axios.get('get_areas')
-    return data
+    try {
+        const {data} = await Axios.get('get_areas')
+        return data
+    } catch (error) {}
 }
 
-export function changeCurrentAreas(id: number) {
-    Axios.post('change_current_areas', {id})
+export async function changeCurrentAreas(id: number) {
+    try {
+        await Axios.post('change_current_areas', {id})
+    } catch (error) {}
 }
 
 export async function saveAreas(name: string) {
-    await Axios.post('save_areas', {name})
+    try {
+        await Axios.post('save_areas', {name})
+    } catch (error) {}
 }
 
 export async function deleteAreas() {
-    await Axios.post('delete_areas')
+    try {
+        await Axios.post('delete_areas')
+    } catch (error) {}
 }
 
