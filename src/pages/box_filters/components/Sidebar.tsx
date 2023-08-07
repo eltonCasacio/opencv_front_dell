@@ -17,21 +17,7 @@ import { CardSimpleSider } from '../../../components/CardSimpleSlider';
 export interface SidebarParams {selectedFilter: typeof FilterProps}
 export const Sidebar = (params: SidebarParams) => {
     return (
-        <Box sx={{
-            bgcolor: 'transparent',
-            maxHeight: '82vh',
-            overflow: 'auto',
-
-            "&::-webkit-scrollbar": {
-                width: "2px"
-            },
-            "&::-webkit-scrollbar-track": {
-                backgroundColor: "transparent"
-            },
-            "&::-webkit-scrollbar-thumb": {
-                backgroundColor: "#8d8d8d",
-            }
-        }}>
+        <Box sx={style}>
             <Accordion sx={{bgcolor:"gray", mb:1}}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -48,7 +34,10 @@ export const Sidebar = (params: SidebarParams) => {
                             min: value[0],
                             max: value[1]
                         })}
-                        range={[0,255]}
+                        range={[
+                            params.selectedFilter.selectFilterColor_Red_Min,
+                            params.selectedFilter.selectFilterColor_Red_Max
+                        ]}
                         min={0}
                         max={255}
                     />
@@ -61,7 +50,10 @@ export const Sidebar = (params: SidebarParams) => {
                             min: value[0],
                             max: value[1]
                         })}
-                        range={[0,255]}
+                        range={[
+                            params.selectedFilter.selectFilterColor_Green_Min,
+                            params.selectedFilter.var_parametersFilter_selectFilterColor_Green_Max
+                        ]}
                         min={0}
                         max={255}
                     />
@@ -75,7 +67,9 @@ export const Sidebar = (params: SidebarParams) => {
                             min: value[0],
                             max: value[1]
                         })}
-                        range={[0,255]}
+                        range={[
+                            params.selectedFilter.selectFilterColor_Blue_Min,
+                            params.selectedFilter.selectFilterColor_Blue_Max]}
                         min={0}
                         max={255}
                     />
@@ -115,7 +109,7 @@ export const Sidebar = (params: SidebarParams) => {
                 </AccordionSummary>
                 <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
                     <CardSimpleSider
-                        initValue={params.selectedFilter.erode}
+                        initValue={params.selectedFilter.Iterations_erode}
                         callback={trackbarParametersFilterIterationsErode}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
@@ -136,7 +130,7 @@ export const Sidebar = (params: SidebarParams) => {
                 </AccordionSummary>
                 <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
                     <CardSimpleSider
-                        initValue={params.selectedFilter.dilate}
+                        initValue={params.selectedFilter.Iterations_dilate}
                         callback={trackbar_parametersFilter_iterations_dilate}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
@@ -148,4 +142,20 @@ export const Sidebar = (params: SidebarParams) => {
             </Accordion>
         </Box>
     )
+}
+
+const style = {
+    bgcolor: 'transparent',
+    maxHeight: '82vh',
+    overflow: 'auto',
+
+    "&::-webkit-scrollbar": {
+        width: "2px"
+    },
+    "&::-webkit-scrollbar-track": {
+        backgroundColor: "transparent"
+    },
+    "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#8d8d8d",
+    }
 }

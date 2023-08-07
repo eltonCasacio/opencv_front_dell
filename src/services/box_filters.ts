@@ -117,6 +117,46 @@ export async function deleteFilters() {
     await Axios.post('delete_filters')
 }
 
-export function changeCurrentFilters(id: number) {
-    Axios.post('change_current_filters', {id})
+export async function changeCurrentFilters(id: number) {
+    await Axios.post('change_current_filters', {id})
 }
+
+export async function getCurrentFilterParams() {
+    const {data} = await Axios.get('get_current_filter_params')
+    return {
+        name: data.name,
+        selectFilterColor_Red_Min: data.selectFilterColor_Red_Min,
+        selectFilterColor_Red_Max: data.selectFilterColor_Red_Max,
+        selectFilterColor_Green_Min: data.selectFilterColor_Green_Min,
+        var_parametersFilter_selectFilterColor_Green_Max: data.var_parametersFilter_selectFilterColor_Green_Max,
+        selectFilterColor_Blue_Min: data.selectFilterColor_Blue_Min,
+        selectFilterColor_Blue_Max: data.selectFilterColor_Blue_Max,
+        DefinedAreaForFilter_init_X: data.DefinedAreaForFilter_init_X,
+        DefinedAreaForFilter_init_Y: data.DefinedAreaForFilter_init_Y,
+        Iterations_erode: data.Iterations_erode,
+        Iterations_dilate: data.Iterations_dilate,
+        SpliceLineJumpingWhiteColorVertically_JumpSize_Min: data.SpliceLineJumpingWhiteColorVertically_JumpSize_Min,
+        SpliceLineJumpingWhiteColorVertically_JumpSize_Max: data.SpliceLineJumpingWhiteColorVertically_JumpSize_Max,
+        SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter: data.SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter,
+        SpliceLineJumpingWhiteColorHorizontally_JumpSize_Min: data.SpliceLineJumpingWhiteColorHorizontally_JumpSize_Min,
+        SpliceLineJumpingWhiteColorHorizontally_JumpSize_Max: data.SpliceLineJumpingWhiteColorHorizontally_JumpSize_Max,
+        SpliceLineJumpWhiteHor_IdAreasOfOperationInTheFilter: data.SpliceLineJumpWhiteHor_IdAreasOfOperationInTheFilter,
+        SpliceLineJumpingBlackColorVertically_JumpSize_Min: data.SpliceLineJumpingBlackColorVertically_JumpSize_Min,
+        SpliceLineJumpingBlackColorVertically_JumpSize_Max: data.SpliceLineJumpingBlackColorVertically_JumpSize_Max,
+        SpliceLineJumpBlackVer_IdAreasOfOperationInTheFilter: data.SpliceLineJumpBlackVer_IdAreasOfOperationInTheFilter,
+        SpliceLineJumpingBlackColorHorizontally_JumpSize_Min: data.SpliceLineJumpingBlackColorHorizontally_JumpSize_Min,
+        SpliceLineJumpingBlackColorHorizontally_JumpSize_Max: data.SpliceLineJumpingBlackColorHorizontally_JumpSize_Max,
+        SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter: data.SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter,
+        FoundObjectSizeFilter_Min: data.FoundObjectSizeFilter_Min,
+        FoundObjectSizeFilter_Max: data.FoundObjectSizeFilter_Max,
+        VerticalLineSizeFilterOfFoundObject_Min: data.VerticalLineSizeFilterOfFoundObject_Min,
+        VerticalLineSizeFilterOfFoundObject_Max: data.VerticalLineSizeFilterOfFoundObject_Max,
+        HorizontalLineSizeFilterOfFoundObject_Min: data.HorizontalLineSizeFilterOfFoundObject_Min,
+        HorizontalLineSizeFilterOfFoundObject_Max: data.HorizontalLineSizeFilterOfFoundObject_Max,
+        ConstResolutionPixelMm_X: data.ConstResolutionPixelMm_X,
+        ConstResolutionPixelMm_Y: data.ConstResolutionPixelMm_Y,
+        labelWeb_RecipeName: data.labelWeb_RecipeName,
+    }
+}
+
+

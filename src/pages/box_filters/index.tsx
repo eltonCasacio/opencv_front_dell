@@ -2,7 +2,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import React, { useEffect } from 'react';
 import Content from './components/Content';
 import { Sidebar } from './components/Sidebar';
-import { getFilters, saveFilters, deleteFilters, changeCurrentFilters } from '../../services/box_filters';
+import { getFilters, saveFilters, deleteFilters, changeCurrentFilters, getCurrentFilterParams } from '../../services/box_filters';
 import { Box, Button } from '@mui/material';
 
 export interface Filters {
@@ -12,10 +12,37 @@ export interface Filters {
 
 export const FilterProps = {
     name: "",
-    dilate: 0,
-    erode: 0,
-    selectFilterColorRedMin: 0,
-    SpliceLineJumpingWhiteColorVertically_JumpSize_Min:0,
+    selectFilterColor_Red_Min:0,
+    selectFilterColor_Red_Max: 0,
+    selectFilterColor_Green_Min: 0,
+    var_parametersFilter_selectFilterColor_Green_Max:0,
+    selectFilterColor_Blue_Min:0,
+    selectFilterColor_Blue_Max: 0,
+    DefinedAreaForFilter_init_X: 0,
+    DefinedAreaForFilter_init_Y:0 ,
+    Iterations_erode:0 ,
+    Iterations_dilate: 0  ,
+    SpliceLineJumpingWhiteColorVertically_JumpSize_Min: 0     ,
+    SpliceLineJumpingWhiteColorVertically_JumpSize_Max: 0    ,
+    SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter: 0  ,
+    SpliceLineJumpingWhiteColorHorizontally_JumpSize_Min: 0   ,
+    SpliceLineJumpingWhiteColorHorizontally_JumpSize_Max: 0 ,
+    SpliceLineJumpWhiteHor_IdAreasOfOperationInTheFilter: 0   ,
+    SpliceLineJumpingBlackColorVertically_JumpSize_Min:0    ,
+    SpliceLineJumpingBlackColorVertically_JumpSize_Max: 0     ,
+    SpliceLineJumpBlackVer_IdAreasOfOperationInTheFilter: 0  ,
+    SpliceLineJumpingBlackColorHorizontally_JumpSize_Min: 0  ,
+    SpliceLineJumpingBlackColorHorizontally_JumpSize_Max: 0   ,
+    SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter: 0  ,
+    FoundObjectSizeFilter_Min: 0  ,
+    FoundObjectSizeFilter_Max: 0   ,
+    VerticalLineSizeFilterOfFoundObject_Min: 0  ,
+    VerticalLineSizeFilterOfFoundObject_Max: 0    ,
+    HorizontalLineSizeFilterOfFoundObject_Min: 0  ,
+    HorizontalLineSizeFilterOfFoundObject_Max: 0 ,
+    ConstResolutionPixelMm_X: 0  ,
+    ConstResolutionPixelMm_Y: 0 ,
+    labelWeb_RecipeName: 0
 }
 
 export const BoxFilters = () => {
@@ -25,10 +52,11 @@ export const BoxFilters = () => {
 
     function updateAres() {
         getFilters().then(res => setFilters(res))
+        getCurrentFilterParams().then(res => setSelectedFilter(res))
     }
 
     function changeFilter(id: number) {
-        changeCurrentFilters(id)
+        changeCurrentFilters(id).then(() => updateAres())
     }
 
     function saveFilter(value: string) { 
@@ -40,33 +68,13 @@ export const BoxFilters = () => {
     }
 
     function handleDelete() { 
-        deleteFilters().then(() =>{
-            console.log("????")
-            updateAres()
-        })
+        deleteFilters().then(() =>updateAres())
     }
 
     useEffect(() => {
         updateAres()
     }, [])
    
-    // useEffect(() => {
-    //     const interval = setInterval(async () => {
-    //         try {
-    //             setFilters(FakeFilters)
-    //             setSelectedFilter(FilterProps)
-    //             console.log("FILTROS ATUALIZADOS::", FilterProps)
-    //         } catch (error) {
-    //             console.error("Erro ao carregar dados do filtro:: ", error)
-    //         }
-    //     }, 3000);
-
-    //     return function cleanup() {
-    //         clearInterval(interval)
-    //     };
-    // }, [])
-
-
     return (
         <Grid container flex={1} height={'90vh'}>
             <Grid md={3} p={1} pr={0}>
