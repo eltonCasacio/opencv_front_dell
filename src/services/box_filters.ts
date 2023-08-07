@@ -109,8 +109,8 @@ export async function getFilters() {
     return data
 }
 
-export function saveFilters(name: string) {
-    Axios.post('save_filters', {name})
+export async function saveFilters(name: string) {
+    await Axios.post('save_filters', {name})
 }
 
 export function deleteFilters() {

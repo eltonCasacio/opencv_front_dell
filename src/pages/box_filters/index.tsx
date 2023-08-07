@@ -23,12 +23,20 @@ export const BoxFilters = () => {
     const [selectedFilter, setSelectedFilter] = React.useState(FilterProps)
     let ref = React.useRef<HTMLInputElement>(null);
 
+    function updateAres() {
+        getFilters().then(res => setFilters(res))
+    }
+
     function changeFilter(id: number) {
         changeCurrentFilters(id)
     }
 
     function saveFilter(value: string) { 
-        saveFilters(value)
+        saveFilters(value).then(_ => {
+            updateAres()
+            if(ref.current)
+                ref.current.value = ""
+        })
     }
 
     function handleDelete() { 
@@ -36,7 +44,7 @@ export const BoxFilters = () => {
     }
 
     useEffect(() => {
-        getFilters().then(res => setFilters(res))
+        updateAres()
     }, [])
    
     // useEffect(() => {
