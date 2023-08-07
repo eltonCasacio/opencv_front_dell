@@ -113,8 +113,8 @@ export async function saveFilters(name: string) {
     await Axios.post('save_filters', {name})
 }
 
-export function deleteFilters() {
-    Axios.post('delete_filters')
+export async function deleteFilters() {
+    await Axios.post('delete_filters')
 }
 
 export function changeCurrentFilters(id: number) {

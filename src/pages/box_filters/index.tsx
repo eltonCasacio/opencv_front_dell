@@ -40,7 +40,10 @@ export const BoxFilters = () => {
     }
 
     function handleDelete() { 
-        deleteFilters()
+        deleteFilters().then(() =>{
+            console.log("????")
+            updateAres()
+        })
     }
 
     useEffect(() => {
