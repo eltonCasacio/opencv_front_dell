@@ -226,3 +226,6 @@ export function horizontal_line_size(value: number[]){
     })
 }
 
+export async function clear_filters_params(){
+    await Axios.post('clear_filters_params')
+}

@@ -2,7 +2,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import React, { useEffect } from 'react';
 import Content from './components/Content';
 import { Sidebar } from './components/Sidebar';
-import { getFilters, saveFilters, deleteFilters, changeCurrentFilters, getCurrentFilterParams } from '../../services/box_filters';
+import { getFilters, saveFilters, deleteFilters, changeCurrentFilters, getCurrentFilterParams, clear_filters_params } from '../../services/box_filters';
 import { Box, Button } from '@mui/material';
 
 export interface Filters {
@@ -61,6 +61,9 @@ export const BoxFilters = () => {
     }
 
     function changeFilter(id: number) {
+        if(id == 0){
+            clearParams()
+        }
         changeCurrentFilters(id).then(() => updateAres())
     }
 
@@ -74,6 +77,11 @@ export const BoxFilters = () => {
 
     function handleDelete() { 
         deleteFilters().then(() =>updateAres())
+    }
+
+    function clearParams() {
+        clear_filters_params()
+        updateAres()
     }
 
     useEffect(() => updateAres(), [])

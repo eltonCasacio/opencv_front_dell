@@ -3,7 +3,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Box, Divider, Link } from '@mui/material';
+import { Box, Button, Divider, Link } from '@mui/material';
 import { AreasName, FilterProps } from '..';
 import { 
     selectFilterColorRGB, 

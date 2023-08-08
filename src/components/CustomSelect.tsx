@@ -37,7 +37,7 @@ export function CustomSelect({ callback, options, title }: CustomSelectParams) {
                 onChange={handleChange}
             >
                 <MenuItem value="">
-                    <em>None</em>
+                    <em>Limpar</em>
                 </MenuItem>
                 {renderFilters()}
             </Select>
