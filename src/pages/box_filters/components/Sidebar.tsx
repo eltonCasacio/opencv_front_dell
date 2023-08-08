@@ -16,7 +16,10 @@ import {
     var_parametersFilter_SpliceLineJumpWhiteHor_IdAreasOfOperationInTheFilter,
     var_parametersFilter_SpliceLineJumpBlackVer_IdAreasOfOperationInTheFilter,
     horizontalBlack,
-    var_parametersFilter_SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter
+    var_parametersFilter_SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter,
+    found_object_size_filter,
+    vertical_line_size_filter,
+    horizontal_line_size
 } from '../../../services/box_filters';
 import { CardRangeSider } from '../../../components/CardRangeSider';
 import { CardSimpleSider } from '../../../components/CardSimpleSlider';
@@ -254,6 +257,85 @@ export const Sidebar = (params: SidebarParams) => {
                         options={areasName} 
                         callback={(value) => var_parametersFilter_SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter(Number(value))} />
                     
+                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
+                        Documentação
+                    </Link>
+                </AccordionDetails>
+            </Accordion>
+
+
+            <Accordion sx={{bgcolor:"gray", mb:1}}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                >
+                    <Typography>found_object_size_filter</Typography>
+                </AccordionSummary>
+                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
+                    <CardRangeSider
+                        title=''
+                        callback={(value) => found_object_size_filter(value)}
+                        range={[
+                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Min,
+                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
+                        ]}
+                        min={0}
+                        max={255}
+                    />
+                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
+                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
+                        Documentação
+                    </Link>
+                </AccordionDetails>
+            </Accordion>
+
+            <Accordion sx={{bgcolor:"gray", mb:1}}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                >
+                    <Typography>vertical_line_size_filter</Typography>
+                </AccordionSummary>
+                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
+                    <CardRangeSider
+                        title=''
+                        callback={(value) => vertical_line_size_filter(value)}
+                        range={[
+                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Min,
+                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
+                        ]}
+                        min={0}
+                        max={255}
+                    />
+                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
+                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
+                        Documentação
+                    </Link>
+                </AccordionDetails>
+            </Accordion>
+
+            <Accordion sx={{bgcolor:"gray", mb:1}}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                >
+                    <Typography>horizontal_line_size</Typography>
+                </AccordionSummary>
+                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
+                    <CardRangeSider
+                        title=''
+                        callback={(value) => horizontal_line_size(value)}
+                        range={[
+                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Min,
+                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
+                        ]}
+                        min={0}
+                        max={255}
+                    />
+                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
                     <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
                         Documentação
                     </Link>

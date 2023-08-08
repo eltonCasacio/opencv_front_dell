@@ -205,3 +205,24 @@ export function var_parametersFilter_SpliceLineJumpBlackHor_IdAreasOfOperationIn
 }
 
 
+export function found_object_size_filter(value: number[]){
+    Axios.post('found_object_size_filter', {
+        min: value[0],
+        max: value[1]
+    })
+}
+
+export function vertical_line_size_filter(value: number[]){
+    Axios.post('vertical_line_size_filter', {
+        min: value[0],
+        max: value[1]
+    })
+}
+
+export function horizontal_line_size(value: number[]){
+    Axios.post('horizontal_line_size', {
+        min: value[0],
+        max: value[1]
+    })
+}
+
