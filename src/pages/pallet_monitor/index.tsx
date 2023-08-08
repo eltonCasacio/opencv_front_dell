@@ -11,7 +11,8 @@ export const Home = () => {
             <Box display={'flex'} flexDirection={'column'}>
                 {itemData.map((item) => (
                     <img
-                    height={'50%'}
+                        key={item.title}
+                        height={'50%'}
                         src={`${item.img}?w=248&fit=crop&auto=format`}
                         srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                         alt={item.title}

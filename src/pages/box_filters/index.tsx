@@ -10,6 +10,11 @@ export interface Filters {
     name: string
 }
 
+export interface AreasName {
+    id: number
+    name: string
+}
+
 export const FilterProps = {
     name: "",
     selectFilterColor_Red_Min:0,
@@ -71,14 +76,12 @@ export const BoxFilters = () => {
         deleteFilters().then(() =>updateAres())
     }
 
-    useEffect(() => {
-        updateAres()
-    }, [])
+    useEffect(() => updateAres(), [])
    
     return (
         <Grid container flex={1} height={'90vh'}>
             <Grid md={3} p={1} pr={0}>
-                <Sidebar selectedFilter={selectedFilter} />
+                <Sidebar selectedFilter={selectedFilter}/>
             </Grid>
 
             <Grid md={9} p={1}>

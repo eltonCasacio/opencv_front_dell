@@ -160,3 +160,48 @@ export async function getCurrentFilterParams() {
 }
 
 
+export function verticallyWhite(value: number[]){
+    Axios.post('vertically_white', {
+        min: value[0],
+        max: value[1]
+    })
+
+}
+export function var_parametersFilter_SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter(value: number) {
+    Axios.post('var_parametersFilter_SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter', {id: value})
+}
+
+
+export function horizontallyWhite(value: number[]) {
+    Axios.post('horizontally_white', {
+        min: value[0],
+        max: value[1]
+    })
+}
+export function var_parametersFilter_SpliceLineJumpWhiteHor_IdAreasOfOperationInTheFilter(value: number) {
+    Axios.post('var_parametersFilter_SpliceLineJumpWhiteHor_IdAreasOfOperationInTheFilter', {id: value})
+}
+
+
+export function verticallyBlack(value: number[]){
+    Axios.post('vertically_black', {
+        min: value[0],
+        max: value[1]
+    })
+}
+export function var_parametersFilter_SpliceLineJumpBlackVer_IdAreasOfOperationInTheFilter(value: number) {
+    Axios.post('var_parametersFilter_SpliceLineJumpBlackVer_IdAreasOfOperationInTheFilter', {id: value})
+}
+
+
+export function horizontalBlack(value: number[]){
+    Axios.post('horizontal_black', {
+        min: value[0],
+        max: value[1]
+    })
+}
+export function var_parametersFilter_SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter(value: number) {
+    Axios.post('var_parametersFilter_SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter', {id: value})
+}
+
+

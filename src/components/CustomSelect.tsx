@@ -34,7 +34,7 @@ export function CustomSelect({ callback, options, title }: CustomSelectParams) {
                 id="demo-select-small"
                 value={selectedItem}
                 label="Age"
-                onDrag={() => console.log("teste")}
+                onDrag={() => console.log("on drag custom select")}
                 onChange={handleChange}
             >
                 <MenuItem value="">

@@ -71,7 +71,7 @@ export const Areas = () => {
     return (
         <Box maxHeight={'90vh'} overflow={'auto'} p={1}>
             <Grid container>
-                <Grid sm={3} pr={1}>
+                <Grid item sm={3} pr={1}>
                     <MenuArea 
                         min={[0 ,0]}
                         max={[imageSize[0], imageSize[1]]} 
@@ -79,7 +79,7 @@ export const Areas = () => {
                     />
                 </Grid>
 
-                <Grid sm={9} >
+                <Grid item sm={9} >
                     <Content
                         areas={areas}
                         textRef={ref}
