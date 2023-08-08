@@ -49,18 +49,18 @@ export const MenuArea = (params:MenuAreaProps) => {
                 <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
                     <HorizontalRangeSlider 
                         title={'Horizontal'} 
-                        min={0} 
-                        max={1000} 
-                        range={[0,1000]}
+                        min={params.min[0]} 
+                        max={params.max[0]} 
+                        range={[params.areaProps.area02_X1, params.areaProps.area02_X2]}
                         callback={(minmax) => updateAreaAPI('area02_X', minmax)}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
                     <VerticalRangeSlider 
                         title={'Vertical'} 
-                        min={0} 
-                        max={1000} 
-                        range={[0,1000]} 
+                        min={params.min[1]} 
+                        max={params.max[1]} 
+                        range={[params.areaProps.area02_Y1, params.areaProps.area02_Y2]}
                         orientation='vertical'
                         callback={(minmax) => updateAreaAPI('area02_Y', minmax)}
                     />
@@ -74,18 +74,18 @@ export const MenuArea = (params:MenuAreaProps) => {
                 <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
                     <HorizontalRangeSlider 
                         title={'Horizontal'} 
-                        min={0} 
-                        max={1000} 
-                        range={[0,1000]} 
+                        min={params.min[0]} 
+                        max={params.max[0]} 
+                        range={[params.areaProps.area03_X1, params.areaProps.area03_X2]} 
                         callback={(minmax) => updateAreaAPI('area03_X', minmax)}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
                     <VerticalRangeSlider 
                         title={'Vertical'} 
-                        min={0} 
-                        max={1000} 
-                        range={[0,1000]} 
+                        min={params.min[1]} 
+                        max={params.max[1]}  
+                        range={[params.areaProps.area03_Y1, params.areaProps.area03_Y2]}
                         orientation='vertical'
                         callback={(minmax) => updateAreaAPI('area03_Y', minmax)}
                     />
@@ -99,18 +99,18 @@ export const MenuArea = (params:MenuAreaProps) => {
                 <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
                     <HorizontalRangeSlider 
                         title={'Horizontal'} 
-                        min={0} 
-                        max={1000} 
-                        range={[0,1000]} 
+                        min={params.min[0]} 
+                        max={params.max[0]} 
+                        range={[params.areaProps.area04_X1, params.areaProps.area04_X2]}
                         callback={(minmax) => updateAreaAPI('area04_X', minmax)}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
                     <VerticalRangeSlider 
                         title={'Vertical'} 
-                        min={0} 
-                        max={1000} 
-                        range={[0,1000]} 
+                        min={params.min[1]} 
+                        max={params.max[1]}  
+                        range={[params.areaProps.area04_Y1, params.areaProps.area04_Y2]} 
                         orientation='vertical'
                         callback={(minmax) => updateAreaAPI('area04_Y', minmax)}
                     />
