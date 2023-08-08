@@ -2,7 +2,7 @@ import { Box, Button, Grid } from "@mui/material"
 import { MenuArea } from "./components/MenuArea"
 import Content from "./components/Content"
 import { useEffect, useRef, useState } from "react"
-import { getCurrentAreasParams, getAreas, changeCurrentAreas, saveAreas, deleteAreas } from '../../services/areas';
+import { getCurrentAreasParams, getAreas, changeCurrentAreas, saveAreas, deleteAreas, clear_areas_params } from '../../services/areas';
 
 export interface AreasOption {
     id: number
@@ -59,6 +59,13 @@ export const Areas = () => {
         deleteAreas().then(_ => updateAreas())
     }
 
+    function handleSelectedArea(id: number){
+        if(id == 0){
+            clear_areas_params()
+        }
+        changeFilter(id)
+    }
+
     useEffect(() => {
         getCurrentAreasParams().then(res => {
             setImageSize([res.width, res.height])
@@ -75,25 +82,22 @@ export const Areas = () => {
                     <MenuArea 
                         min={[0 ,0]}
                         max={[imageSize[0], imageSize[1]]} 
-                        areaProps={currentAreaParams}
-                    />
+                        areaProps={currentAreaParams}/>
                 </Grid>
 
                 <Grid item sm={9} >
                     <Content
                         areas={areas}
                         textRef={ref}
-                        handleChangeFilter={(id) => changeFilter(Number(id))}
-                        handleSave={handleSave}
-                    />
+                        handleChangeFilter={(id) => handleSelectedArea(Number(id))}
+                        handleSave={handleSave}/>
 
                     <Box textAlign={'end'}>
                         <Button 
                             variant="contained" 
                             size="small" 
                             color="error" 
-                            onClick={handleDelete}
-                        >
+                            onClick={handleDelete}>
                             Excluir
                         </Button>
                     </Box>

@@ -16,16 +16,17 @@ const Content = (params: ContetParams) => {
                 <CustomSelect 
                     title='Areas' 
                     options={params.areas} 
-                    callback={(value) => params.handleChangeFilter(value)} 
-                />
+                    callback={(value) => params.handleChangeFilter(value)}/>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <TextField
                         inputRef={params.textRef}
                         id="outlined-read-only-input"
                         label="Nome Filtro"
-                        size="small"
-                    />
-                    <Button variant="contained" color="info" onClick={() => params.handleSave(params.textRef.current?.value || '')}>
+                        size="small"/>
+                    <Button 
+                        variant="contained" 
+                        color="info" 
+                        onClick={() => params.handleSave(params.textRef.current?.value || '')}>
                         SALVAR
                     </Button>
                 </Box>
@@ -36,8 +37,7 @@ const Content = (params: ContetParams) => {
                     src={'http://localhost:8000/videolayer03'}
                     srcSet={'http://localhost:8000/videolayer03'}
                     alt={"area demarcada"}
-                    loading="lazy"
-                />
+                    loading="lazy"/>
             </Box>
         </Box>
     )

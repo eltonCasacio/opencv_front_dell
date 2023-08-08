@@ -52,6 +52,7 @@ export function SimpleSlider({
                     type='number'
                     value={value}
                     onChange={e => handleInputChange(e)}
+                    onMouseUp={handleOnMouseUp}
                 />
             </Box>
         </Box>

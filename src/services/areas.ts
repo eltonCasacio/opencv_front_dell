@@ -60,3 +60,7 @@ export async function deleteAreas() {
     } catch (error) {}
 }
 
+
+export function clear_areas_params(){
+    Axios.post('clear_areas_params')
+}
