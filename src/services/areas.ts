@@ -61,6 +61,6 @@ export async function deleteAreas() {
 }
 
 
-export function clear_areas_params(){
-    Axios.post('clear_areas_params')
+export async function clear_areas_params(){
+    await Axios.post('clear_areas_params')
 }

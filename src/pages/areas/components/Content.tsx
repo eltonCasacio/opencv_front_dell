@@ -16,7 +16,7 @@ const Content = (params: ContetParams) => {
                 <CustomSelect 
                     title='Areas' 
                     options={params.areas} 
-                    callback={(value) => params.handleChangeFilter(value)}/>
+                    callback={(id) => params.handleChangeFilter(id)}/>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <TextField
                         inputRef={params.textRef}

@@ -9,25 +9,6 @@ export type ContetParams = {
     handleSaveFilter: (fileName: string) => void
 }
 
-const itemData = [
-    {
-        img: 'http://localhost:8000/videolayer01',
-        title: 'Filtro 1',
-    },
-    {
-        img: 'http://localhost:8000/videolayer02',
-        title: 'Filtro 2',
-    },
-    {
-        img: 'http://localhost:8000/videolayer03',
-        title: 'Original',
-    },
-    {
-        img: 'http://localhost:8000/videolayer03',
-        title: 'Original',
-    }
-];
-
 const Content = (params: ContetParams) => {
     return (
         <Box sx={{
@@ -39,7 +20,7 @@ const Content = (params: ContetParams) => {
                 <CustomSelect 
                     title='Filtros' 
                     options={params.filters} 
-                    callback={(value) => params.handleChangeFilter(value)} />
+                    callback={(id) => params.handleChangeFilter(id)} />
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <TextField
                         inputRef={params.textRef}
@@ -59,3 +40,22 @@ const Content = (params: ContetParams) => {
 }
 
 export default Content
+
+const itemData = [
+    {
+        img: 'http://localhost:8000/videolayer01',
+        title: 'Filtro 1',
+    },
+    {
+        img: 'http://localhost:8000/videolayer02',
+        title: 'Filtro 2',
+    },
+    {
+        img: 'http://localhost:8000/videolayer03',
+        title: 'Original',
+    },
+    {
+        img: 'http://localhost:8000/videolayer03',
+        title: 'Original',
+    }
+];

@@ -35,43 +35,41 @@ export const Areas = () => {
     const [imageSize, setImageSize] = useState([0,0])
     let ref = useRef<HTMLInputElement>(null);
 
-    function updateAreas() {
-        getAreas().then(res => setAreas(res))
+    function updateForm(){
+        getCurrentAreasParams().then(res => {
+            setImageSize([res.width, res.height])
+            setCurrentAreasParams(res)
+            getAreas().then(res => setAreas(res))
+        })
     }
 
-    function changeFilter(id: number) {
-        changeCurrentAreas(id).then(() => {
-            getCurrentAreasParams().then(res => {
-                setCurrentAreasParams({...res})
-            })
+     function changeFilter(id: number) {
+        changeCurrentAreas(id).then(() =>  {
+            updateForm()
         })
     }
 
     function handleSave(name: string) {
         saveAreas(name).then(_ => {
-            updateAreas()
+            updateForm()
             if(ref.current)
                 ref.current.value = ""
         })
     }
 
     function handleDelete() {
-        deleteAreas().then(_ => updateAreas())
+        deleteAreas().then(_ => {
+            clearParams()
+        })
     }
 
-    function handleSelectedArea(id: number){
-        if(id == 0){
-            clear_areas_params()
-        }
-        changeFilter(id)
+    function clearParams() {
+        clear_areas_params()
+        updateForm()
     }
 
     useEffect(() => {
-        getCurrentAreasParams().then(res => {
-            setImageSize([res.width, res.height])
-            setCurrentAreasParams(res)
-            updateAreas()
-        })
+        updateForm()
     },[])
     
    
@@ -89,10 +87,19 @@ export const Areas = () => {
                     <Content
                         areas={areas}
                         textRef={ref}
-                        handleChangeFilter={(id) => handleSelectedArea(Number(id))}
+                        handleChangeFilter={(id) => changeFilter(Number(id))}
                         handleSave={handleSave}/>
 
-                    <Box textAlign={'end'}>
+                    <Box display={'flex'} justifyContent={'flex-end'}>
+                        <Button 
+                            sx={{marginRight: 1}}
+                            variant="contained" 
+                            size="small" 
+                            color="primary" 
+                            onClick={clearParams}>
+                            limpar
+                        </Button>
+
                         <Button 
                             variant="contained" 
                             size="small" 

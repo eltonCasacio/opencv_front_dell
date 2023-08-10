@@ -36,8 +36,8 @@ export function CustomSelect({ callback, options, title }: CustomSelectParams) {
                 label="Age"
                 onChange={handleChange}
             >
-                <MenuItem value="">
-                    <em>Limpar</em>
+                <MenuItem value="0">
+                    <em></em>
                 </MenuItem>
                 {renderFilters()}
             </Select>
