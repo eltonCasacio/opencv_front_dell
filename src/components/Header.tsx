@@ -86,7 +86,7 @@ export function Header() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map(({ title, path }) => (
+                            {pages.map(({ title, path }) => (
                                 <Button
                                     onClick={() => navigate(path)}
                                     key={title}

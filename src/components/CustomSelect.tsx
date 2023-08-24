@@ -39,7 +39,7 @@ export function CustomSelect({ callback, options, title }: CustomSelectParams) {
                 <MenuItem value="0">
                     <em></em>
                 </MenuItem>
-                {!!renderFilters && renderFilters()}
+                {renderFilters()}
             </Select>
         </FormControl>
     );

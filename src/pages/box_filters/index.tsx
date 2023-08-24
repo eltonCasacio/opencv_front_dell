@@ -1,9 +1,8 @@
-import Grid from '@mui/material/Unstable_Grid2';
 import React, { useEffect, useState } from 'react';
 import Content from './components/Content';
 import { Sidebar } from './components/Sidebar';
 import { getFilters, saveFilters, deleteFilters, changeCurrentFilters, getCurrentFilterParams, clear_filters_params } from '../../services/box_filters';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Grid } from '@mui/material';
 
 export interface Filters {
     id: number
@@ -93,12 +92,12 @@ export const BoxFilters = () => {
     }, [])
    
     return (
-        <Grid container flex={1} height={'90vh'}>
-            <Grid md={3} p={1} pr={0}>
+        <Grid container flex={1} height={'88%'}>
+            <Grid item sm={4} md={3} p={1} pr={0}>
                 <Sidebar selectedFilter={selectedFilter}/>
             </Grid>
 
-            <Grid md={9} p={1}>
+            <Grid item sm={8} md={9} p={1}>
                 <Content
                     filters={filters}
                     textRef={ref}
