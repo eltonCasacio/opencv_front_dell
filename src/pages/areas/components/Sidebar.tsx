@@ -26,7 +26,7 @@ export const Sidebar = (params:SidebarProps) => {
                         title={'Horizontal'} 
                         min={params.min[0]} 
                         max={params.max[0]} 
-                        range={[params.areaProps.area01_X1, params.areaProps.area01_X2]}
+                        range={[params.areaProps?.area01_X1, params.areaProps?.area01_X2]}
                         callback={(minmax) => updateAreaAPI('area01_X', minmax)}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
@@ -35,7 +35,7 @@ export const Sidebar = (params:SidebarProps) => {
                         title={'Vertical'} 
                         min={params.min[1]} 
                         max={params.max[1]} 
-                        range={[params.areaProps.area01_Y1, params.areaProps.area01_Y2]}
+                        range={[params.areaProps?.area01_Y1, params.areaProps?.area01_Y2]}
                         orientation='vertical'
                         callback={(minmax) => updateAreaAPI('area01_Y', minmax)}
                     />
@@ -51,7 +51,7 @@ export const Sidebar = (params:SidebarProps) => {
                         title={'Horizontal'} 
                         min={params.min[0]} 
                         max={params.max[0]} 
-                        range={[params.areaProps.area02_X1, params.areaProps.area02_X2]}
+                        range={[params.areaProps?.area02_X1, params.areaProps?.area02_X2]}
                         callback={(minmax) => updateAreaAPI('area02_X', minmax)}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
@@ -60,7 +60,7 @@ export const Sidebar = (params:SidebarProps) => {
                         title={'Vertical'} 
                         min={params.min[1]} 
                         max={params.max[1]} 
-                        range={[params.areaProps.area02_Y1, params.areaProps.area02_Y2]}
+                        range={[params.areaProps?.area02_Y1, params.areaProps?.area02_Y2]}
                         orientation='vertical'
                         callback={(minmax) => updateAreaAPI('area02_Y', minmax)}
                     />
@@ -76,7 +76,7 @@ export const Sidebar = (params:SidebarProps) => {
                         title={'Horizontal'} 
                         min={params.min[0]} 
                         max={params.max[0]} 
-                        range={[params.areaProps.area03_X1, params.areaProps.area03_X2]} 
+                        range={[params.areaProps?.area03_X1, params.areaProps?.area03_X2]} 
                         callback={(minmax) => updateAreaAPI('area03_X', minmax)}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
@@ -85,7 +85,7 @@ export const Sidebar = (params:SidebarProps) => {
                         title={'Vertical'} 
                         min={params.min[1]} 
                         max={params.max[1]}  
-                        range={[params.areaProps.area03_Y1, params.areaProps.area03_Y2]}
+                        range={[params.areaProps?.area03_Y1, params.areaProps?.area03_Y2]}
                         orientation='vertical'
                         callback={(minmax) => updateAreaAPI('area03_Y', minmax)}
                     />
@@ -101,7 +101,7 @@ export const Sidebar = (params:SidebarProps) => {
                         title={'Horizontal'} 
                         min={params.min[0]} 
                         max={params.max[0]} 
-                        range={[params.areaProps.area04_X1, params.areaProps.area04_X2]}
+                        range={[params.areaProps?.area04_X1, params.areaProps?.area04_X2]}
                         callback={(minmax) => updateAreaAPI('area04_X', minmax)}
                     />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
@@ -110,7 +110,7 @@ export const Sidebar = (params:SidebarProps) => {
                         title={'Vertical'} 
                         min={params.min[1]} 
                         max={params.max[1]}  
-                        range={[params.areaProps.area04_Y1, params.areaProps.area04_Y2]} 
+                        range={[params.areaProps?.area04_Y1, params.areaProps?.area04_Y2]} 
                         orientation='vertical'
                         callback={(minmax) => updateAreaAPI('area04_Y', minmax)}
                     />

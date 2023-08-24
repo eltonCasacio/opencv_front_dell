@@ -57,8 +57,11 @@ export const BoxFilters = () => {
 
     function updateAreasForm() {
         getCurrentFilterParams().then(res => {
-            setSelectedFilter(res)
-            getFilters().then(res => setFilters(res))
+            if(res){
+                setSelectedFilter(res)
+                getFilters().then(res => {
+                    if(!!res) setFilters(res)})
+            }
         })
     }
 

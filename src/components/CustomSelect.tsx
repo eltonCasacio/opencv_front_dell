@@ -21,7 +21,7 @@ export function CustomSelect({ callback, options, title }: CustomSelectParams) {
     };
 
     const renderFilters = () => {
-        return options.map((item) => (<MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>))
+        return options?.map((item) => (<MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>))
     }
 
     useEffect(() => callback(selectedItem), [selectedItem])
@@ -39,7 +39,7 @@ export function CustomSelect({ callback, options, title }: CustomSelectParams) {
                 <MenuItem value="0">
                     <em></em>
                 </MenuItem>
-                {renderFilters()}
+                {!!renderFilters && renderFilters()}
             </Select>
         </FormControl>
     );

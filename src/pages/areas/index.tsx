@@ -32,19 +32,21 @@ export const AreaProps = {
 export const Areas = () => {
     const [areas, setAreas] = useState<AreasOption[]>([])
     const [currentAreaParams, setCurrentAreasParams] = useState(AreaProps)
-    const [imageSize, setImageSize] = useState([0,0])
+    const [imageSize, setImageSize] = useState([0, 0])
     let ref = useRef<HTMLInputElement>(null);
 
-    function updateForm(){
+    function updateForm() {
         getCurrentAreasParams().then(res => {
-            setImageSize([res.width, res.height])
-            setCurrentAreasParams(res)
-            getAreas().then(res => setAreas(res))
+            if(!!res){
+                setImageSize([res?.width || 0, res?.height || 0])
+                setCurrentAreasParams(res)
+                getAreas().then(res => setAreas(res))
+            }
         })
     }
 
-     function changeFilter(id: number) {
-        changeCurrentAreas(id).then(() =>  {
+    function changeFilter(id: number) {
+        changeCurrentAreas(id).then(() => {
             updateForm()
         })
     }
@@ -52,7 +54,7 @@ export const Areas = () => {
     function handleSave(name: string) {
         saveAreas(name).then(_ => {
             updateForm()
-            if(ref.current)
+            if (ref.current)
                 ref.current.value = ""
         })
     }
@@ -70,25 +72,25 @@ export const Areas = () => {
 
     useEffect(() => {
         updateForm()
-    },[])
-    
-   
+    }, [])
+
+
     return (
         <Box
-            height={'88%'} 
-            overflow={'auto'} 
-            p={1} 
-            display={'flex'} 
-            flexDirection={'column'} 
+            height={'88%'}
+            overflow={'auto'}
+            p={1}
+            display={'flex'}
+            flexDirection={'column'}
             justifyContent={'space-between'}
             flex={1}>
-                
+
             <Grid container flex={1}>
                 <Grid item sm={3} pr={1}>
-                    <Sidebar 
-                        min={[0 ,0]}
-                        max={[imageSize[0], imageSize[1]]} 
-                        areaProps={currentAreaParams}/>
+                    <Sidebar
+                        min={[0, 0]}
+                        max={[imageSize[0], imageSize[1]]}
+                        areaProps={currentAreaParams} />
                 </Grid>
 
                 <Grid item sm={9}>
@@ -96,24 +98,24 @@ export const Areas = () => {
                         areas={areas}
                         textRef={ref}
                         handleChangeFilter={(id) => changeFilter(Number(id))}
-                        handleSave={handleSave}/>
+                        handleSave={handleSave} />
                 </Grid>
             </Grid>
 
             <Box display={'flex'} justifyContent={'flex-end'}>
-                <Button 
-                    sx={{marginRight: 1}}
-                    variant="contained" 
-                    size="small" 
-                    color="primary" 
+                <Button
+                    sx={{ marginRight: 1 }}
+                    variant="contained"
+                    size="small"
+                    color="primary"
                     onClick={clearParams}>
                     limpar
                 </Button>
 
-                <Button 
-                    variant="contained" 
-                    size="small" 
-                    color="error" 
+                <Button
+                    variant="contained"
+                    size="small"
+                    color="error"
                     onClick={handleDelete}>
                     Excluir
                 </Button>
