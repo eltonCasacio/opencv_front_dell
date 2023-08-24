@@ -347,7 +347,7 @@ export const Sidebar = (params: SidebarParams) => {
 
 const style = {
     bgcolor: 'transparent',
-    maxHeight: '82vh',
+    maxHeight: '80vh',
     overflow: 'auto',
 
     "&::-webkit-scrollbar": {

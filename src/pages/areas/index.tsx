@@ -1,5 +1,5 @@
 import { Box, Button, Grid } from "@mui/material"
-import { MenuArea } from "./components/MenuArea"
+import { Sidebar } from "./components/Sidebar"
 import Content from "./components/Content"
 import { useEffect, useRef, useState } from "react"
 import { getCurrentAreasParams, getAreas, changeCurrentAreas, saveAreas, deleteAreas, clear_areas_params } from '../../services/areas';
@@ -74,42 +74,50 @@ export const Areas = () => {
     
    
     return (
-        <Box maxHeight={'90vh'} overflow={'auto'} p={1}>
-            <Grid container>
+        <Box
+            height={'88%'} 
+            overflow={'auto'} 
+            p={1} 
+            display={'flex'} 
+            flexDirection={'column'} 
+            justifyContent={'space-between'}
+            flex={1}>
+                
+            <Grid container flex={1}>
                 <Grid item sm={3} pr={1}>
-                    <MenuArea 
+                    <Sidebar 
                         min={[0 ,0]}
                         max={[imageSize[0], imageSize[1]]} 
                         areaProps={currentAreaParams}/>
                 </Grid>
 
-                <Grid item sm={9} >
+                <Grid item sm={9}>
                     <Content
                         areas={areas}
                         textRef={ref}
                         handleChangeFilter={(id) => changeFilter(Number(id))}
                         handleSave={handleSave}/>
-
-                    <Box display={'flex'} justifyContent={'flex-end'}>
-                        <Button 
-                            sx={{marginRight: 1}}
-                            variant="contained" 
-                            size="small" 
-                            color="primary" 
-                            onClick={clearParams}>
-                            limpar
-                        </Button>
-
-                        <Button 
-                            variant="contained" 
-                            size="small" 
-                            color="error" 
-                            onClick={handleDelete}>
-                            Excluir
-                        </Button>
-                    </Box>
                 </Grid>
             </Grid>
+
+            <Box display={'flex'} justifyContent={'flex-end'}>
+                <Button 
+                    sx={{marginRight: 1}}
+                    variant="contained" 
+                    size="small" 
+                    color="primary" 
+                    onClick={clearParams}>
+                    limpar
+                </Button>
+
+                <Button 
+                    variant="contained" 
+                    size="small" 
+                    color="error" 
+                    onClick={handleDelete}>
+                    Excluir
+                </Button>
+            </Box>
         </Box>
     )
 }

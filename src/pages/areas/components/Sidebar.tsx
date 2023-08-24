@@ -9,12 +9,12 @@ import { HorizontalRangeSlider } from './HorizontalRangeSlider';
 import {AreaProps} from '../index'
 import { updateAreaAPI } from '../../../services/areas';
 
-interface MenuAreaProps {
+interface SidebarProps {
     areaProps: typeof AreaProps
     min: number[]
     max: number[]
 }
-export const MenuArea = (params:MenuAreaProps) => {
+export const Sidebar = (params:SidebarProps) => {
     return (
         <Box sx={ wrapperStyles}>
             <Accordion sx={{bgcolor:"gray", mb:1}}>
@@ -122,7 +122,7 @@ export const MenuArea = (params:MenuAreaProps) => {
 
 const wrapperStyles = {
     bgcolor: 'transparent',
-    maxHeight: '85vh',
+    maxHeight: '80vh',
     overflow: 'auto',   
     "&::-webkit-scrollbar": {width: "2px"},
     "&::-webkit-scrollbar-track": {backgroundColor: "transparent"},
