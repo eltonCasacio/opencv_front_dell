@@ -12,12 +12,14 @@ interface ImagesParams {
         img: string,
         title: string,
     }>,
+    showItemBar: boolean
 }
 export function Images({
     cols,
     height = 700,
     width = 500,
-    images
+    images,
+    showItemBar = false
 }:ImagesParams) {
     return (
         <ImageList 
@@ -32,7 +34,7 @@ export function Images({
                         alt={item.title}
                         loading="lazy"
                     />
-                    <ImageListItemBar
+                    {showItemBar && <ImageListItemBar
                         title={item.title}
                         actionIcon={
                             <IconButton
@@ -42,7 +44,7 @@ export function Images({
                                 <InfoIcon />
                             </IconButton>
                         }
-                    />
+                    />}
                 </ImageListItem>
             ))}
         </ImageList>

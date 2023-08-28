@@ -10,11 +10,12 @@ export type ContetParams = {
 }
 
 const Content = (params: ContetParams) => {
+
     return (
         <Box sx={{
             display: 'flex',
             height:'82vh',
-            flexDirection: 'column',
+            flexDirection: 'column'
         }}>
             <Box display={'flex'} justifyContent='space-between' alignItems={'center'}>
                 <CustomSelect 
@@ -33,7 +34,7 @@ const Content = (params: ContetParams) => {
                 </Box>
             </Box>
             <Box>
-                <Images width={1000} cols={4} images={itemData} />
+                <Images width={1000} cols={4} images={itemData} showItemBar={false} />
             </Box>
         </Box>
     )

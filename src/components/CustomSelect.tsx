@@ -33,6 +33,7 @@ export function CustomSelect({ callback, options, title }: CustomSelectParams) {
                 labelId="demo-select-small-label"
                 id="demo-select-small"
                 value={selectedItem}
+                defaultValue=''
                 label="Age"
                 onChange={handleChange}
             >
