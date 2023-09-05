@@ -104,20 +104,17 @@ export const Sidebar = (params: SidebarParams) => {
                 </AccordionDetails>
             </Accordion>
 
-
             <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
+                    id="panel1a-header">
                     <Typography>Erode</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardSimpleSider
                         initValue={params.selectedFilter.Iterations_erode}
-                        callback={trackbarParametersFilterIterationsErode}
-                    />
+                        callback={trackbarParametersFilterIterationsErode}/>
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
                     <Typography>Desgasta os limites do objeto em primeiro plano. Normalmente é executado em imagens binárias.</Typography>
                     <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html' color="inherit">
@@ -126,20 +123,17 @@ export const Sidebar = (params: SidebarParams) => {
                 </AccordionDetails>
             </Accordion>
 
-
             <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
+                    id="panel1a-header">
                     <Typography>Dilated</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardSimpleSider
                         initValue={params.selectedFilter.Iterations_dilate}
-                        callback={trackbar_parametersFilter_iterations_dilate}
-                    />
+                        callback={trackbar_parametersFilter_iterations_dilate}/>
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
                     <Typography>Dilatar pixels.</Typography>
                     <Link target='_blank' href='https://docs.opencv.org' color="inherit">
@@ -147,7 +141,6 @@ export const Sidebar = (params: SidebarParams) => {
                     </Link>
                 </AccordionDetails>
             </Accordion>
-
 
             <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
@@ -170,8 +163,7 @@ export const Sidebar = (params: SidebarParams) => {
                         <CustomSelect
                             title='Area'
                             options={areasName}
-                            callback={(value) => var_parametersFilter_SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter(Number(value))}
-                        />
+                            callback={(value) => var_parametersFilter_SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter(Number(value))}/>
 
                         <Divider variant="fullWidth" sx={{ mb: 2, mt: 2 }} />
 
@@ -187,8 +179,7 @@ export const Sidebar = (params: SidebarParams) => {
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
+                    id="panel2a-header">
                     <Typography>Horizontally - White</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
@@ -200,8 +191,7 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={1000}
-                    />
+                        max={1000}/>
                     <Divider variant="fullWidth" sx={{ mb: 2, mt: 2 }} />
                     <CustomSelect
                         title='Area'
@@ -222,8 +212,7 @@ export const Sidebar = (params: SidebarParams) => {
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
+                    id="panel2a-header">
                     <Typography>Vertically - Black</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
@@ -235,8 +224,7 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={1000}
-                    />
+                        max={1000}/>
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
                     <CustomSelect
                         title='Area'
@@ -252,13 +240,11 @@ export const Sidebar = (params: SidebarParams) => {
                 </AccordionDetails>
             </Accordion>
 
-
             <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
+                    id="panel2a-header">
                     <Typography>Horizontally - Black</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
@@ -270,8 +256,7 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={1000}
-                    />
+                        max={1000}/>
                     <Divider variant="fullWidth" sx={{ mb: 2, mt: 2 }} />
                     <CustomSelect
                         title='Area'
@@ -291,8 +276,7 @@ export const Sidebar = (params: SidebarParams) => {
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
+                    id="panel2a-header">
                     <Typography>found_object_size_filter</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
@@ -304,8 +288,7 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={1000}
-                    />
+                        max={1000}/>
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
                     <Typography>found_object_size_filter</Typography>
@@ -315,13 +298,11 @@ export const Sidebar = (params: SidebarParams) => {
                 </AccordionDetails>
             </Accordion>
 
-
             <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
+                    id="panel2a-header">
                     <Typography>vertical_line_size_filter</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
@@ -333,8 +314,7 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={1000}
-                    />
+                        max={1000}/>
                     <Typography>vertical_line_size_filter</Typography>
                     <Link target='_blank' href='#' color="inherit">
                         Documentação
@@ -342,13 +322,11 @@ export const Sidebar = (params: SidebarParams) => {
                 </AccordionDetails>
             </Accordion>
 
-
             <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
+                    id="panel2a-header">
                     <Typography>horizontal_line_size</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
@@ -360,8 +338,7 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={1000}
-                    />
+                        max={1000}/>
                     <Typography>horizontal_line_size</Typography>
                     <Link target='_blank' href='#' color="inherit">
                         Documentação

@@ -1,11 +1,12 @@
-import { Box, IconButton, ImageListItem, ImageListItemBar, Typography } from "@mui/material"
+import { Box, IconButton, ImageListItem, ImageListItemBar } from "@mui/material"
+import { Logs } from "./components/Logs";
 
 export const Home = () => {
     return (
-        <Box 
+        <Box
             display={'flex'}
-            flexDirection={'row'} 
-            height={'90vh'} 
+            flexDirection={'row'}
+            height={'90vh'}
             color={'#f5f5f1'}>
 
             <Box display={'flex'} flexDirection={'column'}>
@@ -17,7 +18,7 @@ export const Home = () => {
                             src={`${item.img}?w=248&fit=crop&auto=format`}
                             srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                             alt={item.title}
-                            loading="lazy"/>
+                            loading="lazy" />
 
                         <ImageListItemBar
                             title={item.title}
@@ -30,13 +31,8 @@ export const Home = () => {
                 ))}
             </Box>
 
-            <Box sx={{wordBreak:'break-word', padding:1}}>
-                <Typography fontSize={12}>log...</Typography>
-                <Typography>log...</Typography>
-                <Typography>log...</Typography>
-                <Typography>log...</Typography>
-                <Typography>log...</Typography>
-                <Typography>log...</Typography>
+            <Box p={2} flex={1} bgcolor={'black'}>
+                <Logs />
             </Box>
         </Box >
     )
