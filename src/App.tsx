@@ -3,7 +3,7 @@ import './App.css';
 import { ThemeProvider } from '@mui/system';
 import { Header } from './components/Header';
 import { appTheme } from './config/theme';
-import { Routes } from './routes';
+import { Routes } from './routes/root';
 
 function App() {
   return <ThemeProvider theme={appTheme}>
