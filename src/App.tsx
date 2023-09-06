@@ -7,7 +7,8 @@ import { RootRoutes } from './routes/root';
 import { useAppSelector } from './app/hooks';
 
 function App() {
-  const { id } = useAppSelector(state => state.credentials)
+  const {id} = useAppSelector(state => state.credentials)
+  
   return (
     <ThemeProvider theme={appTheme}>
       <Box
@@ -17,7 +18,7 @@ function App() {
           overflow: '-webkit-paged-y',
           backgroundColor: (theme) => theme.palette.grey[900]
         }}>
-        {!!id && <Header />}
+        {id && <Header />}
         <RootRoutes />
       </Box>
     </ThemeProvider>
