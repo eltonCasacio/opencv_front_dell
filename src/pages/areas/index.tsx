@@ -1,5 +1,5 @@
 import { Box, Button, Grid } from "@mui/material"
-import { MenuArea } from "./components/MenuArea"
+import { Sidebar } from "./components/Sidebar"
 import Content from "./components/Content"
 import { useEffect, useRef, useState } from "react"
 import { getCurrentAreasParams, getAreas, changeCurrentAreas, saveAreas, deleteAreas, clear_areas_params } from '../../services/areas';
@@ -32,77 +32,94 @@ export const AreaProps = {
 export const Areas = () => {
     const [areas, setAreas] = useState<AreasOption[]>([])
     const [currentAreaParams, setCurrentAreasParams] = useState(AreaProps)
-    const [imageSize, setImageSize] = useState([0,0])
+    const [imageSize, setImageSize] = useState([0, 0])
     let ref = useRef<HTMLInputElement>(null);
 
-    function updateAreas() {
-        getAreas().then(res => setAreas(res))
+    function updateForm() {
+        getCurrentAreasParams().then(res => {
+            if(!!res){
+                setImageSize([res?.width || 0, res?.height || 0])
+                setCurrentAreasParams(res)
+                getAreas().then(res => setAreas(res))
+            }
+        })
     }
 
     function changeFilter(id: number) {
         changeCurrentAreas(id).then(() => {
-            getCurrentAreasParams().then(res => {
-                setCurrentAreasParams({...res})
-            })
+            updateForm()
         })
     }
 
     function handleSave(name: string) {
         saveAreas(name).then(_ => {
-            updateAreas()
-            if(ref.current)
+            updateForm()
+            if (ref.current)
                 ref.current.value = ""
         })
     }
 
     function handleDelete() {
-        deleteAreas().then(_ => updateAreas())
+        deleteAreas().then(_ => {
+            clearParams()
+        })
     }
 
-    function handleSelectedArea(id: number){
-        if(id == 0){
-            clear_areas_params()
-        }
-        changeFilter(id)
+    function clearParams() {
+        clear_areas_params()
+        updateForm()
     }
 
     useEffect(() => {
-        getCurrentAreasParams().then(res => {
-            setImageSize([res.width, res.height])
-            setCurrentAreasParams(res)
-            updateAreas()
-        })
-    },[])
-    
-   
+        updateForm()
+    }, [])
+
+
     return (
-        <Box maxHeight={'90vh'} overflow={'auto'} p={1}>
-            <Grid container>
+        <Box
+            height={'88%'}
+            overflow={'auto'}
+            p={1}
+            display={'flex'}
+            flexDirection={'column'}
+            justifyContent={'space-between'}
+            flex={1}>
+
+            <Grid container flex={1}>
                 <Grid item sm={3} pr={1}>
-                    <MenuArea 
-                        min={[0 ,0]}
-                        max={[imageSize[0], imageSize[1]]} 
-                        areaProps={currentAreaParams}/>
+                    <Sidebar
+                        min={[0, 0]}
+                        max={[imageSize[0], imageSize[1]]}
+                        areaProps={currentAreaParams} />
                 </Grid>
 
-                <Grid item sm={9} >
+                <Grid item sm={9}>
                     <Content
                         areas={areas}
                         textRef={ref}
-                        handleChangeFilter={(id) => handleSelectedArea(Number(id))}
-                        handleSave={handleSave}/>
-
-                    <Box textAlign={'end'}>
-                        <Button 
-                            variant="contained" 
-                            size="small" 
-                            color="error" 
-                            onClick={handleDelete}>
-                            Excluir
-                        </Button>
-                    </Box>
+                        handleChangeFilter={(id) => changeFilter(Number(id))}
+                        handleSave={handleSave} />
                 </Grid>
             </Grid>
+
+            <Box display={'flex'} justifyContent={'flex-end'}>
+                <Button
+                    sx={{ marginRight: 1 }}
+                    variant="contained"
+                    size="small"
+                    color="primary"
+                    onClick={clearParams}>
+                    limpar
+                </Button>
+
+                <Button
+                    variant="contained"
+                    size="small"
+                    color="error"
+                    onClick={handleDelete}>
+                    Excluir
+                </Button>
+            </Box>
         </Box>
     )
 }

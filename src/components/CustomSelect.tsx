@@ -21,7 +21,7 @@ export function CustomSelect({ callback, options, title }: CustomSelectParams) {
     };
 
     const renderFilters = () => {
-        return options.map((item) => (<MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>))
+        return options?.map((item) => (<MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>))
     }
 
     useEffect(() => callback(selectedItem), [selectedItem])
@@ -33,11 +33,12 @@ export function CustomSelect({ callback, options, title }: CustomSelectParams) {
                 labelId="demo-select-small-label"
                 id="demo-select-small"
                 value={selectedItem}
+                defaultValue=''
                 label="Age"
                 onChange={handleChange}
             >
-                <MenuItem value="">
-                    <em>Limpar</em>
+                <MenuItem value="0">
+                    <em></em>
                 </MenuItem>
                 {renderFilters()}
             </Select>

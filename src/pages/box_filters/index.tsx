@@ -1,9 +1,8 @@
-import Grid from '@mui/material/Unstable_Grid2';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Content from './components/Content';
 import { Sidebar } from './components/Sidebar';
 import { getFilters, saveFilters, deleteFilters, changeCurrentFilters, getCurrentFilterParams, clear_filters_params } from '../../services/box_filters';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Grid } from '@mui/material';
 
 export interface Filters {
     id: number
@@ -51,57 +50,75 @@ export const FilterProps = {
 }
 
 export const BoxFilters = () => {
-    const [filters, setFilters] = React.useState<Filters[]>([])
-    const [selectedFilter, setSelectedFilter] = React.useState(FilterProps)
+    const [filters, setFilters] = useState<Filters[]>([])
+    const [selectedFilter, setSelectedFilter] = useState(FilterProps)
     let ref = React.useRef<HTMLInputElement>(null);
 
-    function updateAres() {
-        getFilters().then(res => setFilters(res))
-        getCurrentFilterParams().then(res => setSelectedFilter(res))
+    function updateAreasForm() {
+        getCurrentFilterParams().then(res => {
+            if(res){
+                setSelectedFilter(res)
+                getFilters().then(res => {
+                    if(!!res) setFilters(res)})
+            }
+        })
     }
 
-    function changeFilter(id: number) {
-        if(id == 0){
-            clearParams()
-        }
-        changeCurrentFilters(id).then(() => updateAres())
+    function changeFilter(id: string) {
+        changeCurrentFilters(Number(id)).then(() => {
+            updateAreasForm()
+        })
     }
 
     function saveFilter(value: string) { 
-        saveFilters(value).then(_ => {
-            updateAres()
+        saveFilters(value).then(() => {
+            updateAreasForm()
             if(ref.current)
                 ref.current.value = ""
         })
     }
 
     function handleDelete() { 
-        deleteFilters().then(() =>updateAres())
+        deleteFilters().then(() => clearParams())
     }
 
     function clearParams() {
         clear_filters_params()
-        updateAres()
+        updateAreasForm()
     }
 
-    useEffect(() => updateAres(), [])
+    useEffect(() => {
+        updateAreasForm()
+    }, [])
    
     return (
-        <Grid container flex={1} height={'90vh'}>
-            <Grid md={3} p={1} pr={0}>
+        <Grid container flex={1} height={'88%'}>
+            <Grid item sm={4} md={3} p={1} pr={0}>
                 <Sidebar selectedFilter={selectedFilter}/>
             </Grid>
 
-            <Grid md={9} p={1}>
+            <Grid item sm={8} md={9} p={1}>
                 <Content
                     filters={filters}
                     textRef={ref}
-                    handleChangeFilter={(id) => changeFilter(Number(id))}
+                    handleChangeFilter={changeFilter}
                     handleSaveFilter={saveFilter}
                 />
 
-                <Box textAlign={"end"}>
-                    <Button variant="contained" size="small" color="error" onClick={handleDelete}>
+                <Box display={'flex'} justifyContent={'flex-end'}>
+                    <Button 
+                        sx={{marginRight: 1}}
+                        variant="contained" 
+                        size="small" 
+                        color="primary" 
+                        onClick={clearParams}>
+                        limpar
+                    </Button>
+                    <Button 
+                        variant="contained" 
+                        size="small" 
+                        color="error" 
+                        onClick={handleDelete}>
                         Excluir
                     </Button>
                 </Box>

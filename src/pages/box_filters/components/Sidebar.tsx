@@ -5,9 +5,9 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box, Button, Divider, Link } from '@mui/material';
 import { AreasName, FilterProps } from '..';
-import { 
-    selectFilterColorRGB, 
-    trackbarParametersFilterIterationsErode, 
+import {
+    selectFilterColorRGB,
+    trackbarParametersFilterIterationsErode,
     trackbar_parametersFilter_iterations_dilate,
     verticallyWhite,
     verticallyBlack,
@@ -35,19 +35,19 @@ export const Sidebar = (params: SidebarParams) => {
 
     useEffect(() => {
         getAreas().then(res => setAreasName(res))
-    },[])
+    }, [])
 
     return (
         <Box sx={style}>
-            <Accordion sx={{bgcolor:"gray", mb:1}}>
+            <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                 >
-                <Typography>Filtro RGB</Typography>
+                    <Typography>Filtro RGB</Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
+                <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardRangeSider
                         title='vermelho'
                         callback={(value) => selectFilterColorRGB({
@@ -96,59 +96,60 @@ export const Sidebar = (params: SidebarParams) => {
                     />
 
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
+
+                    <Typography>Filtra cores RGB</Typography>
+                    <Link target='_blank' href='https://docs.opencv.org' color="inherit">
+                        Documentação
+                    </Link>
                 </AccordionDetails>
             </Accordion>
 
-            <Accordion sx={{bgcolor:"gray", mb:1}}>
+            <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
+                    id="panel1a-header">
                     <Typography>Erode</Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
+                <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardSimpleSider
                         initValue={params.selectedFilter.Iterations_erode}
-                        callback={trackbarParametersFilterIterationsErode}
-                    />
+                        callback={trackbarParametersFilterIterationsErode}/>
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
-                    <Typography>A ideia básica de erosão é apenas como a erosão do solo, ela desgasta os limites do objeto em primeiro plano. Normalmente é executado em imagens binárias.</Typography>
-                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
-                        Documentação
-                    </Link>
-                </AccordionDetails>
-            </Accordion>
-            
-            <Accordion sx={{bgcolor:"gray", mb:1}}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
-                    <Typography>Dilated</Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
-                    <CardSimpleSider
-                        initValue={params.selectedFilter.Iterations_dilate}
-                        callback={trackbar_parametersFilter_iterations_dilate}
-                    />
-                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
-                    <Typography>Dilatar pixels.</Typography>
-                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
+                    <Typography>Desgasta os limites do objeto em primeiro plano. Normalmente é executado em imagens binárias.</Typography>
+                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html' color="inherit">
                         Documentação
                     </Link>
                 </AccordionDetails>
             </Accordion>
 
-            <Accordion sx={{bgcolor:"gray", mb:1}}>
+            <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header">
+                    <Typography>Dilated</Typography>
+                </AccordionSummary>
+                <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
+                    <CardSimpleSider
+                        initValue={params.selectedFilter.Iterations_dilate}
+                        callback={trackbar_parametersFilter_iterations_dilate}/>
+                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
+                    <Typography>Dilatar pixels.</Typography>
+                    <Link target='_blank' href='https://docs.opencv.org' color="inherit">
+                        Documentação
+                    </Link>
+                </AccordionDetails>
+            </Accordion>
+
+            <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
                     id="panel2a-header">
                     <Typography>Vertically - White</Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
+                <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardRangeSider
                         title=''
                         callback={(value) => verticallyWhite(value)}
@@ -157,28 +158,31 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={255}/>
+                        max={1000} />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
-                    <CustomSelect 
-                        title='Filtros' 
-                        options={areasName} 
-                        callback={(value) => var_parametersFilter_SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter(Number(value))} />
-                    
-                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
-                        Documentação
-                    </Link>
+                        <CustomSelect
+                            title='Area'
+                            options={areasName}
+                            callback={(value) => var_parametersFilter_SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter(Number(value))}/>
+
+                        <Divider variant="fullWidth" sx={{ mb: 2, mt: 2 }} />
+
+                        <Typography>Linha Vertical</Typography>
+                        <Link target='_blank' href='#' color="inherit">
+                            Documentação
+                        </Link>             
                 </AccordionDetails>
             </Accordion>
 
-            <Accordion sx={{bgcolor:"gray", mb:1}}>
+
+            <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
+                    id="panel2a-header">
                     <Typography>Horizontally - White</Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
+                <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardRangeSider
                         title=''
                         callback={(value) => horizontallyWhite(value)}
@@ -187,29 +191,31 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={255}
-                    />
-                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
-                    <CustomSelect 
-                        title='Filtros' 
-                        options={areasName} 
+                        max={1000}/>
+                    <Divider variant="fullWidth" sx={{ mb: 2, mt: 2 }} />
+                    <CustomSelect
+                        title='Area'
+                        options={areasName}
                         callback={(value) => var_parametersFilter_SpliceLineJumpWhiteHor_IdAreasOfOperationInTheFilter(Number(value))} />
-                    
-                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
+
+                    <Divider variant="fullWidth" sx={{ mb: 2, mt: 2 }} />
+
+                    <Typography>Linha Horizontal Branca</Typography>
+                    <Link target='_blank' href='#' color="inherit">
                         Documentação
                     </Link>
                 </AccordionDetails>
             </Accordion>
 
-            <Accordion sx={{bgcolor:"gray", mb:1}}>
+
+            <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
+                    id="panel2a-header">
                     <Typography>Vertically - Black</Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
+                <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardRangeSider
                         title=''
                         callback={(value) => verticallyBlack(value)}
@@ -218,29 +224,30 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={255}
-                    />
+                        max={1000}/>
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
-                    <CustomSelect 
-                        title='Filtros' 
-                        options={areasName} 
+                    <CustomSelect
+                        title='Area'
+                        options={areasName}
                         callback={(value) => var_parametersFilter_SpliceLineJumpBlackVer_IdAreasOfOperationInTheFilter(Number(value))} />
-                    
-                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
+
+                    <Divider variant="fullWidth" sx={{ mb: 2, mt: 2 }} />
+
+                    <Typography>Linha Vertical Preta</Typography>
+                    <Link target='_blank' href='#' color="inherit">
                         Documentação
                     </Link>
                 </AccordionDetails>
             </Accordion>
 
-            <Accordion sx={{bgcolor:"gray", mb:1}}>
+            <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
+                    id="panel2a-header">
                     <Typography>Horizontally - Black</Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
+                <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardRangeSider
                         title=''
                         callback={(value) => horizontalBlack(value)}
@@ -249,30 +256,30 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={255}
-                    />
-                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
-                    <CustomSelect 
-                        title='Filtros' 
-                        options={areasName} 
+                        max={1000}/>
+                    <Divider variant="fullWidth" sx={{ mb: 2, mt: 2 }} />
+                    <CustomSelect
+                        title='Area'
+                        options={areasName}
                         callback={(value) => var_parametersFilter_SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter(Number(value))} />
-                    
-                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
+
+                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
+
+                    <Typography>Linha Horizontal Preta</Typography>
+                    <Link target='_blank' href='#' color="inherit">
                         Documentação
                     </Link>
                 </AccordionDetails>
             </Accordion>
 
-
-            <Accordion sx={{bgcolor:"gray", mb:1}}>
+            <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
+                    id="panel2a-header">
                     <Typography>found_object_size_filter</Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
+                <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardRangeSider
                         title=''
                         callback={(value) => found_object_size_filter(value)}
@@ -281,24 +288,24 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={255}
-                    />
+                        max={1000}/>
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
-                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
+
+                    <Typography>found_object_size_filter</Typography>
+                    <Link target='_blank' href='#' color="inherit">
                         Documentação
                     </Link>
                 </AccordionDetails>
             </Accordion>
 
-            <Accordion sx={{bgcolor:"gray", mb:1}}>
+            <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
+                    id="panel2a-header">
                     <Typography>vertical_line_size_filter</Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
+                <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardRangeSider
                         title=''
                         callback={(value) => vertical_line_size_filter(value)}
@@ -307,24 +314,22 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={255}
-                    />
-                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
-                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
+                        max={1000}/>
+                    <Typography>vertical_line_size_filter</Typography>
+                    <Link target='_blank' href='#' color="inherit">
                         Documentação
                     </Link>
                 </AccordionDetails>
             </Accordion>
 
-            <Accordion sx={{bgcolor:"gray", mb:1}}>
+            <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2a-content"
-                    id="panel2a-header"
-                >
+                    id="panel2a-header">
                     <Typography>horizontal_line_size</Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{bgcolor: '#3c3c3c', padding: 3}}>
+                <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardRangeSider
                         title=''
                         callback={(value) => horizontal_line_size(value)}
@@ -333,10 +338,9 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={255}
-                    />
-                    <Divider variant="fullWidth" sx={{ mb: 2 }} />
-                    <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html'  color="inherit">
+                        max={1000}/>
+                    <Typography>horizontal_line_size</Typography>
+                    <Link target='_blank' href='#' color="inherit">
                         Documentação
                     </Link>
                 </AccordionDetails>
@@ -347,7 +351,7 @@ export const Sidebar = (params: SidebarParams) => {
 
 const style = {
     bgcolor: 'transparent',
-    maxHeight: '82vh',
+    maxHeight: '80vh',
     overflow: 'auto',
 
     "&::-webkit-scrollbar": {
