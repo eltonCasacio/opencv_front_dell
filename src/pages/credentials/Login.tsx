@@ -20,9 +20,9 @@ export const Login = () => {
     return (
         <Box>
             <Paper>
-                <Box p={2}>
+                <Box textAlign={"center"} p={2}>
                     <Box mb={2}>
-                        <Typography variant="h4">Edi Category</Typography>
+                        <Typography variant="h4">LOGIN</Typography>
                     </Box>
                 </Box>
 
@@ -30,7 +30,7 @@ export const Login = () => {
                     <form>
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
-                                <FormControl fullWidth>
+                                <FormControl>
                                     <TextField
                                         required
                                         name="username"
@@ -42,7 +42,7 @@ export const Login = () => {
                             </Grid>
 
                             <Grid item xs={12}>
-                                <FormControl fullWidth>
+                                <FormControl>
                                     <TextField
                                         required
                                         name="password"

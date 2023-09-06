@@ -1,19 +1,13 @@
-import { Route, Routes as Myroutes } from 'react-router-dom';
-import { Areas, BoxFilters, Home, Login } from '../pages'
-import { Box, Typography } from '@mui/material';
-export const Routes = () => {
+import { Route, Routes } from 'react-router-dom';
+import { useAppSelector } from '../app/hooks';
+import { PageNotFound } from '../pages/page_not_found';
+
+export const RootRoutes = () => {
+  const { id } = useAppSelector(state => state.credentials)
+
   return (
-    <Myroutes>
-      <Route path='/' element={<Home />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/box-filters' element={<BoxFilters />} />
-      <Route path='/areas' element={<Areas />} />
-      <Route path='*' element={
-        <Box sx={{ color: 'white' }}>
-          <Typography variant='h1'>404</Typography>
-          <Typography variant='h2'>Page not found</Typography>
-        </Box>
-      } />
-    </Myroutes>
+    <Routes>
+      <Route path='*' element={<PageNotFound />}/>
+    </Routes>
   )
 }
