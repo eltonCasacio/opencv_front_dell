@@ -1,5 +1,8 @@
 import { Box, Button, FormControl, Grid, Paper, TextField, Typography } from "@mui/material"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { update } from "./credentialSlice"
+import { loginService } from "../../services/credentials"
 
 type User = {
     username: string,
@@ -7,14 +10,24 @@ type User = {
 }
 
 export const Login = () => {
+    const dispatch = useDispatch()
     const [user, setUser] = useState<User>({ username: "", password: "" })
-    
+
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         setUser({ ...user, [e.target.name]: e.target.value })
     }
 
     function onSubmit() {
-        console.log(user)
+        loginService(user.username, user.password).then(res => {
+            if (res?.id) {
+                localStorage.setItem("user", JSON.stringify(res))
+                dispatch(update({
+                    id: res?.id,
+                    levelPermission: res?.level_permission,
+                    username: res?.username
+                }))
+            }
+        })
     }
 
     return (
@@ -49,6 +62,7 @@ export const Login = () => {
                                         label="password"
                                         value={user?.password}
                                         onChange={handleChange}
+                                        type="password"
                                     />
                                 </FormControl>
                             </Grid>
