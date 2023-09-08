@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { useAppSelector } from '../app/hooks';
 import { PageNotFound } from '../pages/page_not_found';
-import { filtersRouters } from './filters'
+import { filtersRouters } from './app'
 import { credentialsRouters } from './credentials'
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';

@@ -18,7 +18,8 @@ import { logout } from '../pages/credentials/credentialSlice';
 const pages = [
     { title: 'Pallet', path: '/' },
     { title: 'Areas', path: 'areas' },
-    { title: 'Box Filters', path: 'box-filters' }
+    { title: 'Box Filters', path: 'box-filters' },
+    { title: 'Users', path: 'users' },
 ];
 
 export function Header() {
@@ -35,6 +36,7 @@ export function Header() {
     };
 
     function handleLogout() {
+        navigate('/')
         dispatch(logout())
     }
 

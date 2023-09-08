@@ -19,11 +19,11 @@ const credentialsSlice = createSlice({
         getCredentials: (state) => {
             return state
         },
-        logout:(state) => {
-            localStorage.clear()
+        logout:(state) => {          
             state.id = 0
             state.level_permission = 0
             state.username = ""
+            localStorage.clear()
         },
     }
 })

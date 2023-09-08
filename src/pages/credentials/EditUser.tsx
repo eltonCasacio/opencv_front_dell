@@ -1,35 +1,45 @@
 import { Box, Button, FormControl, Grid, TextField, Typography } from "@mui/material"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { update } from "./credentialSlice"
-import { loginService } from "../../services/credentials"
+import { useEffect, useState } from "react"
+import { editUserService } from "../../services/credentials"
+import { Link, useParams } from 'react-router-dom'
 
-type User = {
+type EditUser = {
+    id: number
     username: string,
     password: string
+    level_permission: number
 }
 
-export const Login = () => {
-    const dispatch = useDispatch()
-    const [user, setUser] = useState<User>({ username: "", password: "" })
+const initial_value: EditUser = {
+    id: 0, username: "", password: "", level_permission: 0
+}
+
+export const EditUser = () => {
+    const user_edit_id = useParams().user_edit_id || 0
+    const [user, setUser] = useState<EditUser>(initial_value)
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         setUser({ ...user, [e.target.name]: e.target.value })
     }
 
-    function onSubmit() {
-        loginService(user.username, user.password).then(res => {
-            if (res?.id) {
-                dispatch(update(res))
-            }
-        })
+    function clearForm() {
+        setUser(initial_value)
     }
+
+    async function onSubmit() {
+        await editUserService(user)
+        clearForm()
+    }
+
+    useEffect(() => {
+        console.log("ID PARA EDITAR::", user_edit_id)
+    }, [user_edit_id])
 
     return (
         <Box display={'flex'} flexDirection={'column'} height={'95%'} justifyContent="center">
             <Box textAlign={"center"} p={2}>
                 <Box mb={2}>
-                    <Typography color={'white'} variant="h4">LOGIN</Typography>
+                    <Typography color={'white'} variant="h4">REGISTER USER</Typography>
                 </Box>
             </Box>
 
@@ -64,13 +74,32 @@ export const Login = () => {
                         </Grid>
 
                         <Grid item xs={12}>
+                            <FormControl>
+                                <TextField
+                                    required
+                                    name="level_permission"
+                                    label="level permission"
+                                    value={user?.level_permission}
+                                    onChange={handleChange}
+                                    type="number"
+                                    variant="standard"
+                                />
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12}>
                             <Box display={'flex'} flexDirection={'column'} gap={2}>
-                                {/* <Link href="#" underline="none" sx={{ fontSize: 10 }}>
-                                    CRIAR CADASTRO
-                                </Link> */}
+                                <Link
+                                    to={`/users`}
+                                    style={{ textDecoration: "none" }}
+                                >
+                                    <Typography color={"primary"} fontSize={10}>
+                                        CANCEL
+                                    </Typography>
+                                </Link>
 
                                 <Button onClick={onSubmit}>
-                                    ENTRAR
+                                    REGISTER
                                 </Button>
                             </Box>
                         </Grid>
