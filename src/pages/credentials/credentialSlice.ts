@@ -3,7 +3,7 @@ import {PayloadAction, createSlice} from '@reduxjs/toolkit'
 const initialState = {
     id: 0,
     username: '',
-    levelPermission: 0
+    level_permission: 0
 }
 
 const credentialsSlice = createSlice({
@@ -12,8 +12,9 @@ const credentialsSlice = createSlice({
     reducers: {
         update: (state, action:PayloadAction<typeof initialState>) => {
             state.id = action.payload.id
-            state.levelPermission = action.payload.levelPermission
+            state.level_permission = action.payload.level_permission
             state.username = action.payload.username
+            localStorage.setItem("user", JSON.stringify(state))
         },
         getCredentials: (state) => {
             return state
@@ -21,7 +22,7 @@ const credentialsSlice = createSlice({
         logout:(state) => {
             localStorage.clear()
             state.id = 0
-            state.levelPermission = 0
+            state.level_permission = 0
             state.username = ""
         },
     }

@@ -28,7 +28,7 @@ export const RootRoutes = () => {
       const user = JSON.parse(res)
       dispatch(update({
         id: user.id,
-        levelPermission: user.levelPermission,
+        level_permission: user.level_permission,
         username: user.username
       }))
     }

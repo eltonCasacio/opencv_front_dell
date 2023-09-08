@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Grid, Paper, TextField, Typography } from "@mui/material"
+import { Box, Button, FormControl, Grid, Link, Paper, TextField, Typography } from "@mui/material"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { update } from "./credentialSlice"
@@ -20,69 +20,63 @@ export const Login = () => {
     function onSubmit() {
         loginService(user.username, user.password).then(res => {
             if (res?.id) {
-                localStorage.setItem("user", JSON.stringify(res))
-                dispatch(update({
-                    id: res?.id,
-                    levelPermission: res?.level_permission,
-                    username: res?.username
-                }))
+                dispatch(update(res))
             }
         })
     }
 
     return (
-        <Box>
-            <Paper>
-                <Box textAlign={"center"} p={2}>
-                    <Box mb={2}>
-                        <Typography variant="h4">LOGIN</Typography>
-                    </Box>
+        <Box display={'flex'} flexDirection={'column'} height={'95%'} justifyContent="center">
+            <Box textAlign={"center"} p={2}>
+                <Box mb={2}>
+                    <Typography color={'white'} variant="h4">LOGIN</Typography>
                 </Box>
+            </Box>
 
-                <Box p={2}>
-                    <form>
-                        <Grid container spacing={3}>
-                            <Grid item xs={12}>
-                                <FormControl>
-                                    <TextField
-                                        required
-                                        name="username"
-                                        label="username"
-                                        value={user?.username}
-                                        onChange={handleChange}
-                                    />
-                                </FormControl>
-                            </Grid>
-
-                            <Grid item xs={12}>
-                                <FormControl>
-                                    <TextField
-                                        required
-                                        name="password"
-                                        label="password"
-                                        value={user?.password}
-                                        onChange={handleChange}
-                                        type="password"
-                                    />
-                                </FormControl>
-                            </Grid>
-
-
-                            <Grid item xs={12}>
-                                <Box display={'flex'} gap={2}>
-                                    <Button>
-                                        Cadastrar
-                                    </Button>
-
-                                    <Button onClick={onSubmit}>
-                                        Save
-                                    </Button>
-                                </Box>
-                            </Grid>
+            <Box p={2}>
+                <form>
+                    <Grid container spacing={3} textAlign={'center'}>
+                        <Grid item xs={12}>
+                            <FormControl>
+                                <TextField
+                                    required
+                                    name="username"
+                                    label="username"
+                                    value={user?.username}
+                                    onChange={handleChange}
+                                    variant="standard"
+                                />
+                            </FormControl>
                         </Grid>
-                    </form>
-                </Box>
-            </Paper>
+
+                        <Grid item xs={12}>
+                            <FormControl>
+                                <TextField
+                                    required
+                                    name="password"
+                                    label="password"
+                                    value={user?.password}
+                                    onChange={handleChange}
+                                    type="password"
+                                    variant="standard"
+                                />
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Box display={'flex'} flexDirection={'column'} gap={2}>
+                                {/* <Link href="#" underline="none" sx={{ fontSize: 10 }}>
+                                    CRIAR CADASTRO
+                                </Link> */}
+
+                                <Button onClick={onSubmit}>
+                                    ENTRAR
+                                </Button>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                </form>
+            </Box>
         </Box>
     )
 }
