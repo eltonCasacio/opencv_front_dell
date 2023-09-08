@@ -1,6 +1,6 @@
 import { Box, Button, FormControl, Grid, TextField, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
-import { editUserService } from "../../services/credentials"
+import { editUserService, getUserByIDService } from "../../services/credentials"
 import { Link, useParams } from 'react-router-dom'
 
 type EditUser = {
@@ -32,7 +32,10 @@ export const EditUser = () => {
     }
 
     useEffect(() => {
-        console.log("ID PARA EDITAR::", user_edit_id)
+        getUserByIDService(Number(user_edit_id))
+            .then(user => {
+                setUser({ ...user, password: "" })
+            })
     }, [user_edit_id])
 
     return (

@@ -73,3 +73,12 @@ export async function editUserService({id, username, password, level_permission 
         return String(error)
     }
 }
+
+export async function getUserByIDService(user_id: number): Promise<CredentialsResponse> {
+    try {
+        const { data } = await Axios.get<CredentialsResponse>(`user/${user_id}`)
+        return data
+    } catch (error) {
+        return { id: 0, level_permission: 0, username: "" }
+    }
+}

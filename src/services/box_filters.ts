@@ -28,7 +28,7 @@ function selectFilterColorRedMin(value: number) {
     try {
         Axios.post('selectFilterColorRedMin', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -36,7 +36,7 @@ function selectFilterColorRedMax(value: number) {
     try {
         Axios.post('selectFilterColorRedMax', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -44,7 +44,7 @@ function selectFilterColorGreenMin(value: number) {
     try {
         Axios.post('selectFilterColorGreenMin', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -52,7 +52,7 @@ function selectFilterColorGreenMax(value: number) {
     try {
         Axios.post('selectFilterColorGreenMax', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -60,7 +60,7 @@ function selectFilterColorBlueMin(value: number) {
     try {
         Axios.post('selectFilterColorBlueMin', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -68,7 +68,7 @@ function selectFilterColorBlueMax(value: number) {
     try {
         Axios.post('selectFilterColorBlueMax', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -76,7 +76,7 @@ export function trackbarParametersFilterIterationsErode(value: number) {
     try {
         Axios.post('parametersFilter_Iterations_erode', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -84,7 +84,7 @@ export function trackbar_parametersFilter_iterations_dilate(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_iterations_dilate', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -92,7 +92,7 @@ export function trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_
     try {
         Axios.post('trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Min', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -100,7 +100,7 @@ export function trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_
     try {
         Axios.post('trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Max', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -108,7 +108,7 @@ export function trackbar_parametersFilter_SpliceLineJumpingWhiteColorHorizontall
     try {
         Axios.post('trackbar_parametersFilter_SpliceLineJumpingWhiteColorHorizontally_JumpSize_Min', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -116,7 +116,7 @@ export function trackbar_parametersFilter_SpliceLineJumpingWhiteColorHorizontall
     try {
         Axios.post('trackbar_parametersFilter_SpliceLineJumpingWhiteColorHorizontally_JumpSize_Max', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -124,7 +124,7 @@ export function trackbar_parametersFilter_FoundObjectSizeFilter_Min(value: numbe
     try {
         Axios.post('trackbar_parametersFilter_FoundObjectSizeFilter_Min', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -132,7 +132,7 @@ export function trackbar_parametersFilter_FoundObjectSizeFilter_Max(value: numbe
     try {
         Axios.post('trackbar_parametersFilter_FoundObjectSizeFilter_Max', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -140,7 +140,7 @@ export function trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Mi
     try {
         Axios.post('trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Min', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -148,7 +148,7 @@ export function trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Ma
     try {
         Axios.post('trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Max', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -156,7 +156,7 @@ export function trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObjec
     try {
         Axios.post('trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Min', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -164,7 +164,7 @@ export function trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObjec
     try {
         Axios.post('trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Max', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -172,7 +172,7 @@ export function trackbar_ResolutionPixMm_X(value: number) {
     try {
         Axios.post('trackbar_ResolutionPixMm_X', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -180,7 +180,7 @@ export function trackbar_ResolutionPixMm_Y(value: number) {
     try {
         Axios.post('trackbar_ResolutionPixMm_Y', { value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -189,7 +189,7 @@ export async function getFilters() {
         const { data } = await Axios.get('get_filters')
         return data
     } catch (error) {
-        console.log("getFilters", error)
+        console.debug("getFilters", error)
         return null
     } 
 }
@@ -198,7 +198,7 @@ export async function saveFilters(name: string) {
     try {
         await Axios.post('save_filters', { name })
     } catch (error) {
-        console.log("saveFilters", error)
+        console.debug("saveFilters", error)
      }
 }
 
@@ -206,7 +206,7 @@ export async function deleteFilters() {
     try {
         await Axios.post('delete_filters')
     } catch (error) {
-        console.log("delete_filters", error)
+        console.debug("delete_filters", error)
      }
 }
 
@@ -214,7 +214,7 @@ export async function changeCurrentFilters(id: number) {
     try {
         await Axios.post('change_current_filters', { id })
     } catch (error) {
-        console.log("change_current_filters", error)
+        console.debug("change_current_filters", error)
      }
 }
 
@@ -256,7 +256,7 @@ export async function getCurrentFilterParams() {
             labelWeb_RecipeName: data?.labelWeb_RecipeName || 0,
         }
     } catch (error) { 
-        console.log("get_current_filter_params", error)
+        console.debug("get_current_filter_params", error)
         return null
     }
 }
@@ -268,7 +268,7 @@ export function verticallyWhite(value: number[]) {
             max: value[1]
         })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -276,7 +276,7 @@ export function var_parametersFilter_SpliceLineJumpWhiteVer_IdAreasOfOperationIn
     try {
         Axios.post('var_parametersFilter_SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter', { id: value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -288,7 +288,7 @@ export function horizontallyWhite(value: number[]) {
             max: value[1]
         })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -296,7 +296,7 @@ export function var_parametersFilter_SpliceLineJumpWhiteHor_IdAreasOfOperationIn
     try {
         Axios.post('var_parametersFilter_SpliceLineJumpWhiteHor_IdAreasOfOperationInTheFilter', { id: value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -308,7 +308,7 @@ export function verticallyBlack(value: number[]) {
             max: value[1]
         })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -316,7 +316,7 @@ export function var_parametersFilter_SpliceLineJumpBlackVer_IdAreasOfOperationIn
     try {
         Axios.post('var_parametersFilter_SpliceLineJumpBlackVer_IdAreasOfOperationInTheFilter', { id: value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -327,7 +327,7 @@ export function horizontalBlack(value: number[]) {
             max: value[1]
         })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -335,7 +335,7 @@ export function var_parametersFilter_SpliceLineJumpBlackHor_IdAreasOfOperationIn
     try {
         Axios.post('var_parametersFilter_SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter', { id: value })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -346,7 +346,7 @@ export function found_object_size_filter(value: number[]) {
             max: value[1]
         })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -357,7 +357,7 @@ export function vertical_line_size_filter(value: number[]) {
             max: value[1]
         })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -368,7 +368,7 @@ export function horizontal_line_size(value: number[]) {
         max: value[1]
         })
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
 
@@ -376,6 +376,6 @@ export async function clear_filters_params() {
     try {
         await Axios.post('clear_filters_params')
     } catch (error) { 
-         console.log(error)
+         console.debug(error)
     }
 }
