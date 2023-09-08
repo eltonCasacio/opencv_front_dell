@@ -65,10 +65,6 @@ export const Login = () => {
 
                         <Grid item xs={12}>
                             <Box display={'flex'} flexDirection={'column'} gap={2}>
-                                {/* <Link href="#" underline="none" sx={{ fontSize: 10 }}>
-                                    CRIAR CADASTRO
-                                </Link> */}
-
                                 <Button onClick={onSubmit}>
                                     ENTRAR
                                 </Button>

@@ -34,7 +34,7 @@ export const EditUser = () => {
     useEffect(() => {
         getUserByIDService(Number(user_edit_id))
             .then(user => {
-                setUser({ ...user, password: "" })
+                setUser({ ...user})
             })
     }, [user_edit_id])
 
@@ -102,7 +102,7 @@ export const EditUser = () => {
                                 </Link>
 
                                 <Button onClick={onSubmit}>
-                                    REGISTER
+                                    CONFIRM
                                 </Button>
                             </Box>
                         </Grid>
