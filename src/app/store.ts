@@ -1,7 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import credentialsReducer from '../pages/credentials/credentialSlice'
 
 export const store = configureStore({
   reducer: {
+    credentials: credentialsReducer
   },
 });
 

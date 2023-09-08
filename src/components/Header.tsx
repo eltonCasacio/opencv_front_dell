@@ -12,16 +12,18 @@ import Tooltip from '@mui/material/Tooltip';
 import AdbIcon from '@mui/icons-material/Insights';
 import { blue } from '@mui/material/colors';
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { logout } from '../pages/credentials/credentialSlice';
 
 const pages = [
     { title: 'Pallet', path: '/' },
     { title: 'Areas', path: 'areas' },
-    { title: 'Box Filters', path: 'box-filters' },
+    { title: 'Box Filters', path: 'box-filters' }
 ];
-const settings = [{ title: 'Filtros', path: '/filters' }];
 
 export function Header() {
     const navigate = useNavigate();
+    const dispatch = useDispatch()
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -32,8 +34,12 @@ export function Header() {
         setAnchorElUser(null);
     };
 
+    function handleLogout() {
+        dispatch(logout())
+    }
+
     return (
-        <AppBar position="static" sx={{height:'60px'}}>
+        <AppBar position="static" sx={{ height: '60px' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -95,6 +101,13 @@ export function Header() {
                                     {title}
                                 </Button>
                             ))}
+                            <Button
+                                onClick={handleLogout}
+                                key={'sair'}
+                                sx={{ color: 'red', fontSize: 12, mx: 4 }}
+                            >
+                                SAIR
+                            </Button>
                         </Menu>
                     </Box>
                 </Toolbar>
