@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, Grid, TextField, Typography } from "@mui/material"
 import { useState } from "react"
-import { registerUserService } from "../../services/credentials"
-import { Link } from "react-router-dom"
+import { registerUserService } from "../../services/users"
+import { Link, useNavigate } from "react-router-dom"
 
 type RegisterUser = {
     username: string,
@@ -14,6 +14,7 @@ const initial_value: RegisterUser = {
 }
 
 export const RegisterUser = () => {
+    const navigate = useNavigate();
     const [user, setUser] = useState<RegisterUser>(initial_value)
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -22,6 +23,7 @@ export const RegisterUser = () => {
 
     function clearForm() {
         setUser(initial_value)
+        navigate(-1)
     }
 
     async function onSubmit() {
@@ -82,17 +84,21 @@ export const RegisterUser = () => {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <Box display={'flex'} flexDirection={'column'} gap={2}>
-                                <Link
-                                    to={`/users`}
-                                    style={{ textDecoration: "none" }}
+                            <Box display={'flex'} flexDirection={'column'} gap={2} alignItems={'center'}>
+                                <Button
+                                    variant="text"
+                                    style={{ width: '15vw' }}
+                                    component={Link}
+                                    to="/users"
                                 >
-                                    <Typography color={"primary"} fontSize={10}>
-                                        CANCEL
-                                    </Typography>
-                                </Link>
+                                    VOLTAR
+                                </Button>
 
-                                <Button onClick={onSubmit}>
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    onClick={onSubmit}
+                                >
                                     REGISTER
                                 </Button>
                             </Box>

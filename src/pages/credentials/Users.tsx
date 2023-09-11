@@ -2,16 +2,17 @@ import { Box, Button } from "@mui/material"
 import { Link } from "react-router-dom"
 import { TableUser } from './components/Table'
 import { useEffect, useState } from "react"
-import { CredentialsResponse, deleteUserService, getUsersService } from "../../services/credentials"
-import { useAppSelector } from "../../app/hooks"
+import { UserResponse, deleteUserService, getUsersService } from "../../services/users"
 import { Navigate } from "react-router-dom";
+import { useAppSelector } from "../../app/hooks"
+import { getLoggedUser } from "./usersSlice"
 
 export const Users = () => {
-    const { id } = useAppSelector(state => state.credentials)
-    const [users, setUsers] = useState<CredentialsResponse[]>()
+    const { id } = useAppSelector(getLoggedUser)
+    const [users, setUsers] = useState<UserResponse[]>()
 
     const handleDelete = (user_id: number) => {
-        if (user_id != id)
+        if (user_id !== id)
             deleteUserService(user_id).then(() => updateTable())
     }
 

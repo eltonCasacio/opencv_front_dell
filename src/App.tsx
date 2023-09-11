@@ -5,11 +5,10 @@ import { Header } from './components/Header';
 import { appTheme } from './config/theme';
 import { RootRoutes } from './routes/root';
 import { useAppSelector } from './app/hooks';
+import { getLoggedUser } from './pages/credentials/usersSlice';
 
 function App() {
-  
-  const {id} = useAppSelector(state => state.credentials)
-  
+  const { id } = useAppSelector(getLoggedUser)
   return (
     <ThemeProvider theme={appTheme}>
       <Box

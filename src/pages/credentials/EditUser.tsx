@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, Grid, TextField, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
-import { editUserService, getUserByIDService } from "../../services/credentials"
-import { Link, useParams } from 'react-router-dom'
+import { editUserService, getUserByIDService } from "../../services/users"
+import { Link, useNavigate , useParams } from 'react-router-dom'
 
 type EditUser = {
     id: number
@@ -15,6 +15,7 @@ const initial_value: EditUser = {
 }
 
 export const EditUser = () => {
+    const navigate = useNavigate();
     const user_edit_id = useParams().user_edit_id || 0
     const [user, setUser] = useState<EditUser>(initial_value)
 
@@ -24,6 +25,7 @@ export const EditUser = () => {
 
     function clearForm() {
         setUser(initial_value)
+        navigate(-1)
     }
 
     async function onSubmit() {
@@ -34,7 +36,7 @@ export const EditUser = () => {
     useEffect(() => {
         getUserByIDService(Number(user_edit_id))
             .then(user => {
-                setUser({ ...user})
+                setUser({ ...user })
             })
     }, [user_edit_id])
 
@@ -91,18 +93,23 @@ export const EditUser = () => {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <Box display={'flex'} flexDirection={'column'} gap={2}>
-                                <Link
-                                    to={`/users`}
-                                    style={{ textDecoration: "none" }}
+                            <Box display={'flex'} flexDirection={'column'} gap={2} alignItems={'center'}>
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    style={{ width: '15vw' }}
+                                    onClick={onSubmit}
                                 >
-                                    <Typography color={"primary"} fontSize={10}>
-                                        CANCEL
-                                    </Typography>
-                                </Link>
-
-                                <Button onClick={onSubmit}>
                                     CONFIRM
+                                </Button>
+
+                                <Button
+                                    variant="text"
+                                    style={{ width: '15vw' }}
+                                    component={Link}
+                                    to="/users"
+                                >
+                                    VOLTAR
                                 </Button>
                             </Box>
                         </Grid>

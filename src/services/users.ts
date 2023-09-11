@@ -1,35 +1,35 @@
 import { Axios } from "./api"
 
-export interface CredentialsResponse {
+export interface UserResponse {
     id: number
     password: string
     username: string
     level_permission: number
 }
 
-export interface RegisterCredentials {
+export interface RegisterUser {
     username: string
     password: string
     level_permission: number
 }
 
-export interface EditCredentials {
+export interface EditUser {
     id: number
     username: string
     password: string
     level_permission: number
 }
 
-interface CREDENTIALS_ERROR extends CredentialsResponse {
+interface USER_ERROR extends UserResponse {
     username: string
     password: string
     level_permission: number
     msg_error: any
 }
 
-export async function loginService(username: string, password: string): Promise<CredentialsResponse | CREDENTIALS_ERROR> {
+export async function loginService(username: string, password: string): Promise<UserResponse | USER_ERROR> {
     try {
-        const { data } = await Axios.post<CredentialsResponse>('login', { username, password })
+        const { data } = await Axios.post<UserResponse>('login', { username, password })
         return data
     } catch (error) {
         return {
@@ -42,7 +42,7 @@ export async function loginService(username: string, password: string): Promise<
     }
 }
 
-export async function registerUserService({ username, password, level_permission }: RegisterCredentials): Promise<void | string> {
+export async function registerUserService({ username, password, level_permission }: RegisterUser): Promise<void | string> {
     try {
         await Axios.post('register_user', { username, password, level_permission })
     } catch (error) {
@@ -50,9 +50,9 @@ export async function registerUserService({ username, password, level_permission
     }
 }
 
-export async function getUsersService(): Promise<CredentialsResponse[]> {
+export async function getUsersService(): Promise<UserResponse[]> {
     try {
-        const { data } = await Axios.get<CredentialsResponse[]>('users')
+        const { data } = await Axios.get<UserResponse[]>('users')
         return data
     } catch (error) {
         return [{ id: 0, username: "", password: "", level_permission: 0 }]
@@ -68,16 +68,16 @@ export async function deleteUserService(user_id: number): Promise<string> {
     }
 }
 
-export async function getUserByIDService(user_id: number): Promise<CredentialsResponse> {
+export async function getUserByIDService(user_id: number): Promise<UserResponse> {
     try {
-        const { data } = await Axios.get<CredentialsResponse>(`user/${user_id}`)
+        const { data } = await Axios.get<UserResponse>(`user/${user_id}`)
         return data
     } catch (error) {
         return { id: 0, username: "", password: "", level_permission: 0, }
     }
 }
 
-export async function editUserService({ id, username, password, level_permission }: EditCredentials): Promise<void | string> {
+export async function editUserService({ id, username, password, level_permission }: EditUser): Promise<void | string> {
     try {
         const res = localStorage.getItem("user")
         if (res) {

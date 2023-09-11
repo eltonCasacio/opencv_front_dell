@@ -13,7 +13,7 @@ import AdbIcon from '@mui/icons-material/Insights';
 import { blue } from '@mui/material/colors';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { logout } from '../pages/credentials/credentialSlice';
+import { updateLoggedUser } from '../pages/credentials/usersSlice';
 
 const pages = [
     { title: 'Pallet', path: '/' },
@@ -37,7 +37,11 @@ export function Header() {
 
     function handleLogout() {
         navigate('/')
-        dispatch(logout())
+        dispatch(updateLoggedUser({
+            id:0,
+            username: "",
+            level_permission: 0
+        }))
     }
 
     return (

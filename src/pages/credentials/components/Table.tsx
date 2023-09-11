@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridRenderCellParams, GridRowsProp, GridToolbar } from '@mui/x-data-grid';
 import { IconButton, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { CredentialsResponse, EditCredentials } from '../../../services/credentials';
+import { UserResponse } from '../../../services/users';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
@@ -25,7 +25,7 @@ const slotParams = {
 const pageSize = [2, 5, 10, 15, 25, 100]
 
 interface TableUserParams {
-  users: CredentialsResponse[]
+  users: UserResponse[]
   handleDelete: (user_id: number) => void
   handleEdit: (user_id: number) => void
 }

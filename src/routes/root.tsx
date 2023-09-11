@@ -5,7 +5,7 @@ import { filtersRouters } from './app'
 import { credentialsRouters } from './credentials'
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { update } from '../pages/credentials/credentialSlice';
+import { getLoggedUser, updateLoggedUser } from '../pages/credentials/usersSlice';
 
 export interface RoutesParams {
   path: string
@@ -14,7 +14,7 @@ export interface RoutesParams {
 
 export const RootRoutes = () => {
   const dispatch = useDispatch()
-  const { id } = useAppSelector(state => state.credentials)
+  const { id } = useAppSelector(getLoggedUser)
   const [currentRoutes, setCurrentRoutes] = useState<RoutesParams[]>()
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export const RootRoutes = () => {
     const res = localStorage.getItem("user")
     if (res) {
       const user = JSON.parse(res)
-      dispatch(update({
+      dispatch(updateLoggedUser({
         id: user.id,
         level_permission: user.level_permission,
         username: user.username

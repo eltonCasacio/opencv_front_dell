@@ -1,8 +1,8 @@
 import { Box, Button, FormControl, Grid, TextField, Typography } from "@mui/material"
 import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { update } from "./credentialSlice"
-import { loginService } from "../../services/credentials"
+import { loginService } from "../../services/users"
+import { useAppDispatch } from "../../app/hooks"
+import { updateLoggedUser } from "./usersSlice"
 
 type User = {
     username: string,
@@ -10,7 +10,7 @@ type User = {
 }
 
 export const Login = () => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const [user, setUser] = useState<User>({ username: "", password: "" })
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -20,7 +20,7 @@ export const Login = () => {
     function onSubmit() {
         loginService(user.username, user.password).then(res => {
             if (res?.id) {
-                dispatch(update(res))
+                dispatch(updateLoggedUser(res))
             }
         })
     }
@@ -64,8 +64,17 @@ export const Login = () => {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <Box display={'flex'} flexDirection={'column'} gap={2}>
-                                <Button onClick={onSubmit}>
+                            <Box
+                                display={'flex'}
+                                flexDirection={'column'}
+                                gap={2}
+                                alignItems={'center'}
+                            >
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    style={{ width: '15vw' }}
+                                    onClick={onSubmit}>
                                     ENTRAR
                                 </Button>
                             </Box>
