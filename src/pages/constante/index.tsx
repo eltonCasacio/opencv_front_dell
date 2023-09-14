@@ -9,11 +9,6 @@ export interface Filters2 {
     name: string
 }
 
-export interface AreasName2 {
-    id: number
-    name: string
-}
-
 export const FilterProps2 = {
     name: "",
     selectFilterColor_Red_Min:0,

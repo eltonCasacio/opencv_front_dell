@@ -1,3 +1,4 @@
+import { UnitConverionInterface } from "../pages/constante/components/Sidebar"
 import { Axios } from "./api"
 
 type COLOR = 'VERMELHO' | 'VERDE' | 'AZUL'
@@ -209,5 +210,32 @@ export async function saveFilters() {
         await Axios.post('conv_pixel_to_unit_save')
     } catch (error) {
         console.debug("save unit conversion", error)
+     }
+}
+
+export async function calculate(params:UnitConverionInterface) {
+    try {
+        await Axios.post('conv_pixel_to_unit_calculate', {...params})
+    } catch (error) {
+        console.debug("CALCULATE unit conversion", error)
+     }
+}
+
+export async function load():Promise<UnitConverionInterface> {
+    try {
+       const {data} =  await Axios.get<UnitConverionInterface>('conv_pixel_to_unit_load')
+       return data
+    } catch (error) {
+        console.debug("LOAD unit conversion", error)
+        return {
+                constanteUnidadeParaConvercaoPixelEmUnidade_EixoX: 0,
+                constanteUnidadeParaConvercaoPixelEmUnidade_EixoY: 0,
+                cameraDistanceFromObject: 0,
+                medidaEmPixel_x: 0,
+                medidadeEmUnidade_x: 0,
+                medidaEmPixel_y: 0,
+                medidadeEmUnidade_y: 0,
+                current_unit: ""
+        }
      }
 }

@@ -3,38 +3,55 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Box, Button, Divider, Link } from '@mui/material';
-import { AreasName2, FilterProps2 } from '..';
+import { Box, Button, Divider, Link, Paper, TextField } from '@mui/material';
+import { FilterProps2 } from '..';
 import {
     selectFilterColorRGB,
-    trackbarParametersFilterIterationsErode,
-    trackbar_parametersFilter_iterations_dilate,
-    verticallyWhite,
-    verticallyBlack,
-    horizontallyWhite,
-    var_parametersFilter_SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter,
-    var_parametersFilter_SpliceLineJumpWhiteHor_IdAreasOfOperationInTheFilter,
-    var_parametersFilter_SpliceLineJumpBlackVer_IdAreasOfOperationInTheFilter,
-    horizontalBlack,
-    var_parametersFilter_SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter,
     found_object_size_filter,
     vertical_line_size_filter,
     horizontal_line_size
 } from '../../../services/box_filters';
 import { CardRangeSider } from '../../../components/CardRangeSider';
-import { CardSimpleSider } from '../../../components/CardSimpleSlider';
-import { CustomSelect } from '../../../components/CustomSelect';
-import { useEffect, useState } from 'react';
-import { getAreas } from '../../../services/areas';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { calculate, load } from '../../../services/constant';
+
+export interface UnitConverionInterface {
+    constanteUnidadeParaConvercaoPixelEmUnidade_EixoX: number
+    constanteUnidadeParaConvercaoPixelEmUnidade_EixoY: number
+    cameraDistanceFromObject: number
+    medidaEmPixel_x: number
+    medidadeEmUnidade_x: number
+    medidaEmPixel_y: number
+    medidadeEmUnidade_y: number
+    current_unit: string
+}
+
 
 export interface SidebarParams {
     selectedFilter: typeof FilterProps2
 }
 export const Sidebar = (params: SidebarParams) => {
-    const [areasName, setAreasName] = useState<AreasName2[]>([])
+    const [unitConverion, setUnitConverion] = useState<UnitConverionInterface>({
+        constanteUnidadeParaConvercaoPixelEmUnidade_EixoX: 0,
+        constanteUnidadeParaConvercaoPixelEmUnidade_EixoY: 0,
+        cameraDistanceFromObject: 0,
+        medidaEmPixel_x: 0,
+        medidadeEmUnidade_x: 0,
+        medidaEmPixel_y: 0,
+        medidadeEmUnidade_y: 0,
+        current_unit:""
+    })
+
+    const changeState = (e: ChangeEvent<HTMLInputElement>) => {
+        setUnitConverion({ ...unitConverion, [e.target.name]: e.target.value })
+    }
+
+    const handleCalculate = () => {
+        calculate(unitConverion)
+    }
 
     useEffect(() => {
-        getAreas().then(res => setAreasName(res))
+        load().then(params => setUnitConverion(params) )
     }, [])
 
     return (
@@ -120,7 +137,7 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={100000}/>
+                        max={100000} />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
                     <Typography>found_object_size_filter</Typography>
@@ -146,7 +163,7 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={1000}/>
+                        max={1000} />
                     <Typography>vertical_line_size_filter</Typography>
                     <Link target='_blank' href='#' color="inherit">
                         Documentação
@@ -170,11 +187,109 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={1000}/>
+                        max={1000} />
                     <Typography>horizontal_line_size</Typography>
                     <Link target='_blank' href='#' color="inherit">
                         Documentação
                     </Link>
+                </AccordionDetails>
+            </Accordion>
+
+            <Accordion sx={{ bgcolor: "gray", mb: 1 }}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header">
+                    <Typography>Parametros Unidades de Milímetros</Typography>
+                </AccordionSummary>
+                <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
+                    <Box mb={2}>
+                        <Paper elevation={3} sx={{ p: 2 }}>
+                            <Typography>Distância (mm)</Typography>
+                            <TextField
+                                id="standard-basic"
+                                name='cameraDistanceFromObject'
+                                variant="standard"
+                                size="small"
+                                type='number'
+                                value={unitConverion.cameraDistanceFromObject}
+                                onChange={changeState}
+                            />
+                        </Paper>
+                    </Box>
+
+                    <Box>
+                        <Paper elevation={3} sx={{ p: 2 }}>
+                            <Typography>Ajuste Constante Eixo (x)</Typography>
+                            <Box display={'flex'} alignItems={'center'} mt={1}>
+                                <Typography mr={1} minWidth={70}>Pixel</Typography>
+                                <TextField
+                                    id="standard-basic"
+                                    name="medidaEmPixel_x"
+                                    variant="outlined"
+                                    size="small"
+                                    type='number'
+                                    value={unitConverion.medidaEmPixel_x}
+                                    onChange={changeState}
+                                />
+                            </Box>
+
+                            <Box display={'flex'} alignItems={'center'} mt={1}>
+                                <Typography mr={1} minWidth={70}>Milímetro</Typography>
+                                <TextField
+                                    id="standard-basic"
+                                    name="medidadeEmUnidade_x"
+                                    variant="outlined"
+                                    size="small"
+                                    type='number'
+                                    value={unitConverion.medidadeEmUnidade_x}
+                                    onChange={changeState}
+                                />
+                            </Box>
+                        </Paper>
+                    </Box>
+
+                    <Box mt={1}>
+                        <Paper elevation={3} sx={{ p: 2 }}>
+                            <Typography>Ajuste Constante Eixo (Y)</Typography>
+                            <Box display={'flex'} alignItems={'center'} mt={1}>
+                                <Typography mr={1} minWidth={70}>Pixel</Typography>
+                                <TextField
+                                    id="standard-basic"
+                                    name="medidaEmPixel_y"
+                                    variant="outlined"
+                                    size="small"
+                                    type='number'
+                                    value={unitConverion.medidaEmPixel_y}
+                                    onChange={changeState}
+                                    sx={{ mr: 1 }}
+                                />
+                                <Typography mr={1} minWidth={20}>px</Typography>
+                            </Box>
+
+                            <Box display={'flex'} alignItems={'center'} mt={1}>
+                                <Typography mr={1} minWidth={70}>Milímetro</Typography>
+                                <TextField
+                                    id="standard-basic"
+                                    name="medidadeEmUnidade_y"
+                                    variant="outlined"
+                                    size="small"
+                                    type='number'
+                                    value={unitConverion.medidadeEmUnidade_y}
+                                    onChange={changeState}
+                                    sx={{ mr: 1 }}
+                                />
+                                <Typography mr={1} minWidth={20}>mm</Typography>
+                            </Box>
+                        </Paper>
+                    </Box>
+
+                    <Box display={'flex'} justifyContent={'center'} mt={2}>
+                        <Button variant="contained" color="info" onClick={handleCalculate}>
+                            CALCULAR
+                        </Button>
+                    </Box>
+
                 </AccordionDetails>
             </Accordion>
         </Box>
