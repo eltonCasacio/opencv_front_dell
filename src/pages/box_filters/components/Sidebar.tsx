@@ -288,7 +288,7 @@ export const Sidebar = (params: SidebarParams) => {
                             params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
                         ]}
                         min={0}
-                        max={1000}/>
+                        max={100000}/>
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
                     <Typography>found_object_size_filter</Typography>

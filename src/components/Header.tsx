@@ -13,18 +13,21 @@ import AdbIcon from '@mui/icons-material/Insights';
 import { blue } from '@mui/material/colors';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { updateLoggedUser } from '../pages/credentials/usersSlice';
+import { getLoggedUser, updateLoggedUser } from '../pages/credentials/usersSlice';
+import { useAppSelector } from '../app/hooks';
 
 const pages = [
-    { title: 'Pallet', path: '/' },
-    { title: 'Areas', path: 'areas' },
-    { title: 'Box Filters', path: 'box-filters' },
-    { title: 'Users', path: 'users' },
+    { title: 'Pallet', path: '/', level_permission: 1 },
+    { title: 'Areas', path: 'areas', level_permission: 1 },
+    { title: 'Box Filters', path: 'box-filters', level_permission: 1 },
+    { title: 'Constant', path: 'constant', level_permission: 1 },
+    { title: 'Users', path: 'users', level_permission: 1 },
 ];
 
 export function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
+    const { level_permission } = useAppSelector(getLoggedUser)
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -38,7 +41,7 @@ export function Header() {
     function handleLogout() {
         navigate('/')
         dispatch(updateLoggedUser({
-            id:0,
+            id: 0,
             username: "",
             level_permission: 0
         }))
@@ -65,15 +68,17 @@ export function Header() {
                         SYNTRO
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Button
-                                onClick={() => navigate(page.path)}
-                                key={page.title}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page.title}
-                            </Button>
-                        ))}
+                        {pages.map((page) => {
+                            return page.level_permission <= level_permission && (
+                                <Button
+                                    onClick={() => navigate(page.path)}
+                                    key={page.title}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    {page.title}
+                                </Button>
+                            )
+                        })}
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="abrir menu">
@@ -98,15 +103,17 @@ export function Header() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {pages.map(({ title, path }) => (
-                                <Button
-                                    onClick={() => navigate(path)}
-                                    key={title}
-                                    sx={{ color: 'white', fontSize: 12, mx: 4 }}
-                                >
-                                    {title}
-                                </Button>
-                            ))}
+                            {pages.map(page => {
+                                return page.level_permission <= level_permission && (
+                                    <Button
+                                        onClick={() => navigate(page.path)}
+                                        key={page.title}
+                                        sx={{ color: 'white', fontSize: 12, mx: 4 }}
+                                    >
+                                        {page.title}
+                                    </Button>
+                                )
+                            })}
                             <Button
                                 onClick={handleLogout}
                                 key={'sair'}
