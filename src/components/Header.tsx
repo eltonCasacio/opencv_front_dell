@@ -18,10 +18,10 @@ import { useAppSelector } from '../app/hooks';
 
 const pages = [
     { title: 'Pallet', path: '/', level_permission: 1 },
-    { title: 'Areas', path: 'areas', level_permission: 1 },
-    { title: 'Box Filters', path: 'box-filters', level_permission: 1 },
-    { title: 'Constant', path: 'constant', level_permission: 1 },
-    { title: 'Users', path: 'users', level_permission: 1 },
+    { title: 'Areas', path: 'areas', level_permission: 1, selected:false },
+    { title: 'Box Filters', path: 'box-filters', level_permission: 1, selected:false },
+    { title: 'Constant', path: 'constant', level_permission: 1, selected:false },
+    { title: 'Users', path: 'users', level_permission: 1, selected:false },
 ];
 
 export function Header() {
@@ -45,6 +45,11 @@ export function Header() {
             username: "",
             level_permission: 0
         }))
+    }
+
+    function onClickButtonMenu(path:string) {
+        navigate(path)
+        pages.map(page => page.selected = page.path === path)
     }
 
     return (
@@ -71,9 +76,9 @@ export function Header() {
                         {pages.map((page) => {
                             return page.level_permission <= level_permission && (
                                 <Button
-                                    onClick={() => navigate(page.path)}
+                                    onClick={() => onClickButtonMenu(page.path)}
                                     key={page.title}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                    sx={{ my: 2, color: 'white', display: 'block', bgcolor: page.selected? "#fff2":"transparent" }}
                                 >
                                     {page.title}
                                 </Button>
