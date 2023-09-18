@@ -1,3 +1,4 @@
+import { Unitis } from "../pages"
 import { UnitConverionInterface } from "../pages/constante/components/Sidebar"
 import { Axios } from "./api"
 
@@ -28,102 +29,102 @@ export function selectFilterColorRGB(params: SelectFilterColorRGBParams) {
 function selectFilterColorRedMin(value: number) {
     try {
         Axios.post('selectFilterColorRedMin', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 function selectFilterColorRedMax(value: number) {
     try {
         Axios.post('selectFilterColorRedMax', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 function selectFilterColorGreenMin(value: number) {
     try {
         Axios.post('selectFilterColorGreenMin', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 function selectFilterColorGreenMax(value: number) {
     try {
         Axios.post('selectFilterColorGreenMax', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 function selectFilterColorBlueMin(value: number) {
     try {
         Axios.post('selectFilterColorBlueMin', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 function selectFilterColorBlueMax(value: number) {
     try {
         Axios.post('selectFilterColorBlueMax', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_FoundObjectSizeFilter_Min(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_FoundObjectSizeFilter_Min', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_FoundObjectSizeFilter_Max(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_FoundObjectSizeFilter_Max', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Min(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Min', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Max(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Max', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Min(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Min', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Max(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Max', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export async function getCurrentFilterParams() {
     try {
-        const {data} = await Axios.get('get_current_filter_params')
+        const { data } = await Axios.get('get_current_filter_params')
         return {
             name: data?.name || "",
             selectFilterColor_Red_Min: data?.selectFilterColor_Red_Min || 0,
@@ -158,7 +159,7 @@ export async function getCurrentFilterParams() {
             ConstResolutionPixelMm_Y: data?.ConstResolutionPixelMm_Y || 0,
             labelWeb_RecipeName: data?.labelWeb_RecipeName || 0,
         }
-    } catch (error) { 
+    } catch (error) {
         console.debug("get_current_filter_params", error)
         return null
     }
@@ -170,8 +171,8 @@ export function found_object_size_filter(value: number[]) {
             min: value[0],
             max: value[1]
         })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
@@ -181,61 +182,81 @@ export function vertical_line_size_filter(value: number[]) {
             min: value[0],
             max: value[1]
         })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function horizontal_line_size(value: number[]) {
     try {
         Axios.post('horizontal_line_size', {
-        min: value[0],
-        max: value[1]
+            min: value[0],
+            max: value[1]
         })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export async function clear_filters_params() {
     try {
         await Axios.post('clear_filters_params')
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
-export async function saveFilters() {
+export async function save() {
     try {
         await Axios.post('conv_pixel_to_unit_save')
     } catch (error) {
         console.debug("save unit conversion", error)
-     }
+    }
 }
 
-export async function calculate(params:UnitConverionInterface) {
+export async function calculate(params: UnitConverionInterface) {
     try {
-        await Axios.post('conv_pixel_to_unit_calculate', {...params})
+        await Axios.post('conv_pixel_to_unit_calculate', { ...params })
     } catch (error) {
         console.debug("CALCULATE unit conversion", error)
-     }
+    }
 }
 
-export async function load():Promise<UnitConverionInterface> {
+export async function load(): Promise<UnitConverionInterface> {
     try {
-       const {data} =  await Axios.get<UnitConverionInterface>('conv_pixel_to_unit_load')
-       return data
+        const { data } = await Axios.get<UnitConverionInterface>('conv_pixel_to_unit_load')
+        return data
     } catch (error) {
         console.debug("LOAD unit conversion", error)
         return {
-                constanteUnidadeParaConvercaoPixelEmUnidade_EixoX: 0,
-                constanteUnidadeParaConvercaoPixelEmUnidade_EixoY: 0,
-                cameraDistanceFromObject: 0,
-                medidaEmPixel_x: 0,
-                medidadeEmUnidade_x: 0,
-                medidaEmPixel_y: 0,
-                medidadeEmUnidade_y: 0,
-                current_unit: ""
+            constanteUnidadeParaConvercaoPixelEmUnidade_EixoX: 0,
+            constanteUnidadeParaConvercaoPixelEmUnidade_EixoY: 0,
+            cameraDistanceFromObject: 0,
+            medidaEmPixel_x: 0,
+            medidadeEmUnidade_x: 0,
+            medidaEmPixel_y: 0,
+            medidadeEmUnidade_y: 0,
+            current_unit: ""
         }
-     }
+    }
 }
+
+export async function changeCurrentUnit(unit: string): Promise<void> {
+    try {
+        await Axios.post('conversion_set_unit', { unit })
+    } catch (error) {
+        console.debug("SET unit conversion", error)
+    }
+}
+
+export async function conversion_units(): Promise<Unitis[]> {
+    try {
+        const {data} = await Axios.get<Unitis[]>('conversion_units')
+        return data
+    } catch (error) {
+        console.debug("GET unit conversion", error)
+        return []
+    }
+}
+
+

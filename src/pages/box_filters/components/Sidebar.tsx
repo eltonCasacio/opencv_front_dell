@@ -3,7 +3,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Box, Button, Divider, Link } from '@mui/material';
+import { Box, Divider, Link } from '@mui/material';
 import { AreasName, FilterProps } from '..';
 import {
     selectFilterColorRGB,
@@ -116,7 +116,6 @@ export const Sidebar = (params: SidebarParams) => {
                         initValue={params.selectedFilter.Iterations_erode}
                         callback={trackbarParametersFilterIterationsErode}/>
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
-                    <Typography>Desgasta os limites do objeto em primeiro plano. Normalmente é executado em imagens binárias.</Typography>
                     <Link target='_blank' href='https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html' color="inherit">
                         Documentação
                     </Link>
@@ -135,7 +134,6 @@ export const Sidebar = (params: SidebarParams) => {
                         initValue={params.selectedFilter.Iterations_dilate}
                         callback={trackbar_parametersFilter_iterations_dilate}/>
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
-                    <Typography>Dilatar pixels.</Typography>
                     <Link target='_blank' href='https://docs.opencv.org' color="inherit">
                         Documentação
                     </Link>
@@ -164,10 +162,7 @@ export const Sidebar = (params: SidebarParams) => {
                             title='Area'
                             options={areasName}
                             callback={(value) => var_parametersFilter_SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter(Number(value))}/>
-
                         <Divider variant="fullWidth" sx={{ mb: 2, mt: 2 }} />
-
-                        <Typography>Linha Vertical</Typography>
                         <Link target='_blank' href='#' color="inherit">
                             Documentação
                         </Link>             
@@ -187,8 +182,8 @@ export const Sidebar = (params: SidebarParams) => {
                         title=''
                         callback={(value) => horizontallyWhite(value)}
                         range={[
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Min,
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
+                            params.selectedFilter.SpliceLineJumpingWhiteColorHorizontally_JumpSize_Min,
+                            params.selectedFilter.SpliceLineJumpingWhiteColorHorizontally_JumpSize_Max
                         ]}
                         min={0}
                         max={1000}/>
@@ -199,8 +194,6 @@ export const Sidebar = (params: SidebarParams) => {
                         callback={(value) => var_parametersFilter_SpliceLineJumpWhiteHor_IdAreasOfOperationInTheFilter(Number(value))} />
 
                     <Divider variant="fullWidth" sx={{ mb: 2, mt: 2 }} />
-
-                    <Typography>Linha Horizontal Branca</Typography>
                     <Link target='_blank' href='#' color="inherit">
                         Documentação
                     </Link>
@@ -232,8 +225,6 @@ export const Sidebar = (params: SidebarParams) => {
                         callback={(value) => var_parametersFilter_SpliceLineJumpBlackVer_IdAreasOfOperationInTheFilter(Number(value))} />
 
                     <Divider variant="fullWidth" sx={{ mb: 2, mt: 2 }} />
-
-                    <Typography>Linha Vertical Preta</Typography>
                     <Link target='_blank' href='#' color="inherit">
                         Documentação
                     </Link>
@@ -251,10 +242,7 @@ export const Sidebar = (params: SidebarParams) => {
                     <CardRangeSider
                         title=''
                         callback={(value) => horizontalBlack(value)}
-                        range={[
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Min,
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
-                        ]}
+                        range={[0, 0]}
                         min={0}
                         max={1000}/>
                     <Divider variant="fullWidth" sx={{ mb: 2, mt: 2 }} />
@@ -264,8 +252,6 @@ export const Sidebar = (params: SidebarParams) => {
                         callback={(value) => var_parametersFilter_SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter(Number(value))} />
 
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
-
-                    <Typography>Linha Horizontal Preta</Typography>
                     <Link target='_blank' href='#' color="inherit">
                         Documentação
                     </Link>
@@ -284,8 +270,8 @@ export const Sidebar = (params: SidebarParams) => {
                         title=''
                         callback={(value) => found_object_size_filter(value)}
                         range={[
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Min,
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
+                            params.selectedFilter.FoundObjectSizeFilter_Min,
+                            params.selectedFilter.FoundObjectSizeFilter_Max
                         ]}
                         min={0}
                         max={100000}/>
@@ -310,12 +296,11 @@ export const Sidebar = (params: SidebarParams) => {
                         title=''
                         callback={(value) => vertical_line_size_filter(value)}
                         range={[
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Min,
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
+                            params.selectedFilter.VerticalLineSizeFilterOfFoundObject_Min,
+                            params.selectedFilter.VerticalLineSizeFilterOfFoundObject_Max
                         ]}
                         min={0}
                         max={1000}/>
-                    <Typography>vertical_line_size_filter</Typography>
                     <Link target='_blank' href='#' color="inherit">
                         Documentação
                     </Link>
@@ -334,8 +319,8 @@ export const Sidebar = (params: SidebarParams) => {
                         title=''
                         callback={(value) => horizontal_line_size(value)}
                         range={[
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Min,
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
+                            params.selectedFilter.HorizontalLineSizeFilterOfFoundObject_Min,
+                            params.selectedFilter.HorizontalLineSizeFilterOfFoundObject_Max
                         ]}
                         min={0}
                         max={1000}/>

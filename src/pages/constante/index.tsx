@@ -2,9 +2,9 @@ import { Box, Button, Grid } from "@mui/material"
 import {Content} from "./components/Content"
 import { Sidebar } from "./components/Sidebar"
 import { useEffect, useRef, useState } from "react"
-import { getCurrentFilterParams, clear_filters_params, saveFilters } from '../../services/constant';
+import { getCurrentFilterParams, clear_filters_params, save, changeCurrentUnit, conversion_units } from '../../services/constant';
 
-export interface Filters2 {
+export interface Unitis {
     id: number
     name: string
 }
@@ -45,7 +45,7 @@ export const FilterProps2 = {
 }
 
 export const Constante = () => {
-    const [filters, setFilters] = useState<Filters2[]>([])
+    const [units, setUnits] = useState<Unitis[]>([])
     const [selectedFilter, setSelectedFilter] = useState(FilterProps2)
     let ref = useRef<HTMLInputElement>(null);
     
@@ -55,11 +55,18 @@ export const Constante = () => {
                 setSelectedFilter(res)
             }
         })
+
+        conversion_units().then(res => setUnits(res))
     }
 
-    
-    function saveFilter(value: string) { 
-        saveFilters().then(() => {
+    function handleChangeUnit(name: string) {
+        changeCurrentUnit(name).then(() => {
+            updateAreasForm()
+        })
+    }
+
+    function saveFilter() { 
+        save().then(() => {
             updateAreasForm()
             if(ref.current)
                 ref.current.value = ""
@@ -82,9 +89,10 @@ export const Constante = () => {
 
         <Grid item sm={8} md={9} p={1}>
             <Content
-                filters={filters}
+                units={units}
                 textRef={ref}
-                handleSaveFilter={saveFilter}
+                handleChangeUnit={handleChangeUnit}
+                handleSave={saveFilter}
             />
 
             <Box display={'flex'} justifyContent={'flex-end'}>

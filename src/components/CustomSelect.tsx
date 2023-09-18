@@ -30,14 +30,15 @@ export function CustomSelect({ callback, options, title }: CustomSelectParams) {
         <FormControl sx={{ minWidth: 120 }} variant='outlined' size="small">
             <InputLabel id="demo-select-small-label">{title}</InputLabel>
             <Select
+                variant='outlined'
                 labelId="demo-select-small-label"
                 id="demo-select-small"
                 value={selectedItem}
                 defaultValue=''
-                label="Age"
+                label="label"
                 onChange={handleChange}
             >
-                <MenuItem value="0">
+                <MenuItem value="">
                     <em></em>
                 </MenuItem>
                 {renderFilters()}

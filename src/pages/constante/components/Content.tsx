@@ -1,24 +1,37 @@
-import { Box, Button, TextField } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { CustomSelect } from '../../../components/CustomSelect'
 import { Images } from '../../../components/ImageList'
+import { Unitis } from '..'
 
 export type ContetParams = {
-    filters: Array<{id:number,name:string}>
+    units: Unitis[]
     textRef: React.RefObject<HTMLInputElement>
-    handleSaveFilter: (fileName: string) => void
+    handleChangeUnit: (name: string) => void
+    handleSave: () => void
 }
 
 export const Content = (params: ContetParams) => {
-
+    function handleSelectedUnit(id: string) {
+        if(params.units.length){
+            const {name} = params.units[Number(id)]
+            params.handleChangeUnit(name)
+        }
+    }
+    
     return (
         <Box sx={{
             display: 'flex',
-            height:'82vh',
+            height: '82vh',
             flexDirection: 'column'
         }}>
-            <Box display={'flex'} justifyContent='flex-end' alignItems={'center'}>
+            <Box display={'flex'} justifyContent='space-between' alignItems={'center'}>
+                <CustomSelect
+                    title='Unidade'
+                    options={params.units}
+                    callback={handleSelectedUnit} />
+
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Button variant="contained" color="info" onClick={() => params.handleSaveFilter(params.textRef.current?.value || '')}>
+                    <Button variant="contained" color="info" onClick={params.handleSave}>
                         SALVAR
                     </Button>
                 </Box>
@@ -29,8 +42,6 @@ export const Content = (params: ContetParams) => {
         </Box>
     )
 }
-
-export default Content
 
 const itemData = [
     {

@@ -1,3 +1,4 @@
+import { ChangeEvent, useEffect, useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -12,7 +13,6 @@ import {
     horizontal_line_size
 } from '../../../services/box_filters';
 import { CardRangeSider } from '../../../components/CardRangeSider';
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { calculate, load } from '../../../services/constant';
 
 export interface UnitConverionInterface {
@@ -39,7 +39,7 @@ export const Sidebar = (params: SidebarParams) => {
         medidadeEmUnidade_x: 0,
         medidaEmPixel_y: 0,
         medidadeEmUnidade_y: 0,
-        current_unit:""
+        current_unit: ""
     })
 
     const changeState = (e: ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +51,7 @@ export const Sidebar = (params: SidebarParams) => {
     }
 
     useEffect(() => {
-        load().then(params => setUnitConverion(params) )
+        load().then(params => setUnitConverion(params))
     }, [])
 
     return (
@@ -133,14 +133,13 @@ export const Sidebar = (params: SidebarParams) => {
                         title=''
                         callback={(value) => found_object_size_filter(value)}
                         range={[
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Min,
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
+                            params.selectedFilter.FoundObjectSizeFilter_Min,
+                            params.selectedFilter.FoundObjectSizeFilter_Min
                         ]}
                         min={0}
                         max={100000} />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
-                    <Typography>found_object_size_filter</Typography>
                     <Link target='_blank' href='#' color="inherit">
                         Documentação
                     </Link>
@@ -159,8 +158,8 @@ export const Sidebar = (params: SidebarParams) => {
                         title=''
                         callback={(value) => vertical_line_size_filter(value)}
                         range={[
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Min,
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
+                            params.selectedFilter.VerticalLineSizeFilterOfFoundObject_Min,
+                            params.selectedFilter.VerticalLineSizeFilterOfFoundObject_Max
                         ]}
                         min={0}
                         max={1000} />
@@ -183,8 +182,8 @@ export const Sidebar = (params: SidebarParams) => {
                         title=''
                         callback={(value) => horizontal_line_size(value)}
                         range={[
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Min,
-                            params.selectedFilter.SpliceLineJumpingWhiteColorVertically_JumpSize_Max
+                            params.selectedFilter.HorizontalLineSizeFilterOfFoundObject_Min,
+                            params.selectedFilter.HorizontalLineSizeFilterOfFoundObject_Max
                         ]}
                         min={0}
                         max={1000} />
@@ -217,7 +216,6 @@ export const Sidebar = (params: SidebarParams) => {
                             />
                         </Paper>
                     </Box>
-
                     <Box>
                         <Paper elevation={3} sx={{ p: 2 }}>
                             <Typography>Ajuste Constante Eixo (x)</Typography>
