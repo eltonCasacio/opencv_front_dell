@@ -26,11 +26,21 @@ export interface UnitConverionInterface {
     current_unit: string
 }
 
+export interface FiltersInterface {
+    foundObjectSizeFilter: number[]
+    verticalLineSizeFilterOfFoundObject: number[]
+}
+
 
 export interface SidebarParams {
     selectedFilter: typeof FilterProps2
 }
 export const Sidebar = (params: SidebarParams) => {
+    const [filters, setFilters] = useState<FiltersInterface>({
+        foundObjectSizeFilter: [params.selectedFilter.FoundObjectSizeFilter_Min,params.selectedFilter.FoundObjectSizeFilter_Max],
+        verticalLineSizeFilterOfFoundObject: [params.selectedFilter.VerticalLineSizeFilterOfFoundObject_Min,params.selectedFilter.VerticalLineSizeFilterOfFoundObject_Max]
+    })
+    
     const [unitConverion, setUnitConverion] = useState<UnitConverionInterface>({
         constanteUnidadeParaConvercaoPixelEmUnidade_EixoX: 0,
         constanteUnidadeParaConvercaoPixelEmUnidade_EixoY: 0,
@@ -45,6 +55,18 @@ export const Sidebar = (params: SidebarParams) => {
     const changeState = (e: ChangeEvent<HTMLInputElement>) => {
         setUnitConverion({ ...unitConverion, [e.target.name]: e.target.value })
     }
+
+    const handleFoundObjectSizeFilter = (value:number[]) => {
+        setFilters({ ...filters, foundObjectSizeFilter:value })
+        found_object_size_filter(filters.foundObjectSizeFilter)
+    }
+
+
+    const handleVerticalLineSizeFilter = (value:number[]) => {
+        setFilters({ ...filters, verticalLineSizeFilterOfFoundObject:value })
+        found_object_size_filter(filters.verticalLineSizeFilterOfFoundObject)
+    }
+
 
     const handleCalculate = () => {
         calculate(unitConverion)
@@ -131,13 +153,13 @@ export const Sidebar = (params: SidebarParams) => {
                 <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardRangeSider
                         title=''
-                        callback={(value) => found_object_size_filter(value)}
+                        callback={(value) => handleFoundObjectSizeFilter(value)}
                         range={[
-                            params.selectedFilter.FoundObjectSizeFilter_Min,
-                            params.selectedFilter.FoundObjectSizeFilter_Min
+                            filters.foundObjectSizeFilter[0],
+                            filters.foundObjectSizeFilter[1]
                         ]}
                         min={0}
-                        max={100000} />
+                        max={10000} />
                     <Divider variant="fullWidth" sx={{ mb: 2 }} />
 
                     <Link target='_blank' href='#' color="inherit">
@@ -156,10 +178,10 @@ export const Sidebar = (params: SidebarParams) => {
                 <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardRangeSider
                         title=''
-                        callback={(value) => vertical_line_size_filter(value)}
+                        callback={(value) => handleVerticalLineSizeFilter(value)}
                         range={[
-                            params.selectedFilter.VerticalLineSizeFilterOfFoundObject_Min,
-                            params.selectedFilter.VerticalLineSizeFilterOfFoundObject_Max
+                            filters.verticalLineSizeFilterOfFoundObject[0],
+                            filters.verticalLineSizeFilterOfFoundObject[1]
                         ]}
                         min={0}
                         max={1000} />
