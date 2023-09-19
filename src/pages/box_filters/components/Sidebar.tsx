@@ -73,7 +73,7 @@ export const Sidebar = (params: SidebarParams) => {
                         })}
                         range={[
                             params.selectedFilter.selectFilterColor_Green_Min,
-                            params.selectedFilter.var_parametersFilter_selectFilterColor_Green_Max
+                            params.selectedFilter.selectFilterColor_Green_Max
                         ]}
                         min={0}
                         max={255}

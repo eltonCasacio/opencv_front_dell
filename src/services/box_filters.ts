@@ -27,160 +27,160 @@ export function selectFilterColorRGB(params: SelectFilterColorRGBParams) {
 function selectFilterColorRedMin(value: number) {
     try {
         Axios.post('selectFilterColorRedMin', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 function selectFilterColorRedMax(value: number) {
     try {
         Axios.post('selectFilterColorRedMax', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 function selectFilterColorGreenMin(value: number) {
     try {
         Axios.post('selectFilterColorGreenMin', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 function selectFilterColorGreenMax(value: number) {
     try {
         Axios.post('selectFilterColorGreenMax', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 function selectFilterColorBlueMin(value: number) {
     try {
         Axios.post('selectFilterColorBlueMin', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 function selectFilterColorBlueMax(value: number) {
     try {
         Axios.post('selectFilterColorBlueMax', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbarParametersFilterIterationsErode(value: number) {
     try {
         Axios.post('parametersFilter_Iterations_erode', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_iterations_dilate(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_iterations_dilate', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Min(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Min', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Max(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_SpliceLineJumpingWhiteColorVertically_JumpSize_Max', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_SpliceLineJumpingWhiteColorHorizontally_JumpSize_Min(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_SpliceLineJumpingWhiteColorHorizontally_JumpSize_Min', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_SpliceLineJumpingWhiteColorHorizontally_JumpSize_Max(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_SpliceLineJumpingWhiteColorHorizontally_JumpSize_Max', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_FoundObjectSizeFilter_Min(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_FoundObjectSizeFilter_Min', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_FoundObjectSizeFilter_Max(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_FoundObjectSizeFilter_Max', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Min(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Min', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Max(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_VerticalLineSizeFilterOfFoundObject_Max', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Min(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Min', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Max(value: number) {
     try {
         Axios.post('trackbar_parametersFilter_HorizontallyLineSizeFilterOfFoundObject_Max', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_ResolutionPixMm_X(value: number) {
     try {
         Axios.post('trackbar_ResolutionPixMm_X', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function trackbar_ResolutionPixMm_Y(value: number) {
     try {
         Axios.post('trackbar_ResolutionPixMm_Y', { value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
@@ -191,7 +191,7 @@ export async function getFilters() {
     } catch (error) {
         console.debug("getFilters", error)
         return null
-    } 
+    }
 }
 
 export async function saveFilters(name: string) {
@@ -199,7 +199,7 @@ export async function saveFilters(name: string) {
         await Axios.post('save_filters', { name })
     } catch (error) {
         console.debug("saveFilters", error)
-     }
+    }
 }
 
 export async function deleteFilters() {
@@ -207,7 +207,7 @@ export async function deleteFilters() {
         await Axios.post('delete_filters')
     } catch (error) {
         console.debug("delete_filters", error)
-     }
+    }
 }
 
 export async function changeCurrentFilters(id: number) {
@@ -215,18 +215,18 @@ export async function changeCurrentFilters(id: number) {
         await Axios.post('change_current_filters', { id })
     } catch (error) {
         console.debug("change_current_filters", error)
-     }
+    }
 }
 
 export async function getCurrentFilterParams() {
     try {
-        const {data} = await Axios.get('get_current_filter_params')
+        const { data } = await Axios.get('get_current_filter_params')
         return {
             name: data?.name || "",
             selectFilterColor_Red_Min: data?.selectFilterColor_Red_Min || 0,
             selectFilterColor_Red_Max: data?.selectFilterColor_Red_Max || 0,
             selectFilterColor_Green_Min: data?.selectFilterColor_Green_Min || 0,
-            var_parametersFilter_selectFilterColor_Green_Max: data?.var_parametersFilter_selectFilterColor_Green_Max || 0,
+            selectFilterColor_Green_Max: data?.selectFilterColor_Green_Max || 0,
             selectFilterColor_Blue_Min: data?.selectFilterColor_Blue_Min || 0,
             selectFilterColor_Blue_Max: data?.selectFilterColor_Blue_Max || 0,
             DefinedAreaForFilter_init_X: data?.DefinedAreaForFilter_init_X || 0,
@@ -255,7 +255,7 @@ export async function getCurrentFilterParams() {
             ConstResolutionPixelMm_Y: data?.ConstResolutionPixelMm_Y || 0,
             labelWeb_RecipeName: data?.labelWeb_RecipeName || 0,
         }
-    } catch (error) { 
+    } catch (error) {
         console.debug("get_current_filter_params", error)
         return null
     }
@@ -267,16 +267,16 @@ export function verticallyWhite(value: number[]) {
             min: value[0],
             max: value[1]
         })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function var_parametersFilter_SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter(value: number) {
     try {
         Axios.post('var_parametersFilter_SpliceLineJumpWhiteVer_IdAreasOfOperationInTheFilter', { id: value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
@@ -287,16 +287,16 @@ export function horizontallyWhite(value: number[]) {
             min: value[0],
             max: value[1]
         })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function var_parametersFilter_SpliceLineJumpWhiteHor_IdAreasOfOperationInTheFilter(value: number) {
     try {
         Axios.post('var_parametersFilter_SpliceLineJumpWhiteHor_IdAreasOfOperationInTheFilter', { id: value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
@@ -307,16 +307,16 @@ export function verticallyBlack(value: number[]) {
             min: value[0],
             max: value[1]
         })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function var_parametersFilter_SpliceLineJumpBlackVer_IdAreasOfOperationInTheFilter(value: number) {
     try {
         Axios.post('var_parametersFilter_SpliceLineJumpBlackVer_IdAreasOfOperationInTheFilter', { id: value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
@@ -326,16 +326,16 @@ export function horizontalBlack(value: number[]) {
             min: value[0],
             max: value[1]
         })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function var_parametersFilter_SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter(value: number) {
     try {
         Axios.post('var_parametersFilter_SpliceLineJumpBlackHor_IdAreasOfOperationInTheFilter', { id: value })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
@@ -345,8 +345,8 @@ export function found_object_size_filter(value: number[]) {
             min: value[0],
             max: value[1]
         })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
@@ -356,26 +356,26 @@ export function vertical_line_size_filter(value: number[]) {
             min: value[0],
             max: value[1]
         })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export function horizontal_line_size(value: number[]) {
     try {
         Axios.post('horizontal_line_size', {
-        min: value[0],
-        max: value[1]
+            min: value[0],
+            max: value[1]
         })
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }
 
 export async function clear_filters_params() {
     try {
         await Axios.post('clear_filters_params')
-    } catch (error) { 
-         console.debug(error)
+    } catch (error) {
+        console.debug(error)
     }
 }

@@ -5,15 +5,29 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box, Button, Divider, Link, Paper, TextField } from '@mui/material';
-import { FilterProps2 } from '..';
 import {
     selectFilterColorRGB,
     found_object_size_filter,
-    vertical_line_size_filter,
-    horizontal_line_size
+    horizontal_line_size,
+    getCurrentFilterParams
 } from '../../../services/box_filters';
 import { CardRangeSider } from '../../../components/CardRangeSider';
 import { calculate, load } from '../../../services/constant';
+
+export const unitConversionProps = {
+    selectFilterColor_Red_Min:0,
+    selectFilterColor_Red_Max: 0,
+    selectFilterColor_Green_Min: 0,
+    selectFilterColor_Green_Max:0,
+    selectFilterColor_Blue_Min:0,
+    selectFilterColor_Blue_Max: 0,
+    FoundObjectSizeFilter_Min: 0  ,
+    FoundObjectSizeFilter_Max: 0   ,
+    VerticalLineSizeFilterOfFoundObject_Min: 0  ,
+    VerticalLineSizeFilterOfFoundObject_Max: 0    ,
+    HorizontalLineSizeFilterOfFoundObject_Min: 0  ,
+    HorizontalLineSizeFilterOfFoundObject_Max: 0 ,
+}
 
 export interface UnitConverionInterface {
     constanteUnidadeParaConvercaoPixelEmUnidade_EixoX: number
@@ -26,21 +40,9 @@ export interface UnitConverionInterface {
     current_unit: string
 }
 
-export interface FiltersInterface {
-    foundObjectSizeFilter: number[]
-    verticalLineSizeFilterOfFoundObject: number[]
-}
-
-
-export interface SidebarParams {
-    selectedFilter: typeof FilterProps2
-}
-export const Sidebar = (params: SidebarParams) => {
-    const [filters, setFilters] = useState<FiltersInterface>({
-        foundObjectSizeFilter: [params.selectedFilter.FoundObjectSizeFilter_Min,params.selectedFilter.FoundObjectSizeFilter_Max],
-        verticalLineSizeFilterOfFoundObject: [params.selectedFilter.VerticalLineSizeFilterOfFoundObject_Min,params.selectedFilter.VerticalLineSizeFilterOfFoundObject_Max]
-    })
-    
+export const Sidebar = () => {
+    const [selectedFilter, setSelectedFilter] = useState(unitConversionProps)
+       
     const [unitConverion, setUnitConverion] = useState<UnitConverionInterface>({
         constanteUnidadeParaConvercaoPixelEmUnidade_EixoX: 0,
         constanteUnidadeParaConvercaoPixelEmUnidade_EixoY: 0,
@@ -52,21 +54,56 @@ export const Sidebar = (params: SidebarParams) => {
         current_unit: ""
     })
 
-    const changeState = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleChangeState = (e: ChangeEvent<HTMLInputElement>) => {
         setUnitConverion({ ...unitConverion, [e.target.name]: e.target.value })
     }
 
     const handleFoundObjectSizeFilter = (value:number[]) => {
-        setFilters({ ...filters, foundObjectSizeFilter:value })
-        found_object_size_filter(filters.foundObjectSizeFilter)
+        setSelectedFilter({
+            ...selectedFilter,
+            FoundObjectSizeFilter_Min: value[0],
+            FoundObjectSizeFilter_Max: value[1]
+        })
+        found_object_size_filter([
+            selectedFilter.FoundObjectSizeFilter_Min,
+            selectedFilter.FoundObjectSizeFilter_Max
+        ])
     }
-
 
     const handleVerticalLineSizeFilter = (value:number[]) => {
-        setFilters({ ...filters, verticalLineSizeFilterOfFoundObject:value })
-        found_object_size_filter(filters.verticalLineSizeFilterOfFoundObject)
+        setSelectedFilter({
+            ...selectedFilter,
+            VerticalLineSizeFilterOfFoundObject_Min: value[0],
+            VerticalLineSizeFilterOfFoundObject_Max: value[1]
+        })
     }
 
+    const handleSelectFilterColorRed = (value:number[]) => {
+        selectFilterColorRGB({
+            color: 'VERMELHO',
+            min: value[0],
+            max: value[1]
+        })
+        setSelectedFilter({ ...selectedFilter, selectFilterColor_Red_Min: value[0], selectFilterColor_Red_Max: value[1] })
+    }
+
+    const handleSelectFilterColorGreen = (value:number[]) => {
+        selectFilterColorRGB({
+            color: 'VERDE',
+            min: value[0],
+            max: value[1]
+        })
+        setSelectedFilter({ ...selectedFilter, selectFilterColor_Green_Min: value[0], selectFilterColor_Green_Max: value[1] })
+    }
+
+    const handleSelectFilterColorBlue = (value:number[]) => {
+        selectFilterColorRGB({
+            color: 'AZUL',
+            min: value[0],
+            max: value[1]
+        })
+        setSelectedFilter({ ...selectedFilter, selectFilterColor_Blue_Min: value[0], selectFilterColor_Blue_Max: value[1]})
+    }
 
     const handleCalculate = () => {
         calculate(unitConverion)
@@ -74,7 +111,26 @@ export const Sidebar = (params: SidebarParams) => {
 
     useEffect(() => {
         load().then(params => setUnitConverion(params))
+        getCurrentFilterParams().then(res => {
+            if(res){
+                setSelectedFilter({
+                    selectFilterColor_Red_Min:      res.selectFilterColor_Red_Min,
+                    selectFilterColor_Red_Max:      res.selectFilterColor_Red_Max,
+                    selectFilterColor_Green_Min:    res.selectFilterColor_Green_Min,
+                    selectFilterColor_Green_Max:    res.selectFilterColor_Green_Max,
+                    selectFilterColor_Blue_Min:     res.selectFilterColor_Blue_Min,
+                    selectFilterColor_Blue_Max:     res.selectFilterColor_Blue_Max,
+                    FoundObjectSizeFilter_Min:      res.FoundObjectSizeFilter_Min,
+                    FoundObjectSizeFilter_Max:      res.FoundObjectSizeFilter_Max,
+                    VerticalLineSizeFilterOfFoundObject_Min:    res.VerticalLineSizeFilterOfFoundObject_Min,
+                    VerticalLineSizeFilterOfFoundObject_Max:    res.VerticalLineSizeFilterOfFoundObject_Max,
+                    HorizontalLineSizeFilterOfFoundObject_Min:  res.HorizontalLineSizeFilterOfFoundObject_Min,
+                    HorizontalLineSizeFilterOfFoundObject_Max:  res.HorizontalLineSizeFilterOfFoundObject_Max,
+                })
+            }
+        })
     }, [])
+
 
     return (
         <Box sx={style}>
@@ -89,14 +145,11 @@ export const Sidebar = (params: SidebarParams) => {
                 <AccordionDetails sx={{ bgcolor: '#3c3c3c', padding: 3 }}>
                     <CardRangeSider
                         title='vermelho'
-                        callback={(value) => selectFilterColorRGB({
-                            color: 'VERMELHO',
-                            min: value[0],
-                            max: value[1]
-                        })}
+                        callback={(value) => handleSelectFilterColorRed(value)
+                    }
                         range={[
-                            params.selectedFilter.selectFilterColor_Red_Min,
-                            params.selectedFilter.selectFilterColor_Red_Max
+                           selectedFilter.selectFilterColor_Red_Min,
+                           selectedFilter.selectFilterColor_Red_Max
                         ]}
                         min={0}
                         max={255}
@@ -105,14 +158,10 @@ export const Sidebar = (params: SidebarParams) => {
 
                     <CardRangeSider
                         title='verde'
-                        callback={(value) => selectFilterColorRGB({
-                            color: 'VERDE',
-                            min: value[0],
-                            max: value[1]
-                        })}
+                        callback={(value) => handleSelectFilterColorGreen(value)}
                         range={[
-                            params.selectedFilter.selectFilterColor_Green_Min,
-                            params.selectedFilter.var_parametersFilter_selectFilterColor_Green_Max
+                            selectedFilter.selectFilterColor_Green_Min,
+                            selectedFilter.selectFilterColor_Green_Max
                         ]}
                         min={0}
                         max={255}
@@ -122,14 +171,11 @@ export const Sidebar = (params: SidebarParams) => {
 
                     <CardRangeSider
                         title='azul'
-                        callback={(value) => selectFilterColorRGB({
-                            color: 'AZUL',
-                            min: value[0],
-                            max: value[1]
-                        })}
+                        callback={(value) => handleSelectFilterColorBlue(value)}
                         range={[
-                            params.selectedFilter.selectFilterColor_Blue_Min,
-                            params.selectedFilter.selectFilterColor_Blue_Max]}
+                            selectedFilter.selectFilterColor_Blue_Min,
+                            selectedFilter.selectFilterColor_Blue_Max
+                        ]}
                         min={0}
                         max={255}
                     />
@@ -155,8 +201,8 @@ export const Sidebar = (params: SidebarParams) => {
                         title=''
                         callback={(value) => handleFoundObjectSizeFilter(value)}
                         range={[
-                            filters.foundObjectSizeFilter[0],
-                            filters.foundObjectSizeFilter[1]
+                            selectedFilter.FoundObjectSizeFilter_Min,
+                            selectedFilter.FoundObjectSizeFilter_Max
                         ]}
                         min={0}
                         max={10000} />
@@ -180,8 +226,8 @@ export const Sidebar = (params: SidebarParams) => {
                         title=''
                         callback={(value) => handleVerticalLineSizeFilter(value)}
                         range={[
-                            filters.verticalLineSizeFilterOfFoundObject[0],
-                            filters.verticalLineSizeFilterOfFoundObject[1]
+                            selectedFilter.VerticalLineSizeFilterOfFoundObject_Min,
+                            selectedFilter.VerticalLineSizeFilterOfFoundObject_Max
                         ]}
                         min={0}
                         max={1000} />
@@ -204,8 +250,8 @@ export const Sidebar = (params: SidebarParams) => {
                         title=''
                         callback={(value) => horizontal_line_size(value)}
                         range={[
-                            params.selectedFilter.HorizontalLineSizeFilterOfFoundObject_Min,
-                            params.selectedFilter.HorizontalLineSizeFilterOfFoundObject_Max
+                            selectedFilter.HorizontalLineSizeFilterOfFoundObject_Min,
+                            selectedFilter.HorizontalLineSizeFilterOfFoundObject_Max
                         ]}
                         min={0}
                         max={1000} />
@@ -234,7 +280,7 @@ export const Sidebar = (params: SidebarParams) => {
                                 size="small"
                                 type='number'
                                 value={unitConverion.cameraDistanceFromObject}
-                                onChange={changeState}
+                                onChange={handleChangeState}
                             />
                         </Paper>
                     </Box>
@@ -250,7 +296,7 @@ export const Sidebar = (params: SidebarParams) => {
                                     size="small"
                                     type='number'
                                     value={unitConverion.medidaEmPixel_x}
-                                    onChange={changeState}
+                                    onChange={handleChangeState}
                                 />
                             </Box>
 
@@ -263,7 +309,7 @@ export const Sidebar = (params: SidebarParams) => {
                                     size="small"
                                     type='number'
                                     value={unitConverion.medidadeEmUnidade_x}
-                                    onChange={changeState}
+                                    onChange={handleChangeState}
                                 />
                             </Box>
                         </Paper>
@@ -281,7 +327,7 @@ export const Sidebar = (params: SidebarParams) => {
                                     size="small"
                                     type='number'
                                     value={unitConverion.medidaEmPixel_y}
-                                    onChange={changeState}
+                                    onChange={handleChangeState}
                                     sx={{ mr: 1 }}
                                 />
                                 <Typography mr={1} minWidth={20}>px</Typography>
@@ -296,7 +342,7 @@ export const Sidebar = (params: SidebarParams) => {
                                     size="small"
                                     type='number'
                                     value={unitConverion.medidadeEmUnidade_y}
-                                    onChange={changeState}
+                                    onChange={handleChangeState}
                                     sx={{ mr: 1 }}
                                 />
                                 <Typography mr={1} minWidth={20}>mm</Typography>

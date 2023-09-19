@@ -19,7 +19,7 @@ export const FilterProps = {
     selectFilterColor_Red_Min:0,
     selectFilterColor_Red_Max: 0,
     selectFilterColor_Green_Min: 0,
-    var_parametersFilter_selectFilterColor_Green_Max:0,
+    selectFilterColor_Green_Max:0,
     selectFilterColor_Blue_Min:0,
     selectFilterColor_Blue_Max: 0,
     DefinedAreaForFilter_init_X: 0,
